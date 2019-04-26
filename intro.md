@@ -17,5 +17,3 @@ An alpha version is already available for you to try out. If you want to join ou
 
 We aim to build a holistic eco-system that protects your privacy in the network by establishing p2p communications of users and maximize distribution of information flows within the network. We believe that this technology will benefit society by increasing ownership of personal data and protecting data from unauthorized access or censorship. 
 
-
-NOTE WE MUST INSERT THE LINKS TO REDIRECT USERS TO THE EXPLANATION PAGES OF THE ROLES
