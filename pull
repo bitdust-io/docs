@@ -1,5 +1,8 @@
 #!/bin/bash
 
-git pull fork master
 git pull upstream master
 git status
+
+git pull origin master
+git push origin master
+
