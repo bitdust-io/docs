@@ -12,7 +12,7 @@
 
 ## Introduction
 
-BitDust project is developed on the principles of [automata-based programming](https://en.wikipedia.org/wiki/automata-based_programming) and [open project documentation movement](http://is.ifmo.ru/works/open_doc/).
+BitDust project is developed on the principles of [automata-based programming](https://en.wikipedia.org/wiki/automata-based_programming) and [open project documentation movement](http://is.ifmo.ru/english/).
 
 This is a programming paradigm in which a program or its fragment is represented as a model of some [finite state machine](glossary.md#finite-state-machine).
 The distinctive feature of this approach consists in picking out each condition in which that process is in order to analyze the program behavior on the whole.

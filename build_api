@@ -1,2 +1,3 @@
 #!/bin/bash
-python build_api.py ../bitdust.devel/interface/api.py api.md
+
+python build_api.py ../bitdust/interface/api.py api.md

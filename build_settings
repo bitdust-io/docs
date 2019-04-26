@@ -1,2 +1,3 @@
 #!/bin/bash
-python build_settings.py ../bitdust.devel/ settings.md
+
+python build_settings.py ../bitdust/ settings.md
