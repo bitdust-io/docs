@@ -1,5 +1,207 @@
 # BitDust Change Log
 
+2019-04-27 Veselin Penev [penev.veselin@gmail.com](mailto:penev.veselin@gmail.com)
+
+* populating few more events from transport.gateway  (#320)
+* more fixes in network services (#319)
+
+
+
+2019-04-20 Veselin Penev [penev.veselin@gmail.com](mailto:penev.veselin@gmail.com)
+
+* minor changes in logging and events
+* bug fix in my_keys (#317)
+* make sure suppliers receive and register my customer public key every time (#316)
+
+
+
+2019-04-13 Veselin Penev [penev.veselin@gmail.com](mailto:penev.veselin@gmail.com)
+
+* added new feature: backup/restore/sync my keys to suppliers encrypting with my "master" key (#313)
+* reorganized service_private_messages()
+* populate "my-keys-synchronized" event
+* added service_keys_storage()
+* added service_message_history()
+* disabled few unused services, development to be contunue later (#312)
+
+
+
+2019-04-09 Veselin Penev [penev.veselin@gmail.com](mailto:penev.veselin@gmail.com)
+
+* updated Copyright period to 2008-2019
+* bug fix in /message/history/v1
+* added test for search users
+* made regression test setup more reliable
+* do not load all local keys at startup
+* reading remote matrix for shared files to be able to show availability  
+* updated online_status() automat : reduce amount of "ping" packets sent to offline users
+* added /config/tree/v1 endpoint
+* improved config/*/v1 and service/list/v1 endpoints
+* added ~/.bitdust/logs/packet.log to debug/monitor p2p traffic
+* added ~/.bitdust/logs/event.log
+
+
+
+2019-03-28 Veselin Penev [penev.veselin@gmail.com](mailto:penev.veselin@gmail.com)
+
+* improved config/list/v1 endpoint
+* changed contact_status() state machine and added bug fix in family_member()
+* added more info in file/list/v1 api,
+* enabled CRITICALLY_OFFLINE supplier replacing feature (#291)
+* bug fix in service_employer()  (#290)
+* home folder on Android is /storage/emulated/0/ (#288)
+* updated setup.py (#286)
+* added more flexibility in main.bpmain (#285)
+* bug fix in crypt.encrypted.Block unserialize, clean up in parallelp code (#283)
+* added more logging for jsn serialization and signatures verification issues debugging (#282)
+* rebuilt raid_worker() to use parallelp instead of multiprocessing (#281)
+* fixed .travis.yml
+* able to set python version for unit tests on travis
+* rebuilt raid_worker() to use parallelp instead of multiprocessing
+* copied and adopted parallelp 1.5.7 sources in the code base, thanks to Vitalii Vanovschi
+* removed pybc blockchain files, we are moving towards Bismuth project
+* fix bug in chat messages (#279)
+* passing text arguments to child_process() (#277)
+* fixes in raid and backup/restore pipe  (#274)
+
+
+
+2019-03-01 Veselin Penev [penev.veselin@gmail.com](mailto:penev.veselin@gmail.com)
+
+* use asyncio for test suit initialization to run tests faster
+* fix in stun_server() machine
+* populate opened UDP ports in network/info/v1 API
+* fallback flow in stun method : use ID servers to recognize my external IP
+
+
+
+2019-02-27 Veselin Penev [penev.veselin@gmail.com](mailto:penev.veselin@gmail.com)
+
+* added fallback flow in stun method - use ID servers to recognize my external IP
+* py3 fix in tar pipe
+* bug fix in encryption code
+* windows fixes
+
+
+
+
+2019-03-01 Veselin Penev [penev.veselin@gmail.com](mailto:penev.veselin@gmail.com)
+
+* use asyncio for test suit initialization to run tests faster
+* fix in stun_server() machine
+* populate opened UDP ports in network/info/v1 API
+* fallback flow in stun method : use ID servers to recognize my external IP
+
+
+
+2019-02-27 Veselin Penev [penev.veselin@gmail.com](mailto:penev.veselin@gmail.com)
+
+* added fallback flow in stun method - use ID servers to recognize my external IP
+* py3 fix in tar pipe
+* bug fix in encryption code
+* windows fixes
+
+
+
+2019-02-25 Veselin Penev [penev.veselin@gmail.com](mailto:penev.veselin@gmail.com)
+
+* py3 and windows bug fixes
+* bump twisted version to 18.7.0
+* fallback scenario in chat history to be able to recreate local db in case of migrations
+
+
+
+2019-02-16 Veselin Penev [penev.veselin@gmail.com](mailto:penev.veselin@gmail.com)
+
+* bug found and fixed in customer/data_sender.py
+* get rid of data_sender.log
+* all suppliers must be already hired before you start uploading
+* few more py3 bug fixes
+* more stability in service_shared_data() 
+
+
+
+2019-02-14 Veselin Penev [penev.veselin@gmail.com](mailto:penev.veselin@gmail.com)
+
+* BitDust is Python3 compatible now!
+* reorganization in dht_service.py
+* switched kademlia DHT keys from binary digest() to string hexdigest() format
+* get rid of pickle in kademlia DHT
+* switched kademlia DHT KBucket size from 8 to 4
+* get rid of builtin json module in favor of lib.serialization and lib.jsn
+* switched OptimizedTreeRoutingTable() to TreeRoutingTable()
+* introduce "revision" field in DHT DB: check/update "revision" on closest nodes on every search
+* do not publish my identity source in DHT, only my IDURL
+* print all stored in DHT key:value pairs from all nodes after regression test finished
+* redirecting stdout to .bitdust/logs/stdout.log file for "bitdust daemon" command
+* added timeout=30 parameter to api.share_grant()
+* changed dependecies of service_keys_registry() - moved up in the services tree
+
+
+
+2019-01-17 Veselin Penev [penev.veselin@gmail.com](mailto:penev.veselin@gmail.com)
+
+* added more regression tests
+* a lot of fixes/improvements in DHT code
+* introduced DHT key-value store/request validation methods
+* software must not use default suppliers number and default ecc_map in the real-time logic
+* some updates in state machines around the code
+* minor fixes api methods
+* added copyrights for some files for Stanislav Evseev, Veselin Penev
+* report number of warnings/errors/exceptions from containers in the end of regression test
+* all state changed callbacks must also use "*args, **kwargs" instead of "args"
+* switched all state machines to *args, **kwargs notation instead of single arg=None input
+* a lot of work with family_member() machine
+
+
+
+2018-12-23 Veselin Penev [penev.veselin@gmail.com](mailto:penev.veselin@gmail.com)
+
+* bug fix in dht_relations
+
+
+
+2018-12-22 Veselin Penev [penev.veselin@gmail.com](mailto:penev.veselin@gmail.com)
+
+* better logging in DHT
+* bug fix DHT configuration
+* better logging of api calls
+* tuning DHT service
+* added p2p-alice.ai to the main network seeds
+* more stable regression tests
+
+
+
+2018-12-21 Veselin Penev [penev.veselin@gmail.com](mailto:penev.veselin@gmail.com)
+
+* able to restore identity again : added "stun my IP" step in id_restorer()
+* added regression tests for private messages
+* fix in "bitdust stop" command
+* testing main network
+
+
+
+2018-12-16 Veselin Penev [penev.veselin@gmail.com](mailto:penev.veselin@gmail.com)
+
+* created networks.json file to store info about "genesis" nodes
+* moved p2p-id.ru and bitdust.ai to the main network
+* bug fixes proxy_router()
+* added retries=2 to propagate.PingContact()
+* added check for service_proxy_transport() in network/connected/v1
+* stabilyzing regression tests
+* removed parallelp lib from the repo
+* switched tests from run_ssh_curl_and_wait() to requests.get()/post()
+* added ssh tunnels to regression tests
+* use settings.getPrivateKeySize() in my_keys.generate_key()
+* state machine core event() method will properly trigger state changed callbacks when closing automat instance
+* added revision and publisher fields in dht record of customer family
+* supplier to be notified about his position in the family by customer
+* service_employer() will report supplier position to service_customer_family()
+* rebuilding supplier service in order to reduce DHT queries and build customer family logic
+* added make regression_test target
+* building healt_check() method for every network service
+* added tests for restore identity
+
 
 
 2018-11-10 Veselin Penev [penev.veselin@gmail.com](mailto:penev.veselin@gmail.com)
@@ -249,6 +451,7 @@
 * started playing with Ethereum, continue working on contracts chains
 
 
+
 2017-03-04 Veselin Penev [penev.veselin@gmail.com](mailto:penev.veselin@gmail.com)
 
 * migration of genezis nodes to another vps machines
@@ -378,4 +581,19 @@
 2014-08-20 Veselin Penev [penev.veselin@gmail.com](mailto:penev.veselin@gmail.com)
 
 * new tray icons for Microsoft Windows
+
+
+2014-10-10 Veselin Penev <veselin@bitdust.io>
+
+* switched on a new improved UDP transport - can use UDP to transfer packets now
+* upgrade messaging service - safe p2p encrypted chat
+* added command line support to send/list messages
+
+
+2014-08-20 Veselin Penev <veselin@bitdust.io>
+
+* start tracking of change log history
+* prepared a Demo version with GUI interface 
+* new tray icons for Microsoft Windows
+
 
