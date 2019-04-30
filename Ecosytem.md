@@ -79,3 +79,11 @@ blockchain technology to accomplish this. A miner validates transactions within 
 sending and receiving of BitDust tokens from one users to another. The BitDust token is used to reward supporting roles within
 the network. For instance a customer needs BitDust tokens to store data at suppliers. Read more in detail about our
 approach here (insert link).
+
+In the future we may add roles in order to create a more fair and sustainable ecosystem. For now these are the roles which we will 
+be implementing. All of these roles can only currently be set up if you have the proper hardware and are familiar with setting up
+via command line. In the future we will be developing an easy to use application for all supporting roles. This way even if you
+are not tech savy you will still be able to support the BitDust network with your laptop/pc. Every role has a more in-depth section 
+which provides you with a how-to in order to set that role up on your local machine. If you like what you are reading and want
+to contribute in order ways then please email us at info@bitdust.io. In addition we are always happy to help out on Telegram 
+(https://t.me/bitdust) for you to set things up.  
