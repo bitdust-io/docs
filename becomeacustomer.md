@@ -51,4 +51,11 @@ you store your downloaded files.
 
 ## Step 8: Setting your required space
 
+In the settings page you can see the space in MB you have available within BitDust. Since we are still in an Alpha version we have 
+limited the space that is available for every customer. At our discretion we can increase the available space per customer. 
+We envision that the BitDust token will enable you to rent out more space at your suppliers in the form of Gigabyte Hours. However
+we have not developed that yet. For now bear with us and new updates will come.
+
+Congratulations! You have run through the necessary steps to become a customer and join the BitDust network. 
+
 
