@@ -1,9 +1,9 @@
 # Software releases
 
 * [Intro](#intro)
-* [Release run book](#release-run-book)
+* [Prepare environment](#prepare-environment)
+* [Runbook](#runbook)
 * [Update Documentation](#update-documentation)
-* [Update web-site](#update-web-site)
 
 
 ## Intro
@@ -23,100 +23,92 @@ This way the BitDust software automatically "updates itself" and stays in sync w
 
 As a user of BitDust software you can disabled automatic updates at any moment in the program settings.
 
-You can fork BitDust "stable" repo and clone locally to quickly run main python code. Just like any other github project you forked, your fork will be fully independent from the main repo. This will work for developers and for those who wish to stay in sync with main network manually.
+You can also fork BitDust "stable" repo and clone locally your fork to quickly check and run main python code. Just like any other github project you forked, your fork will be fully independent from the main repo. This will work for developers and for those who wish to stay in sync with main network manually.
+
+Most BitDust users are starting from main web site and download installer from [BitDust desktop](https://github.com/bitdust-io/desktop/releases) release files - they automatically stay in sync with "Stable" repository.
 
 Below is a step-by-step guide to deliver changes from the "Development" repository into the "Stable" repository.
 
 
 
-## Release run book
+## Prepare environment
 
-Change to the "stable" repo folder, you must have it already cloned locally in the `./bitdust` folder:
+To be able to run a new BitDust release you must fork and clone both repositories already.
+Basically those actions you need to do only one time and just keep your repositories up-to-date with the main branches.
 
-    cd ./bitdust/
+Here we assume your fork will be "origin" and main repository will be added as "upstream":
 
-
-Development repository must be already cloned in the `./bitdust.devel` folder within the same parent folder.
-Now import the fresh code from "devel" repo on top of the existing files:
-
-    ./import ../bitdust.devel/
-
-
-Turn OFF DEBUG mode in all Python files:
-
-    find . -type f -name "*.py" -exec sed -i '' -e 's/_Debug = True/_Debug = False/g' {} +
-
-
-Mark all modified files in git to be commited in the new release:
-
-    git add -u .
-
-
-Add all other new files to git manually - this is important here to not miss any files:
-
-    git add ...
-
-
-If some files or folders were removed from "devel" repo - do not forget to also remove them from  the "stable" repo and mark those changes to be commited:
-
-    rm ...
-    git add -u . 
-
-
-Check again to be sure you didn't miss to remove / add any other files. Some files and folders should be excluded from the "stable" repo so this below command will help you to identify any differences:
-
+    # fork and clone development repo
+    git clone git@github.com:<your GitHub username here>/devel.git bitdust.devel
+    cd bitdust.devel
+    git remote add upstream https://github.com/bitdust-io/devel.git
     cd ..
-    diff --brief -r bitdust/ bitdust.devel/ | grep -v ".DS_Store" | grep -v "site-packages" | grep -v ".git" | grep -v "__pycache__" | grep -v ".pyc" | grep "Only in"
 
-    Only in bitdust.devel/: HISTORY.txt
-    Only in bitdust.devel/: deploy
-    Only in bitdust/: import
-    ...
-
-
-Do not commit your changes yet!
-Change back to "devel" repo and run such command to list all commits added to the "devel" repo after the last release of the "stable" repo was published:
-
-    cd ./bitdust.devel/
-    ./history ../bitdust/
+    # fork and clone stable repo
+    git clone git@github.com:<your GitHub username here>/public.git bitdust
+    cd bitdust
+    git remote add upstream https://github.com/bitdust-io/public.git
+    cd ..
 
 
-File `HISTORY.TXT` was created and now it is time to describe which changes we are going to publish in the `CHANGELOG.txt`.
 
-Copy text block from `HISTORY.TXT` file into `CHANGELOG.txt` and make it look nice:
+## Runbook
 
-    head -30 HISTORY.TXT
+Change to `devops/` folder inside development repository and run `release_prepare` script:
+
+    cd bitdust.devel/devops/
+    ./release_prepare
+
+
+This will prepare all files to be commited into "Stable" repository. All modified/added/removed files will be displayed in your terminal output. That script is doing a bunch of things:
+
+* copy files from "devel" to "stable" repo
+* disable DEBUG mode in all Python files
+* compare all files in both repositories
+* updates `HISTORY.txt` file in "devel" repo
+
+
+Now edit `bitdust.devel/CHANGELOG.txt` file manually - you need to provide some info about your changes. After running `release_prepare` you should see in your terminal console output a list of most recent commits. Just copy those lines and paste on top of `CHANGELOG.txt` file:
+
+    # copy text block from `HISTORY.TXT` file into `CHANGELOG.txt` and make it look nice
+    cd ..
     nano CHANGELOG.txt
 
 
-Commit `CHANGELOG.txt` in the "devel" repo:
+Now you need to change to the "stable" repository and run `git add ...` / `git rm ...` commands to confirm changes.
 
-    git add CHANGELOG.txt
-    git commit -m "updated CHANGELOG, prepare next release"
+First mark all modified files in git to be commited in the new release:
 
-
-And also copy `CHANGELOG.txt` to the "stable" repo:
-
-    cp CHANGELOG.txt ../bitdust/
+    cd ../bitdust
+    git add -u .
 
 
-Now you can finally commit changes in the "stable" repo:
+Add all other new files to git manually - this is important here to not miss any files created recently in "devel" repo:
 
-    cd ../bitdust/
-    git add CHANGELOG.txt
-    git commit -m "<glorious name of the new release>"
+    git add <some new file>
 
 
-Push changes to your "stable" repo - you must already have a Fork of the "stable" repo:
+If some files or folders were removed from "devel" repo - do not forget to also remove them from the "stable" repo and mark those changes to be commited:
 
-    git push origin master
+    git rm <some old file>
 
 
-Create new [Pull Request](https://github.com/bitdust-io/public/pulls) to the "stable" repository ...
+We are almost done!
+Change back to `devops/` folder inside development repository and run `release_start` script:
 
-Review ...
+    cd ../bitdust.devel/devops/
+    ./release_start
 
-Merge ... 
+
+That script will push all prepared changes to your forked repositories.
+
+All you need to do now is to create new [Pull Request](https://github.com/bitdust-io/public/pulls) to the "stable" repository ...
+
+Make sure Travis build is green ...
+
+Review changes ...
+
+Click Merge button ... 
 
 Congratulations, YOU ARE LIVE NOW!!!
 
@@ -131,6 +123,7 @@ Update your fork to stay in sync:
 
 The BitDust project Documentation is fully open-sourced and everyone is welcome to contribute and improve it the [Documentation repository](https://github.com/bitdust-io/docs).
 Those steps are required to keep documentation in sync with the code.
+
 Update "docs" repo first, you must already have it forked and cloned in the`./bitdust.docs/` folder in same parent folder as the "devel" and the "stable" repos:
 
     cd ../bitdust.docs/
@@ -142,42 +135,13 @@ Update "docs" repo first, you must already have it forked and cloned in the`./bi
 Push changes to your fork of the documentation repository and start a new [Pull Request](https://github.com/bitdust-io/docs/pulls) to the upstream:
 
     git push origin master
-    # Open & Merge Pull Request
+    # Open & Review & Merge Pull Request
 
 
 Update your fork to stay in sync after a merge:
 
     git pull upstream master
     git push origin master
-
-
-
-## Update web-site
-
-The main BitDust web site at [www.bitdust.io](https://bitdust.io) is also fully open-sourced in [WWW repository](https://github.com/bitdust-io/www).
-However only "core" developers have SSH access to the hosting server, anyone is welcome to contribute and improve the web-site via GIT.
-
-You can "auto-generate" all HTML pages based on the markdown sources from the documentation repository:
-
-    cd ../bitdust.www/
-    ./build
-
-
-Push changes to your fork of the WWW repository and start a new [Pull Request](https://github.com/bitdust-io/www/pulls) to the upstream:
-
-    git push origin master
-    # Open & Merge Pull Request
-
-
-Update your fork to stay in sync:
-
-    git pull upstream master
-    git push origin master
-
-
-After merging changes, ask one of the developers to run "git pull" command on the server via SSH and web site will be immediately updated:
-
-    ./update
 
 
 ALL DONE!
