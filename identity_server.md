@@ -39,7 +39,12 @@ You need to add a line to set your domain name:
         ServerName my-own-identity-server.com
 
 
-Create a new my-own-identity-server_com.conf file in /etc/apache2/conf-available/ :
+Create a new `.conf` file for Apache2:
+
+        sudo nano /etc/apache2/conf-available/my-own-identity-server_com.conf
+
+
+Use that template to create Apache2 config, basically you can just copy & paste and only change domain name here:
 
         <VirtualHost *:80>
           ServerName my-own-identity-server.com
