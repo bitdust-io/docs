@@ -35,10 +35,11 @@ Switch ON identity server on your node so you will help other people to identify
 
         bitdust set services/identity-server/enabled true
         bitdust set services/identity-server/host my-domain-name.com
+        bitdust set services/identity-server/tcp-port 6661
         bitdust set services/identity-server/web-port 8084
 
 
-This will need a bit more configuration in order to redirect external requests to the server on port 80 to BitDust software listening on port 8084: read more about [Identity server configuration](identity_server.md) to know how to arrange it in a few steps. 
+BitDust software suppose to run without root priviledges, so it can not open and listen on port 80. This will need a bit more configuration in order to redirect external requests to the server on port 80 to BitDust software listening on port 8084: read more about [Identity server configuration](identity_server.md) to know how to arrange it in a few steps.
 
 Set UDP port number for you DHT seed:
 
@@ -51,7 +52,9 @@ Disable proxy transport and customer service because you do not need those if st
         bitdust set services/customer/enabled false
 
 
-We advice every "seed" node to have a certain identifier format which is based on DNS name of the seed: `root@my-domain-name.com`. In order to do that you need to set domain name of your seed node in the settings, before you create a new identity:
+To make it more clear for other users using your seed node, we advice you to use a certain identifier format which is based on DNS name of that machine: `seed_my_domain_name_com@my-domain-name.com`.
+
+In order to do that you need to set domain name of your seed node in the settings, before you create a new identity:
 
         bitdust set services/identity-propagate/known-servers my-domain-name.com:80:6661
 
@@ -63,7 +66,7 @@ Start BitDust in background:
 
 Now you can interact with BitDust software running on your local machine via HTTP Rest API. Lets create a new identity for your seed node:
 
-        curl -X POST -d '{"username": "root"}' localhost:8180/identity/create/v1
+        curl -X POST -d '{"username": "seed_my_domain_name_com"}' localhost:8180/identity/create/v1
 
 
 Make sure you also did a backup of your private key and copied that in a safe place.
@@ -72,7 +75,7 @@ Make sure you also did a backup of your private key and copied that in a safe pl
         mv /tmp/bitdust_identity_backup.txt /media/USB_drive/
 
 
-Restart BitDust and enjoy, your identity should be accessable on `http://my-domain-name.com/root.xml` if all steps were correct.
+Restart BitDust and enjoy, your identity should be accessable on `http://my-domain-name.com/seed_my_domain_name_com.xml` if all steps were correct.
 
         bitdust restart
 
