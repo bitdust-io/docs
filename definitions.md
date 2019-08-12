@@ -7,6 +7,11 @@ BitDust project is aimed to protect your own privacy.
 
 ## +
 
+BitDust is a distributed on-line storage network, in which only data owner has full access to private data and power to share it.
+
+
+## +
+
 BitDust is a project of worldwide distributed computer network for secure and independent data storage, information transfers and private communications which operates over existing Internet connections.
 
 

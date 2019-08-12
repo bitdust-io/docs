@@ -1,6 +1,7 @@
 # BitDust Technologies
 
-Below you can find the technologies being used for the development of BitDust.
+Below you can find the technologies being used for the development of BitDust project.
+
 
 ## Back-End
 
@@ -36,3 +37,8 @@ Below you can find the technologies being used for the development of BitDust.
 * Docker
 * CI/CD
 * GIT
+
+
+
+<div class=fbcomments markdown="1">
+</div>

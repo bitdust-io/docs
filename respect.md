@@ -1,54 +1,54 @@
 # BitDust supporters and contributors
 
-### The following people have contributed in the past or are still contributing to the BitDust project. 
+The following people have contributed in the past or are still contributing to the BitDust project.
 
 
-### Veselin Penev
+#### Veselin Penev
 
 
-### Vincent Cate
+#### Vincent Cate
 
 
-### Nikolay Kozlov
+#### Nikolay Kozlov
 
 
-### Petr Karasev
+#### Petr Karasev
 
 
-### Albert Kashin
+#### Albert Kashin
 
 
-### Oleg Makarov
+#### Oleg Makarov
 
 
-### Jordi Heesakkers
+#### Jordi Heesakkers
 
 
-### Daniel Petrarca
+#### Daniel Petrarca
 
 
-### Niek Dijkhuis
+#### Niek Dijkhuis
 
 
-### Corne van Schaik
+#### Corne van Schaik
 
 
-### Desmond Dekker
+#### Desmond Dekker
 
 
-### Renato Cardoso
+#### Renato Cardoso
 
 
-### Anton Grishun
+#### Anton Grishun
 
 
-### Stanislav Evseev
+#### Stanislav Evseev
 
 
-### Jocelin Shumbushoniyonzima
+#### Jocelin Shumbushoniyonzima
 
 
-### Riyazudheen Mohamed
+#### Riyazudheen Mohamed
 
 
 
