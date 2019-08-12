@@ -128,9 +128,14 @@ But you can decide which ID servers you prefer, in case if you would like to con
     bitdust set services/identity-propagate/known-servers first-server.com:80:6661,second-host.net:8080:6661
 
 
-Now if you will create a new identity with `bitdust id create my_dedicate_identity` command it will be "propagated" to `first-server.com` and `second-host.net` and your global IDURL can be like that:
+Now if you create a new identity with such commands:
 
-    http://first-server.com/my_dedicate_identity.xml
+    bitdust id erase
+    bitdust id create my_dedicate_identity
+
+
+it will be automatically "propagated" to `first-server.com` and `second-host.net` and your global IDURL should look like that: `"http://first-server.com/my_dedicate_identity.xml"`
+
 
 
 ## Support BitDust network

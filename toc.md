@@ -23,8 +23,6 @@
 + [Automatic Rebuilding](rebuilding.md)
 + [Distributed Hash-Table](dht.md)
 + [Network services](services.md)
-+ [Transport protocols](transports.md)
-+ [Crypto-contracts](crypto_contracts.md)
 
 
 ## Development
