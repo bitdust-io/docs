@@ -8,7 +8,6 @@
 + [Philosophy](philosophy.md)
 + [How Does It Work?](principle.md)
 + [Installation](install.md)
-+ [Seed node](seed_node.md)
 + [Commands](commands.md)
 + [Settings](settings.md)
 + [Glossary](glossary.md)
@@ -32,6 +31,7 @@
 + [Technologies](technologies.md)
 + [API Interface](api.md)
 + [Software releases](software_releases.md)
++ [Seed node](seed_node.md)
 + [Contributors and Supporters](respect.md)
 
 
