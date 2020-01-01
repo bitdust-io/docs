@@ -49,7 +49,7 @@ Then you need to use pip manager to get all required packages:
 
 On Raspberry PI you will need to install those packages:
 
-        sudo apt-get install git gcc python-dev python-virtualenv libffi-dev libssl-dev
+        sudo apt-get install git gcc python-dev python-virtualenv python-pip libffi-dev libssl-dev
 
 
 
@@ -119,9 +119,9 @@ Start as background process:
 
 
 To get some more insights or just to know how to start playing with software
-you can visit [BitDust Commands](https://bitdust.io/commands.html) page. 
+you can visit [BitDust Commands](commands.md) page. 
 
-To get more info about API methods available go to [BitDust API](https://bitdust.io/api.html) page.
+To get more info about all API methods served by BitDust engine process go to [BitDust API](api.md) page.
 
 
 
@@ -131,11 +131,9 @@ If you are installing BitDust on Windows platforms, you may require some binary 
 
 * cygwin: [cygwin.com](https://cygwin.com/install.html)
 * git: [git-scm.com](https://git-scm.com/download/win)
-* python 2.7 (python3 is not supported yet): [python.org](http://python.org/download/releases)
-* twisted 16.0 or higher: [twistedmatrix.com](http://twistedmatrix.com)
+* python2.7 or python3: [python.org](http://python.org/download/releases)
+* twisted: [twistedmatrix.com](http://twistedmatrix.com)
 * pyasn1: [pyasn1.sourceforge.net](http://pyasn1.sourceforge.net)
-* pyOpenSSL: [launchpad.net/pyopenssl](https://launchpad.net/pyopenssl)
-* pycrypto: [dlitz.net/software/pycrypto](https://www.dlitz.net/software/pycrypto/)
 * miniupnpc: [miniupnp.tuxfamily.org](http://miniupnp.tuxfamily.org/)
 
 

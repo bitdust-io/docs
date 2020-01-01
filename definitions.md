@@ -33,6 +33,11 @@ BitDust is new software framework to build distributed and secure peer-to-peer a
 
 ## +
 
+BitDust APP provides independent on-line storage and secure private messaging
+
+
+## +
+
 BitDust is attempt to rectify the current situation in the world - this is what was supposed to become "Distributed Internet" in the past.
 
 

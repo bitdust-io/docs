@@ -3,7 +3,7 @@
 
 ## Description
 
-[Distributed hash-table]( https://en.wikipedia.org/wiki/Distributed_hash_table),
+[Distributed hash-table](https://en.wikipedia.org/wiki/Distributed_hash_table),
 or `DHT`, provides an interface close to associative array or dictionary with key/value pair where storage of all pairs (key, value) is distributed into multiple nodes.
 
 Because of such useful DHT’s characteristics as decentralization, scalability and fault-tolerance it is possible to create an integrated space for service information storage. This means switching to an absolutely different approach since it moves towards an organization of network infrastructures rather than a common centralized client-server solutions.
