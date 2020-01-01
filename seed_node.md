@@ -32,7 +32,7 @@ Create BitDust virtual Python environment:
 Make sure you already have `bitdust` command existing so you can access BitDust from your command line console shell.
 You only need to do this one time and create an "alias" in your global system commands list. Then you can just type: `bitsut <some command>` to be able to talk to BitDust quickly. To create system-wide shell command you can manually copy already existing script `<your home location>/.bitdust/bitdust` to your PATH and it will work right away. Another very simple way is to just create a symlink:
 
-    sudo ln -s -f /home/<user>/.bitdust/bitdust /usr/local/bin/bitdust  # location depend on your system
+        sudo ln -s -f /home/<user>/.bitdust/bitdust /usr/local/bin/bitdust  # location depend on your system
 
 
 Few services needs to be enabled, by default they are turned off because normal users will most probably act as a customer/consumer at the beginning.
@@ -84,6 +84,12 @@ Make sure you also did a backup of your private key and copied that in a safe pl
 Restart BitDust and enjoy, your identity should be accessable on `http://my-domain-name.com/seed_my_domain_name_com.xml` if all steps were correct.
 
         bitdust restart
+
+
+To make life easier you can also configure BitDust to start automatically when your machine reboots. For example on Debian system you can use `crontab` tool for that:
+
+        crontab -e
+        @reboot /usr/local/bin/bitdust daemon
 
 
 If you plan to maintain your new BitDust node for a while and support the network it makes sense to include your node into a list of "well known" nodes, which are hard-coded in [networks.json](https://github.com/bitdust-io/public/blob/master/networks.json) file.

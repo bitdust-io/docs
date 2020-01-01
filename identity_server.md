@@ -11,9 +11,9 @@ So any node in the network can start own ID server and help to maintain network 
 
 Your global IDURL is formed based on your nickname and DNS name (or IP address) of the first ID server.
 
-If one of your ID servers is down, you can find a fresh one and "propagate" your identity there
-and then remove dead ID server from the list of your sources: "identity migration" (not implemented yet).
-This process will be automated and network identification will become much more reliable.
+When one of your Identity servers is down, BitDust software will automatically find a fresh Identity server for you and "propagate" your identity there and also remove dead Identity server from the list of your sources. That process is called "identity rotate" and it is fully automated and decentralized.
+
+Because of that BitDust network authentication is actually pretty reliable and fully independent for any single party.
 
 
 ## Install and configure apache2
@@ -77,7 +77,7 @@ Now restart apache2 server:
 
 ## Configure BitDust software
 
-First you need to install [BitDust software](https://bitdust.io/install.html) on your machine. 
+First you need to [install BitDust](install.md) on your machine. 
 
 Now configure BitDust on your node to set domain name for this new identity server, run commands:
 
@@ -117,6 +117,11 @@ Be sure ID server is up and running:
 
 
 Open your browser and go to [http://127.0.0.1:8084](http://127.0.0.1:8084) or [my-own-identity-server.com](my-own-identity-server.com) to check server status.
+
+To make life easier you can also configure BitDust to start automatically when your machine reboots. For example on Debian system you can use `crontab` tool for that:
+
+        crontab -e
+        @reboot /usr/local/bin/bitdust daemon
 
 
 ## Create dedicated identity
