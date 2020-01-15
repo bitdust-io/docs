@@ -218,6 +218,15 @@ merchant will pay BTC to supplier but will stop relation with that customer and 
 merchant already received BTC from that customer actually, so not much loose for merchant.
 
 
+#### how the contract is stored ?
+
+contract is a small json file that describes the details of the deal between customer and supplier.
+at first it is generated on supplier side, then customer receives it and finally the merchant.
+after contract completed and paid it can be erased.
+thought merchants potentially can utilize another storage all together to remember the history of all contracts in the network.
+
+
+
 #### ...
 
 
