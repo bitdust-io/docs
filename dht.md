@@ -31,18 +31,18 @@ The following table has a list of command boxes, which can be written to the has
 
 * `customer_supplier:[index]:[prefix]:[version]`
     list of relations for given customer with other suppliers 
-        
+
 
 ## Support BitDust network
 
-If you agree to support other BitDust users when they are connecting to the network and would like to become a "Seed node" in the BitDust network you can add your node to the [networks.json](https://github.com/bitdust-io/public/blob/master/networks.json) file which is located in the root of the BitDust repository.
+If you agree to support other BitDust users when they are connecting to the network and would like to become a "Seed node" in the BitDust network you can add your node to the [default_network.json](https://github.com/bitdust-io/public/blob/master/default_network.json) file which is located in the root of the BitDust repository.
 
 Make sure BitDust is running constantly on your machine and it works reliable and connected to the Internet.
 You will be a part of the BitDust "proto-network" and receive incoming DHT requests from other nodes when they are connecting to the network for the first time.
 
 This is how the Distributed Hash Table works - it is well-scalable, but requires some of the nodes to be on-line all the time. But it shouldn't create a lot of traffic on those nodes because any other node will hit a "seed node" only once - when they are joining DHT network for the first time.
 
-To include yourself into a list of "well-known" seed nodes - first create a fork of [Public Git Repository](https://github.com/bitdust-io/public), modify `networks.json` file in your forked repository and start a [Pull Request](https://github.com/bitdust-io/public/pulls) with your changes - this way we can collaborate all together and maintain a list of the most reliable BitDust seed nodes.
+To include yourself into a list of "well-known" seed nodes - first create a fork of [Public Git Repository](https://github.com/bitdust-io/public), modify `default_network.json` file in your forked repository and start a [Pull Request](https://github.com/bitdust-io/public/pulls) with your changes - this way we can collaborate all together and maintain a list of the most reliable BitDust seed nodes.
 
 Contact the BitDust contributors to notify about that a new DHT node was started by you and one of the developers will approve your Pull Request.
 
