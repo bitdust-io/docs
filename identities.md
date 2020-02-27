@@ -39,9 +39,9 @@ An ID-server is a part of BitDust program, but by default it is turned off in th
 
 If you feel enthusiastic now, then you can read more about how to become an identity server within BitDust network. See the [Start new Identity Server](identity_server.md) page or how to run a [Full Seed node](seed_node.md) from scratch.
 
-If you plan to maintain your BitDust node for a while and support the network it make sense to include your node into a list of "well known" nodes, which are hard-coded in the [networks.json](https://github.com/bitdust-io/public/blob/master/networks.json) file.
+If you plan to maintain your BitDust node for a while and support the network it make sense to include your node into a list of "well known" nodes, which are hard-coded in the [default_network.json](https://github.com/bitdust-io/public/blob/master/default_network.json) file.
 
-You can also Fork the [Public Git Repository](https://github.com/bitdust-io/public), modify `networks.json` file in your forked repository and start a [Pull Request](https://github.com/bitdust-io/public/pulls) with your changes - this way we can collaborate all together and maintain a list of the most reliable BitDust Identity servers.
+You can also Fork the [Public Git Repository](https://github.com/bitdust-io/public), modify `default_network.json` file in your forked repository and start a [Pull Request](https://github.com/bitdust-io/public/pulls) with your changes - this way we can collaborate all together and maintain a list of the most reliable BitDust Identity servers.
 
 Contact the BitDust contributors to notify about startin a new Identity Server and one of the developers will approve your Pull Request.
 

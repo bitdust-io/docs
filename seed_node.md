@@ -92,9 +92,9 @@ To make life easier you can also configure BitDust to start automatically when y
         @reboot /usr/local/bin/bitdust daemon
 
 
-If you plan to maintain your new BitDust node for a while and support the network it makes sense to include your node into a list of "well known" nodes, which are hard-coded in [networks.json](https://github.com/bitdust-io/public/blob/master/networks.json) file.
+If you plan to maintain your new BitDust node for a while and support the network it makes sense to include your node into a list of "well known" nodes, which are hard-coded in [default_network.json](https://github.com/bitdust-io/public/blob/master/default_network.json) file.
 
-You can Fork [Public Git Repository](https://github.com/bitdust-io/public), modify `networks.json` file in your forked repository and start a [Pull Request](https://github.com/bitdust-io/public/pulls) with your changes - this way we can collaborate all together and maintain a list of the most reliable BitDust seed nodes.
+You can Fork [Public Git Repository](https://github.com/bitdust-io/public), modify `default_network.json` file in your forked repository and start a [Pull Request](https://github.com/bitdust-io/public/pulls) with your changes - this way we can collaborate all together and maintain a list of the most reliable BitDust seed nodes.
 
 Contact the BitDust contributors to notify about this new Seed node was started by you and one of the developers will approve your Pull Request.
 
