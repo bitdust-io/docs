@@ -1,6 +1,6 @@
 # How does it work?
 
-To explain how the BitDust generally works there are some key aspects explained below to highlight the workings of the network. 
+To explain how the BitDust generally works there are some key aspects explained below to highlight the features of the network. 
 
 
 ## Fully decentralized peer-to-peer network
