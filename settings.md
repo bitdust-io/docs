@@ -1,10 +1,6 @@
 
 # Settings
 
-In this section the different settings that can used for the BitDust network from command line are displayed. If you have any questions regarding this please contact the BitDust team (info@bitdust.io)
-
-
-
 
 ## Command line syntax
 
@@ -31,7 +27,7 @@ interface/api/json-rpc-enabled, default value: true
 
 
 
-### interface/api/json-rpc-port (positive integer)
+### interface/api/json-rpc-port (port number)
 
 interface/api/json-rpc-port, default value: 8083
 
@@ -43,9 +39,21 @@ interface/api/rest-http-enabled, default value: true
 
 
 
-### interface/api/rest-http-port (positive integer)
+### interface/api/rest-http-port (port number)
 
 interface/api/rest-http-port, default value: 8180
+
+
+
+### interface/api/web-socket-enabled (boolean)
+
+interface/api/web-socket-enabled, default value: true
+
+
+
+### interface/api/web-socket-port (port number)
+
+interface/api/web-socket-port, default value: 8280
 
 
 
@@ -55,15 +63,33 @@ interface/ftp/enabled, default value: true
 
 
 
-### interface/ftp/port (positive integer)
+### interface/ftp/port (port number)
 
 interface/ftp/port, default value: 8021
 
 
 
+### logs/api-enabled (boolean)
+
+logs/api-enabled, default value: false
+
+
+
+### logs/automat-events-enabled (boolean)
+
+logs/automat-events-enabled, default value: false
+
+
+
+### logs/automat-transitions-enabled (boolean)
+
+logs/automat-transitions-enabled, default value: false
+
+
+
 ### debug level (positive integer)
 
-logs/debug-level, default value: 10
+logs/debug-level, default value: 0
 
 Higher values will produce more log messages.
 
@@ -73,10 +99,10 @@ Higher values will produce more log messages.
 logs/memdebug-enabled, default value: false
 
 Enabled this and go to http://127.0.0.1:[memdebug port number] to watch memory usage.
-This feature is disabled at the moment.
+Requires "cherrypy" and "dowser" python packages to be installed inside ~/.bitdust/venv/.
 
 
-### logs/memdebug-port (positive integer)
+### logs/memdebug-port (port number)
 
 logs/memdebug-port, default value: 9996
 
@@ -87,18 +113,23 @@ logs/memdebug-port, default value: 9996
 logs/memprofile-enabled, default value: false
 
 Use "guppy" package to profile memory usage.
-This feature is disabled at the moment.
+
+
+### logs/packet-enabled (boolean)
+
+logs/packet-enabled, default value: false
+
 
 
 ### enable web logs (boolean)
 
-logs/stream-enabled, default value: true
+logs/stream-enabled, default value: false
 
 Enabled this and go to http://127.0.0.1:[logs port number] to browse the program log.
 Need to restart the program.
 
 
-### logs/stream-port (positive integer)
+### logs/stream-port (port number)
 
 logs/stream-port, default value: 9999
 
@@ -106,11 +137,11 @@ logs/stream-port, default value: 9999
 
 ### logs/traffic-enabled (boolean)
 
-logs/traffic-enabled, default value: true
+logs/traffic-enabled, default value: false
 
 
 
-### logs/traffic-port (positive integer)
+### logs/traffic-port (port number)
 
 logs/traffic-port, default value: 9997
 
@@ -157,7 +188,7 @@ Location where your restored files should be placed by default.
 personal/betatester, default value: false
 
 Are you agree to participate in the BitDust project testing?
-We are going to provide some bonuses to people who help us at this stage.
+We are going to provide some bonuses to people who help us at this stage, to be decided later.
 
 
 ### personal/email (string)
@@ -191,7 +222,7 @@ personal/private-key-size, default value: 2048
 
 personal/surname, default value: 
 
-Set your surname if you wish.
+Set your family name if you wish.
 
 
 ### services/accountant/enabled (boolean)
@@ -209,7 +240,7 @@ Enable service "backup-db".
 
 ### preferred block size (disk space)
 
-services/backups/block-size, default value: 2 MB
+services/backups/block-size, default value: 4 MB
 
 Preferred block size in bytes which used to split the raw data during backup.
 
@@ -223,17 +254,17 @@ Enable service "Backups".
 
 ### keep local copies (boolean)
 
-services/backups/keep-local-copies-enabled, default value: false
+services/backups/keep-local-copies-enabled, default value: true
 
 Enable this to keep a copy of every new backup on your local HDD as well as on remote machines of your suppliers.
-This increases data reliablity, rebuilding performance and decrease network load,
+This increases data reliability, rebuilding performance and decrease network load,
 but consumes space on your HDD.
 Every one Mb of source data uploaded will consume two Mb on your local HDD.
 
 
 ### maximum block size (disk space)
 
-services/backups/max-block-size, default value: 4 MB
+services/backups/max-block-size, default value: 16 MB
 
 Maximum block size in bytes which used to split the raw data during backup.
 The actual block size is calculated depending on size of the particular backup to optimize performance and data storage.
@@ -251,7 +282,7 @@ A "0" value means unlimited number of copies, be sure you have enough amount of 
 
 ### wait suppliers 24 hours (boolean)
 
-services/backups/wait-suppliers-enabled, default value: false
+services/backups/wait-suppliers-enabled, default value: true
 
 If you disabled storing of local data of your backups but one day a critical amount of your suppliers become unreliable - your data may be lost completely.
 Enable this option to wait for 24 hours after finishing any backup and perform a check all of your suppliers before removing the locally backed up data for this copy.
@@ -269,7 +300,7 @@ services/blockchain/explorer/enabled, default value: true
 
 
 
-### services/blockchain/explorer/port (non zero positive integer)
+### services/blockchain/explorer/port (port number)
 
 services/blockchain/explorer/port, default value: 9180
 
@@ -287,7 +318,7 @@ services/blockchain/miner/enabled, default value: false
 
 
 
-### services/blockchain/port (non zero positive integer)
+### services/blockchain/port (port number)
 
 services/blockchain/port, default value: 9100
 
@@ -305,7 +336,7 @@ services/blockchain/wallet/enabled, default value: true
 
 
 
-### services/blockchain/wallet/port (non zero positive integer)
+### services/blockchain/wallet/port (port number)
 
 services/blockchain/wallet/port, default value: 9280
 
@@ -372,14 +403,20 @@ services/customer/needed-space, default value: 256 MB
 How many megabytes you need to store your files?
 
 
-### number of suppliers (combo box)
+### number of suppliers (selection)
 
-services/customer/suppliers-number, default value: 4
+services/customer/suppliers-number, default value: 2
 
 Number of remote suppliers which keeps your backups.
-You can ser one of the following values: 2, 4, 7, 13, 18, 26, 64.
-Right now we have only 16 testing machines in the network, so last three values is not usefull yet.
-<font color=red>WARNING!</font> You will lost all your existing backups after changing suppliers number.
+You can select one of the following values: 2, 4, 7, 13, 18, 26, 64.
+Right now we have only few testing nodes in the network, so high values is not working yet.
+WARNING! You will lost all your existing backups after changing suppliers number.
+
+
+### services/data-disintegration/enabled (boolean)
+
+services/data-disintegration/enabled, default value: true
+
 
 
 ### services/data-motion/enabled (boolean)
@@ -388,9 +425,33 @@ services/data-motion/enabled, default value: true
 
 
 
+### services/data-motion/supplier-request-queue-size (non zero positive integer)
+
+services/data-motion/supplier-request-queue-size, default value: 4
+
+
+
+### services/data-motion/supplier-sending-queue-size (non zero positive integer)
+
+services/data-motion/supplier-sending-queue-size, default value: 4
+
+
+
+### services/employer/candidates (string)
+
+services/employer/candidates, default value: 
+
+
+
 ### services/employer/enabled (boolean)
 
 services/employer/enabled, default value: true
+
+
+
+### services/entangled-dht/attached-layers (string)
+
+services/entangled-dht/attached-layers, default value: 
 
 
 
@@ -406,7 +467,7 @@ services/entangled-dht/known-nodes, default value:
 
 
 
-### udp port number for distributed hash table (positive integer)
+### udp port number for distributed hash table (port number)
 
 services/entangled-dht/udp-port, default value: 14441
 
@@ -426,7 +487,7 @@ services/http-connections/enabled, default value: false
 
 
 
-### services/http-connections/http-port (positive integer)
+### services/http-connections/http-port (port number)
 
 services/http-connections/http-port, default value: 9993
 
@@ -456,9 +517,21 @@ services/http-transport/sending-enabled, default value: true
 
 
 
+### services/identity-propagate/automatic-rotate-enabled (boolean)
+
+services/identity-propagate/automatic-rotate-enabled, default value: true
+
+
+
 ### services/identity-propagate/enabled (boolean)
 
 services/identity-propagate/enabled, default value: true
+
+
+
+### services/identity-propagate/health-check-interval-seconds (positive integer)
+
+services/identity-propagate/health-check-interval-seconds, default value: 300
 
 
 
@@ -486,7 +559,7 @@ services/identity-propagate/preferred-servers, default value:
 
 
 
-### ebable identity server (boolean)
+### enable identity server (boolean)
 
 services/identity-server/enabled, default value: false
 
@@ -503,14 +576,14 @@ The host name is used to form a unique IDURL of any hosted identity.
 User ID looking more pretty and safe without IP address.
 
 
-### TCP port number (positive integer)
+### TCP port number (port number)
 
 services/identity-server/tcp-port, default value: 6661
 
 A TCP port number to receive user's identity files.
 
 
-### WEB port number (positive integer)
+### WEB port number (port number)
 
 services/identity-server/web-port, default value: 8084
 
@@ -529,15 +602,45 @@ services/keys-registry/enabled, default value: true
 
 
 
+### services/keys-storage/enabled (boolean)
+
+services/keys-storage/enabled, default value: true
+
+
+
 ### services/list-files/enabled (boolean)
 
 services/list-files/enabled, default value: true
 
 
 
+### services/message-broker/archive-chunk-size (non zero positive integer)
+
+services/message-broker/archive-chunk-size, default value: 100
+
+
+
+### services/message-broker/enabled (boolean)
+
+services/message-broker/enabled, default value: true
+
+
+
+### services/message-history/enabled (boolean)
+
+services/message-history/enabled, default value: true
+
+
+
 ### services/miner/enabled (boolean)
 
 services/miner/enabled, default value: false
+
+
+
+### services/my-data/enabled (boolean)
+
+services/my-data/enabled, default value: true
 
 
 
@@ -571,7 +674,7 @@ services/network/proxy/password, default value:
 
 
 
-### services/network/proxy/port (positive integer)
+### services/network/proxy/port (port number)
 
 services/network/proxy/port, default value: 
 
@@ -623,6 +726,18 @@ services/p2p-notifications/enabled, default value: true
 
 
 
+### services/private-groups/enabled (boolean)
+
+services/private-groups/enabled, default value: true
+
+
+
+### services/private-groups/message-ack-timeout (non zero positive integer)
+
+services/private-groups/message-ack-timeout, default value: 10
+
+
+
 ### services/private-messages/enabled (boolean)
 
 services/private-messages/enabled, default value: true
@@ -637,7 +752,7 @@ services/proxy-server/current-routes, default value: {}
 
 ### services/proxy-server/enabled (boolean)
 
-services/proxy-server/enabled, default value: true
+services/proxy-server/enabled, default value: false
 
 
 
@@ -695,6 +810,12 @@ services/proxy-transport/sending-enabled, default value: true
 
 
 
+### services/rebuilding/child-processes-enabled (boolean)
+
+services/rebuilding/child-processes-enabled, default value: false
+
+
+
 ### services/rebuilding/enabled (boolean)
 
 services/rebuilding/enabled, default value: true
@@ -743,7 +864,7 @@ services/tcp-connections/enabled, default value: true
 
 
 
-### tcp port number (positive integer)
+### tcp port number (port number)
 
 services/tcp-connections/tcp-port, default value: 7771
 
@@ -790,7 +911,7 @@ services/udp-datagrams/enabled, default value: true
 
 
 
-### udp port number (positive integer)
+### udp port number (port number)
 
 services/udp-datagrams/udp-port, default value: 8882
 

@@ -1,930 +1,1296 @@
 # BitDust API
 
-## process\_stop()
+
+* [Intro](#intro)
+* [Access](#access)
+* [API methods](#api-methods)
+
+
+## Intro
+
+Make sure your BitDust engine process is already running on that machine first.
+
+There are multiple ways you can interract with the BitDust engine main process.
+Here you can find some examples of how to do that using different clients.
+
+
+
+#### HTTP Rest API
+
+The API server inside the engine is running on `localhost:8180` by default.
+This can be modified via program settings.
+
+You can use `curl` command to execute HTTP calls directly:
+
+    curl -X GET -H 'api_secret:abc' 'localhost:8180/process/health/v1'
+    {
+      "execution": "0.000107",
+      "status": "OK"
+    }
+
+
+
+#### WebSocket
+
+The WebSocket server inside the engine is running on `localhost:8280` by default.
+This can be modified via program settings.
+
+Here is a very basic example of a JavaScript WebSocket client call:
+
+    var websocket = null;
+    websocket = new WebSocket("ws://127.0.0.1:8280?api_secret=abc");
+    websocket.binaryType = "arraybuffer";
+    websocket.onopen = function() {
+        websocket.send('{"command": "api_call", "method": "process_health", "kwargs": {} }');
+    };
+    websocket.onmessage = function(e) {
+        if (typeof e.data == "string") {
+            console.log("WebSocket message received: " + e.data);
+        }
+    };
+
+
+
+#### Command line shell client
+
+Command line client is actually also using HTTP Rest API interface to interact with the main process.
+
+To get more details about how to use BitDust via command line type in your terminal shell:
+
+    bitdust help
+
+
+
+## Access
+
+Both HTTP and WebSocket interfaces are only accepting connections from the local host. This is an intended restriction
+to prevent any kind of access from outside of the host operation system to the main BitDust process.
+This way BitDust do not require user to have any kind of credentials to access the application.
+
+To block access to BitDust API interface for non-authorized local clients a secret API token was introduced.
+That feature suppose to be enabled by default if you just installed the application for the first time.
+
+To verify that secret token is in use you need to open the folder `.bitdust/metadata/` and
+check if a file `.bitdust/metadata/apisecret` exists and is not empty.
+The file contains base64-formatted random token which is generated automatically by the application.
+
+Authorized clients running on same operating system such as UI client and command line shell client will read that file from the disk and be
+able to access the API methods. Non-authorized local clients that do not have access to the host operating system
+will not be able to access the API.
+
+
+
+## API methods
+
+You can find bellow a list of all API methods available at the moment.
+
+
+
+
+#### process\_stop()
 
 Stop the main process immediately.
 
+###### HTTP
+    curl -X GET 'localhost:8180/process/stop/v1'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "process_stop", "kwargs": {} }');
 
 
+#### process\_restart()
 
-    {'status': 'OK', 'result': 'stopped'}
+Restart the main process.
 
+###### HTTP
+    curl -X GET 'localhost:8180/process/restart/v1'
 
-## process\_restart(showgui=False)
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "process_restart", "kwargs": {} }');
 
-Restart the main process, if flag show=True the GUI will be opened after
-restart.
 
+#### process\_health()
 
+Returns positive response if engine process is running. This method suppose to be used for health checks.
 
+###### HTTP
+    curl -X GET 'localhost:8180/process/health/v1'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "process_health", "kwargs": {} }');
 
-    {'status': 'OK', 'result': 'restarted'}
 
+#### process\_debug()
 
-## process\_show()
+Execute a breakpoint inside the main thread and start Python shell using standard `pdb.set_trace()` debugger method.
 
-Deprecated.
-Opens a default web browser to show the BitDust GUI.
+This is only useful if you already have executed the BitDust engine manually via shell console and would like
+to interrupt it and investigate things.
 
+This call will block the main process and it will stop responding to any API calls.
 
+###### HTTP
+    curl -X GET 'localhost:8180/process/debug/v1'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "process_debug", "kwargs": {} }');
 
 
-    {'status': 'OK',   'result': '"show" event has been sent to the main process'}
+#### config\_get(key)
 
+Returns current key/value from the program settings.
 
-## process\_health()
+###### HTTP
+    curl -X GET 'localhost:8180/config/get/v1?key=logs/debug-level'
 
-Returns true if system is running 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "config_get", "kwargs": {"key": "logs/debug-level"} }');
 
 
+#### config\_set(key, value)
 
+Set a value for given key option.
 
+###### HTTP
+    curl -X POST 'localhost:8180/config/set/v1' -d '{"key": "logs/debug-level", "value": 12}'
 
-    {'status': 'OK' }
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "config_set", "kwargs": {"key": "logs/debug-level", "value": 12} }');
 
 
-## process\_debug()
+#### configs\_list(sort=False)
 
-Execute a breakpoint inside main thread and start Python shell using standard `pdb.set_trace()` debugger.
+Provide detailed info about all program settings.
 
+###### HTTP
+    curl -X GET 'localhost:8180/config/list/v1'
 
-## config\_get(key)
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "configs_list", "kwargs": {} }');
 
-Returns current value for specific option from program settings.
 
+#### configs\_tree()
 
+Returns all options as a tree structure, can be more suitable for UI operations.
 
+###### HTTP
+    curl -X GET 'localhost:8180/config/tree/v1'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "configs_tree", "kwargs": {} }');
 
-    {'status': 'OK',   'result': [{'type': 'positive integer', 'value': '8', 'key': 'logs/debug-level'}]}
 
+#### identity\_get(include\_xml\_source=False)
 
-## config\_set(key, value)
+Returns your identity info.
 
-Set a value for given option.
+###### HTTP
+    curl -X GET 'localhost:8180/identity/get/v1'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "identity_get", "kwargs": {} }');
 
 
+#### identity\_create(username, preferred\_servers=[])
 
+Generates new private key and creates new identity for you to be able to communicate with other nodes in the network.
 
-    {'status': 'OK', 'result': [{'type': 'positive integer', 'old_value': '8', 'value': '10', 'key': 'logs/debug-level'}]}
+Parameter `username` defines filename of the new identity.
 
+###### HTTP
+    curl -X POST 'localhost:8180/identity/create/v1' -d '{"username": "alice"}'
 
-## config\_list(sort=False)
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "identity_create", "kwargs": {"username": "alice"} }');
 
-Provide detailed info about all options and values from settings.
 
+#### identity\_backup(destination\_filepath)
 
+Creates local file at `destination_filepath` on your disk drive with a backup copy of your private key and recent IDURL.
 
+You can use that file to restore identity in case of lost data using `identity_recover()` API method.
 
+WARNING! Make sure to always have a backup copy of your identity secret key in a safe place - there is no other way
+to restore your data in case of lost.
 
-    {'status': 'OK',
-     'result': [{
-        'type': 'boolean',
-        'value': 'true',
-        'key': 'services/backups/enabled'
-     }, {
-        'type': 'boolean',
-        'value': 'false',
-        'key': 'services/backups/keep-local-copies-enabled'
-     }, {
-        'type': 'diskspace',
-        'value': '128 MB',
-        'key': 'services/backups/max-block-size'
-    }]}
+###### HTTP
+    curl -X POST 'localhost:8180/identity/backup/v1' -d '{"destination_filepath": "/tmp/alice_backup.key"}'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "identity_backup", "kwargs": {"destination_filepath": "/tmp/alice_backup.key"} }');
 
-## identity\_get(include\_xml\_source=False)
 
+#### identity\_recover(private\_key\_source, known\_idurl=None)
 
+Restores your identity from backup copy.
 
-## identity\_create(username, preferred\_servers=[])
+Input parameter `private_key_source` must contain your latest IDURL and the private key as openssh formated string.
 
+###### HTTP
+    curl -X POST 'localhost:8180/identity/recover/v1' -d '{"private_key_source": "http://some-host.com/alice.xml\n-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKC..."}'
 
-## identity\_backup(destination\_filepath)
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "identity_recover", "kwargs": {"private_key_source": "http://some-host.com/alice.xml\n-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKC..."} }');
 
 
-## identity\_recover(private\_key\_source, known\_idurl=None)
+#### identity\_erase(erase\_private\_key=False)
 
+Method will erase current identity file and the private key (optionally).
+All network services will be stopped first.
 
-## identity\_list()
+###### HTTP
+    curl -X DELETE 'localhost:8180/identity/erase/v1' -d '{"erase_private_key": true}'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "identity_erase", "kwargs": {"erase_private_key": true} }');
 
 
-## key\_get(key\_id, include\_private=False)
+#### identity\_rotate()
 
-Returns details of known private key.
-Use `include_private=True` to get Private Key as openssh formated string.
+Rotate your identity sources and republish identity file on another ID server even if current ID servers are healthy.
 
+Normally that procedure is executed automatically when current process detects unhealthy ID server among your identity sources.
 
+This method is provided for testing and development purposes.
 
+###### HTTP
+    curl -X PUT 'localhost:8180/identity/rotate/v1'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "identity_rotate", "kwargs": {} }');
 
-    {'status': 'OK'.
-     'result': [{
-        'alias': 'cool',
-        'creator': 'http://p2p-id.ru/testveselin.xml',
-        'key_id': 'cool$testveselin@p2p-id.ru',
-        'fingerprint': '50:f9:f1:6d:e3:e4:25:61:0c:81:6f:79:24:4e:78:17',
-        'size': '4096',
-        'ssh_type': 'ssh-rsa',
-        'type': 'RSA',
-        'public': 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCPy7AXI0HuQSdmMF...',
-        'private': '-----BEGIN RSA PRIVATE KEY-----\nMIIJKAIBAAKCAgEAj8uw...'
-    }]}
 
+#### identity\_cache\_list()
 
-## keys\_list(sort=False, include\_private=False)
+Returns list of all cached locally identity files received from other users.
 
-List details for known Private Keys.
-Use `include_private=True` to get Private Keys as openssh formated strings.
+###### HTTP
+    curl -X GET 'localhost:8180/identity/cache/list/v1'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "identity_cache_list", "kwargs": {} }');
 
 
+#### key\_get(key\_id, include\_private=False)
 
-    {'status': 'OK',
-     'result': [{
-         'alias': 'master',
-         'key_id': 'master$veselin@p2p-id.ru',
-         'creator': 'http://p2p-id.ru/veselin.xml',
-         'fingerprint': '60:ce:ea:98:bf:3d:aa:ba:29:1e:b9:0c:3e:5c:3e:32',
-         'size': '2048',
-         'ssh_type': 'ssh-rsa',
-         'type': 'RSA',
-         'public': 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDbpo3VYR5zvLe5...'
-         'private': '-----BEGIN RSA PRIVATE KEY-----\nMIIJKAIBAAKCAgEAj8uw...'
-     }, {
-         'alias': 'another_key01',
-         'key_id': 'another_key01$veselin@p2p-id.ru',
-         'creator': 'http://p2p-id.ru/veselin.xml',
-         'fingerprint': '43:c8:3b:b6:da:3e:8a:3c:48:6f:92:bb:74:b4:05:6b',
-         'size': '4096',
-         'ssh_type': 'ssh-rsa',
-         'type': 'RSA',
-         'public': 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCmgX6j2MwEyY...'
-         'private': '-----BEGIN RSA PRIVATE KEY-----\nMIIJKsdAIBSjfAdfguw...'
-    }]}
+Returns details of the registered public or private key.
 
+Use `include_private=True` if you also need a private key (as openssh formated string) to be present in the response.
 
-## key\_create(key\_alias, key\_size=None, include\_private=False)
+###### HTTP
+    curl -X GET 'localhost:8180/key/get/v1?key_id=abcd1234$alice@server-a.com'
 
-Generate new Private Key and add it to the list of known keys with given `key_id`.
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "key_get", "kwargs": {"key_id": "abcd1234$alice@server-a.com"} }');
 
 
+#### keys\_list(sort=False, include\_private=False)
 
+List details for all registered public and private keys.
 
+Use `include_private=True` if you also need a private key (as openssh formated string) to be present in the response.
 
-    {'status': 'OK',
-     'message': 'new private key "abcd" was generated successfully',
-     'result': [{
-        'alias': 'abcd',
-        'id': 'abcd$veselin@p2p-id.ru',
-        'creator': 'http://p2p-id.ru/veselin.xml',
-        'fingerprint': 'bb:16:97:65:59:23:c2:5d:62:9d:ce:7d:36:73:c6:1f',
-        'size': '4096',
-        'ssh_type': 'ssh-rsa',
-        'type': 'RSA',
-        'public': 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC8w2MhOPR/IoQ...'
-        'private': '-----BEGIN RSA PRIVATE KEY-----\nMIIJKsdAIBSjfAdfguw...'
-    }]}
+###### HTTP
+    curl -X GET 'localhost:8180/key/list/v1?include_private=1'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "keys_list", "kwargs": {"include_private": 1} }');
 
-## key\_erase(key\_id)
 
-Removes Private Key from the list of known keys and erase local file.
+#### key\_create(key\_alias, key\_size=None, label="", include\_private=False)
 
+Generate new RSA private key and add it to the list of registered keys with a new `key_id`.
 
+Optional input parameter `key_size` can be 1024, 2048, 4096. If `key_size` was not passed, default value will be
+populated from the `personal/private-key-size` program setting.
 
+Parameter `label` can be used to attach some meaningful information for the user to display in the UI.
 
+Use `include_private=True` if you also need a private key (as openssh formated string) to be present in the response.
 
-    {'status': 'OK',
-     'message': 'private key "ccc2" was erased successfully',
-    }
+###### HTTP
+    curl -X POST 'localhost:8180/key/create/v1' -d '{"key_alias": "abcd1234", "key_size": 1024, "label": "Cats and Dogs"}'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "key_create", "kwargs": {"key_alias": "abcd1234", "key_size": 1024, "label": "Cats and Dogs"} }');
 
-## key\_share(key\_id, trusted\_global\_id\_or\_idurl, include\_private=False, timeout=10)
 
-Connects to remote node and transfer private key to that machine.
-This way remote user will be able to access those of your files which were encrypted with that private key.
-You can also share a public key, this way your supplier will know which data packets can be accessed by
-another customer.
+#### key\_label(key\_id, label)
 
-Returns:
+Set new label for the given key.
 
+###### HTTP
+    curl -X POST 'localhost:8180/key/label/v1' -d '{"key_id": "abcd1234$alice@server-a.com", "label": "Man and Woman"}'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "key_label", "kwargs": {"key_id": "abcd1234$alice@server-a.com", "label": "Man and Woman"} }');
 
-## key\_audit(key\_id, untrusted\_global\_id\_or\_idurl, is\_private=False, timeout=10)
 
-Connects to remote node identified by `idurl` parameter and request audit
-of a public or private key `key_id` on that machine.
-Returns True in the callback if audit process succeed - that means remote user
-posses that public or private key.
+#### key\_erase(key\_id)
 
-Returns:
+Unregister and remove given key from the list of known keys and erase local file.
 
+###### HTTP
+    curl -X DELETE 'localhost:8180/key/erase/v1' -d '{"key_id": "abcd1234$alice@server-a.com"}'
 
-## filemanager(json\_request)
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "key_erase", "kwargs": {"key_id": "abcd1234$alice@server-a.com"} }');
 
-A service method to execute calls from GUI front-end and interact with web
-browser. This is a special "gates" created only for Ajax calls from GUI. It
-provides same methods as other functions here, but just in a different way.
 
-    Request:
-        {"params":{"mode":"stats"}}
+#### key\_share(key\_id, trusted\_user\_id, include\_private=False, timeout=10)
 
-    Response:
-        {'bytes_donated': 8589934592,
-         'bytes_indexed': 43349475,
-         'bytes_needed': 104857600,
-         'bytes_used_supplier': 21738768,
-         'bytes_used_total': 86955072,
-         'customers': 0,
-         'files_count': 5,
-         'folders_count': 0,
-         'items_count': 15,
-         'max_suppliers': 4,
-         'online_suppliers': 0,
-         'suppliers': 4,
-         'timestamp': 1458669668.288339,
-         'value_donated': '8 GB',
-         'value_needed': '100 MB',
-         'value_used_total': '82.93 MB'}
+Connects to remote user and transfer given public or private key to that node.
+This way you can share access to files/groups/resources with other users in the network.
 
-You can also access those methods with another API "alias": `filemanager_{ mode }({ extra params })`
+If you pass `include_private=True` also private part of the key will be shared, otherwise only public part.
 
-WARNING: Those methods here will be deprecated and removed, use regular API methods instead.
+###### HTTP
+    curl -X PUT 'localhost:8180/key/share/v1' -d '{"key_id": "abcd1234$alice@server-a.com", "trusted_user_id": "bob@machine-b.net"}'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "key_share", "kwargs": {"key_id": "abcd1234$alice@server-a.com", "trusted_user_id": "bob@machine-b.net"} }');
 
-## files\_sync()
 
-Sends "restart" event to backup_monitor() Automat, this should start "data
-synchronization" process with remote nodes. Normally all situations
-should be handled automatically so you wont run this method manually,
-but just in case.
+#### key\_audit(key\_id, untrusted\_user\_id, is\_private=False, timeout=10)
 
+Connects to remote node identified by `untrusted_user_id` parameter and request audit of given public or private key `key_id` on that node.
 
+Returns positive result if audit process succeed - that means remote user really possess the key.
 
+###### HTTP
+    curl -X POST 'localhost:8180/key/audit/v1' -d '{"key_id": "abcd1234$alice@server-a.com", "untrusted_user_id": "carol@computer-c.net", "is_private": 1}'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "key_audit", "kwargs": {"key_id": "abcd1234$alice@server-a.com", "untrusted_user_id": "carol@computer-c.net", "is_private": 1} }');
 
-    {'status': 'OK', 'result': 'the main files sync loop has been restarted'}
 
+#### files\_sync()
 
-## file\_info(remote\_path, include\_uploads=True, include\_downloads=True)
+This should re-start "data synchronization" process with your remote suppliers.
 
+Normally all communications and synchronizations are handled automatically, so you do not need to
+call that method.
 
+This method is provided for testing and development purposes.
 
-## file\_create(remote\_path, as\_folder=False)
+###### HTTP
+    curl -X GET 'localhost:8180/file/sync/v1'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "files_sync", "kwargs": {} }');
 
 
-## file\_delete(remote\_path)
+#### file\_exists(remote\_path)
 
+Returns positive result if file or folder with such `remote_path` already exists in the catalog.
 
+###### HTTP
+    curl -X GET 'localhost:8180/file/exists/v1?remote_path=abcd1234$alice@server-a.com:pictures/cats/pussy.png'
 
-## files\_uploads(include\_running=True, include\_pending=True)
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "file_exists", "kwargs": {"remote_path": "abcd1234$alice@server-a.com:pictures/cats/pussy.png"} }');
 
-Returns a list of currently running uploads and
-list of pending items to be uploaded.
 
+#### file\_info(remote\_path, include\_uploads=True, include\_downloads=True)
 
+Returns detailed info about given file or folder in the catalog.
 
+You can also use `include_uploads` and `include_downloads` parameters to get more info about currently running
+uploads and downloads.
 
+###### HTTP
+    curl -X GET 'localhost:8180/file/info/v1?remote_path=abcd1234$alice@server-a.com:pictures/dogs/bobby.jpeg'
 
-    { 'status': 'OK',
-      'result': {
-        'running': [{
-            'aborting': False,
-            'version': '0/0/3/1/F20160424013912PM',
-            'block_number': 4,
-            'block_size': 16777216,
-            'bytes_processed': 67108864,
-            'closed': False,
-            'eccmap': 'ecc/4x4',
-            'eof_state': False,
-            'pipe': 0,
-            'progress': 75.0142815704418,
-            'reading': False,
-            'source_path': '/Users/veselin/Downloads/some-ZIP-file.zip',
-            'terminating': False,
-            'total_size': 89461450,
-            'work_blocks': 4
-        }],
-        'pending': [{
-            'created': 'Wed Apr 27 15:11:13 2016',
-            'id': 3,
-            'source_path': '/Users/veselin/Downloads/another-ZIP-file.zip',
-            'path_id': '0/0/3/2'
-        }]
-    }
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "file_info", "kwargs": {"remote_path": "abcd1234$alice@server-a.com:pictures/dogs/bobby.jpeg"} }');
 
 
-## file\_upload\_start(local\_path, remote\_path, wait\_result=False, open\_share=False)
+#### file\_create(remote\_path, as\_folder=False, exist\_ok=False, force\_path\_id=None)
 
+Creates new file in the catalog, but do not upload any data to the network yet.
 
+This method only creates a "virtual ID" for the new data.
 
-## file\_upload\_stop(remote\_path)
+Pass `as_folder=True` to create a virtual folder instead of a file.
 
+###### HTTP
+    curl -X POST 'localhost:8180/file/create/v1' -d '{"remote_path": "abcd1234$alice@server-a.com:movies/travels/safari.mp4"}'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "file_create", "kwargs": {"remote_path": "abcd1234$alice@server-a.com:movies/travels/safari.mp4"} }');
 
-## files\_downloads()
 
-Returns a list of currently running downloads.
+#### file\_delete(remote\_path)
 
+Removes virtual file or folder from the catalog and also notifies your remote suppliers to clean up corresponding uploaded data.
 
+###### HTTP
+    curl -X POST 'localhost:8180/file/delete/v1' -d '{"remote_path": "abcd1234$alice@server-a.com:cars/ferrari.gif"}'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "file_delete", "kwargs": {"remote_path": "abcd1234$alice@server-a.com:cars/ferrari.gif"} }');
 
 
-    {'status': 'OK',
-     'result': [{
-        'aborted': False,
-        'backup_id': '0/0/3/1/F20160427011209PM',
-        'block_number': 0,
-        'bytes_processed': 0,
-        'creator_id': 'http://veselin-p2p.ru/veselin.xml',
-        'done': False,
-        'key_id': 'abc$veselin@veselin-p2p.ru',
-        'created': 'Wed Apr 27 15:11:13 2016',
-        'eccmap': 'ecc/4x4',
-        'path_id': '0/0/3/1',
-        'version': 'F20160427011209PM'
-    }]}
+#### files\_uploads(include\_running=True, include\_pending=True)
 
+Returns a list of currently running uploads and list of pending items to be uploaded.
 
-## file\_download\_start(remote\_path, destination\_path=None, wait\_result=False, open\_share=True)
+###### HTTP
+    curl -X GET 'localhost:8180/file/upload/v1'
 
-Download data from remote suppliers to your local machine. You can use
-different methods to select the target data with `remote_path` input:
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "files_uploads", "kwargs": {} }');
 
-  + "remote path" of the file
-  + item ID in the catalog
-  + full version identifier with item ID
+
+#### file\_upload\_start(local\_path, remote\_path, wait\_result=False, open\_share=False)
+
+Starts a new file or folder (including all sub-folders and files) upload from `local_path` on your disk drive
+to the virtual location `remote_path` in the catalog. New "version" of the data will be created for given catalog item
+and uploading task started.
+
+You can use `wait_result=True` to block the response from that method until uploading finishes or fails (makes no sense for large uploads).
+
+Parameter `open_share` can be useful if you uploading data into a "shared" virtual path using another key that shared to you.
+
+###### HTTP
+    curl -X POST 'localhost:8180/file/upload/start/v1' -d '{"remote_path": "abcd1234$alice@server-a.com:cars/fiat.jpeg", "local_path": "/tmp/fiat.jpeg"}'
+
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "file_upload_start", "kwargs": {"remote_path": "abcd1234$alice@server-a.com:cars/fiat.jpeg", "local_path": "/tmp/fiat.jpeg"} }');
+
+
+#### file\_upload\_stop(remote\_path)
+
+Useful method if you need to interrupt and cancel already running uploading task.
+
+###### HTTP
+    curl -X POST 'localhost:8180/file/upload/stop/v1' -d '{"remote_path": "abcd1234$alice@server-a.com:cars/fiat.jpeg"}'
+
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "file_upload_stop", "kwargs": {"remote_path": "abcd1234$alice@server-a.com:cars/fiat.jpeg"} }');
+
+
+#### files\_downloads()
+
+Returns a list of currently running downloading tasks.
+
+###### HTTP
+    curl -X GET 'localhost:8180/file/download/v1'
+
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "files_downloads", "kwargs": {} }');
+
+
+#### file\_download\_start(remote\_path, destination\_path=None, wait\_result=False, open\_share=True)
+
+Download data from remote suppliers to your local machine.
+
+You can use different methods to select the target data with `remote_path` input:
+
+  + "virtual" path of the file
+  + internal path ID in the catalog
+  + full data version identifier with path ID and version name
 
 It is possible to select the destination folder to extract requested files to.
-By default this method uses specified value from local settings or user home folder
+By default this method uses specified value from `paths/restore` program setting or user home folder.
 
-WARNING: Your existing local data will be overwritten!
+You can use `wait_result=True` to block the response from that method until downloading finishes or fails (makes no sense for large files).
+
+WARNING! Your existing local data in `destination_path` will be overwritten!
+
+###### HTTP
+    curl -X POST 'localhost:8180/file/download/start/v1' -d '{"remote_path": "abcd1234$alice@server-a.com:movies/back_to_the_future.mp4", "local_path": "/tmp/films/"}'
+
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "file_download_start", "kwargs": {"remote_path": "abcd1234$alice@server-a.com:movies/back_to_the_future.mp4", "local_path": "/tmp/films/"} }');
 
 
-
-
-
-    {'status': 'OK', 'result': 'downloading of version 0/0/1/1/0/F20160313043419PM has been started to /Users/veselin/'}
-
-
-## file\_download\_stop(remote\_path)
+#### file\_download\_stop(remote\_path)
 
 Abort currently running restore process.
 
+###### HTTP
+    curl -X POST 'localhost:8180/file/download/stop/v1' -d '{"remote_path": "abcd1234$alice@server-a.com:cars/fiat.jpeg"}'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "file_download_stop", "kwargs": {"remote_path": "abcd1234$alice@server-a.com:cars/fiat.jpeg"} }');
 
 
+#### file\_explore(local\_path)
 
-    {'status': 'OK', 'result': 'restoring of "alice@p2p-host.com:0/1/2" aborted'}
+Useful method to be executed from the UI right after downloading is finished.
 
+It will open default OS file manager and display
+given `local_path` to the user so he can do something with the file.
 
-## file\_explore(local\_path)
+###### HTTP
+    curl -X GET 'localhost:8180/file/explore/v1?local_path=/tmp/movies/back_to_the_future.mp4'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "file_explore", "kwargs": {"local_path": "/tmp/movies/back_to_the_future.mp4"} }');
 
 
-## share\_list(only\_active=False, include\_mine=True, include\_granted=True)
+#### shares\_list(only\_active=False, include\_mine=True, include\_granted=True)
 
+Returns a list of registered "shares" - encrypted locations where you can upload/download files.
 
+Use `only_active=True` to select only connected shares.
 
-## share\_create(owner\_id=None, key\_size=2048)
+Parameters `include_mine` and `include_granted` can be used to filter shares created by you,
+or by other users that shared a key with you before.
 
+###### HTTP
+    curl -X GET 'localhost:8180/share/list/v1?only_active=1'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "shares_list", "kwargs": {"only_active": 1} }');
 
-## share\_grant(trusted\_remote\_user, key\_id, timeout=30)
 
+#### share\_create(owner\_id=None, key\_size=None, label="")
 
+Creates a new "share" - virtual location where you or other users can upload/download files.
 
-## share\_open(key\_id)
+This method generates a new RSA private key that will be used to encrypt and decrypt files belongs to that share.
 
+By default you are the owner of the new share and uploaded files will be stored by your suppliers.
+You can also use `owner_id` parameter if you wish to set another owner for that new share location.
+In that case files will be stored not on your suppliers but on his/her suppliers, if another user authorized the share.
 
+Optional input parameter `key_size` can be 1024, 2048, 4096. If `key_size` was not passed, default value will be
+populated from the `personal/private-key-size` program setting.
 
-## share\_close(key\_id)
+Parameter `label` can be used to attach some meaningful information about that share location.
 
+###### HTTP
+    curl -X POST 'localhost:8180/share/create/v1' -d '{"label": "my summer holidays"}'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "share_create", "kwargs": {"label": "my summer holidays"} }');
 
-## share\_history()
 
+#### share\_delete(key\_id)
 
+Stop the active share identified by the `key_id` and erase the private key.
 
-## friend\_list()
+###### HTTP
+    curl -X DELETE 'localhost:8180/share/delete/v1' -d '{"key_id": "share_7e9726e2dccf9ebe6077070e98e78082$alice@server-a.com"}'
 
-Returns list of correspondents ids
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "share_delete", "kwargs": {"key_id": "share_7e9726e2dccf9ebe6077070e98e78082$alice@server-a.com"} }');
 
 
-## friend\_add(idurl\_or\_global\_id, alias='')
+#### share\_grant(key\_id, trusted\_user\_id, timeout=30)
 
-Add user to the list of friends
+Provide access to given share identified by `key_id` to another trusted user.
 
+This method will transfer private key to remote user `trusted_user_id` and you both will be
+able to upload/download file to the shared location.
 
-## friend\_remove(idurl\_or\_global\_id)
+###### HTTP
+    curl -X PUT 'localhost:8180/share/grant/v1' -d '{"key_id": "share_7e9726e2dccf9ebe6077070e98e78082$alice@server-a.com", "trusted_user_id": "bob@machine-b.net"}'
 
-Remove user from the list of friends
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "share_grant", "kwargs": {"key_id": "share_7e9726e2dccf9ebe6077070e98e78082$alice@server-a.com", "trusted_user_id": "bob@machine-b.net"} }');
 
 
-## suppliers\_list(customer\_idurl\_or\_global\_id=None, verbose=False)
+#### share\_open(key\_id)
 
-This method returns a list of suppliers - nodes which stores your encrypted data on own machines.
+Activates given share and initiate required connections to remote suppliers to make possible to upload and download shared files.
 
+###### HTTP
+    curl -X PUT 'localhost:8180/share/open/v1' -d '{"key_id": "share_7e9726e2dccf9ebe6077070e98e78082$alice@server-a.com"}'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "share_open", "kwargs": {"key_id": "share_7e9726e2dccf9ebe6077070e98e78082$alice@server-a.com"} }');
 
 
+#### share\_close(key\_id)
 
-    {'status': 'OK',
-     'result':[{
-        'connected': '05-06-2016 13:06:05',
-        'idurl': 'http://p2p-id.ru/bitdust_j_vps1014.xml',
-        'files_count': 14,
-        'position': 0,
-        'contact_status': 'offline',
-        'contact_state': 'OFFLINE'
-     }, {
-        'connected': '05-06-2016 13:04:57',
-        'idurl': 'http://veselin-p2p.ru/bitdust_j_vps1001.xml',
-        'files_count': 14,
-        'position': 1,
-        'contact_status': 'online'
-        'contact_state': 'CONNECTED'
-    }]}
+Disconnects and deactivate given share location.
 
+###### HTTP
+    curl -X PUT 'localhost:8180/share/close/v1' -d '{"key_id": "share_7e9726e2dccf9ebe6077070e98e78082$alice@server-a.com"}'
 
-## supplier\_replace(index\_or\_idurl\_or\_global\_id)
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "share_close", "kwargs": {"key_id": "share_7e9726e2dccf9ebe6077070e98e78082$alice@server-a.com"} }');
 
-Execute a fire/hire process for given supplier, another random node will
-replace this supplier. As soon as new supplier is found and connected,
-rebuilding of all uploaded data will be started and the new node will start
-getting a reconstructed fragments.
 
+#### share\_history()
 
+Method is not implemented yet.
 
 
+#### groups\_list(only\_active=False, include\_mine=True, include\_granted=True)
 
-    {'status': 'OK', 'result': 'supplier http://p2p-id.ru/alice.xml will be replaced by new peer'}
+Returns a list of registered message groups.
 
+Use `only_active=True` to select only connected and active groups.
 
-## supplier\_change(index\_or\_idurl\_or\_global\_id, new\_supplier\_idurl\_or\_global\_id)
+Parameters `include_mine` and `include_granted` can be used to filter groups created by you,
+or by other users that shared a key with you before.
 
-Doing same as supplier_replace() but new node must be provided by you - you can manually assign a supplier.
+###### HTTP
+    curl -X GET 'localhost:8180/group/list/v1'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "groups_list", "kwargs": {} }');
 
 
+#### group\_create(creator\_id=None, key\_size=None, label="")
 
+Creates a new messaging group.
 
-    {'status': 'OK', 'result': 'supplier http://p2p-id.ru/alice.xml will be replaced by http://p2p-id.ru/bob.xml'}
+This method generates a new RSA private key that will be used to encrypt and decrypt messages streamed thru that group.
 
+Optional input parameter `key_size` can be 1024, 2048, 4096. If `key_size` was not passed, default value will be
+populated from the `personal/private-key-size` program setting.
 
-## suppliers\_ping()
+Parameter `label` can be used to attach some meaningful information about that group.
 
-Sends short requests to all suppliers to get their current statuses.
+###### HTTP
+    curl -X POST 'localhost:8180/group/create/v1' -d '{"label": "chat with my friends"}'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "group_create", "kwargs": {"label": "chat with my friends"} }');
 
 
+#### group\_info(group\_key\_id)
 
+Returns detailed info about the message group identified by `group_key_id`.
 
-    {'status': 'OK',  'result': 'requests to all suppliers was sent'}
+###### HTTP
+    curl -X GET 'localhost:8180/group/info/v1?group_key_id=group_95d0fedc46308e2254477fcb96364af9$alice@server-a.com'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "group_info", "kwargs": {"group_key_id": "group_95d0fedc46308e2254477fcb96364af9$alice@server-a.com"} }');
 
-## suppliers\_dht\_lookup(customer\_idurl\_or\_global\_id)
 
-Scans DHT network for key-value pairs related to given customer and
-returns a list of his "possible" suppliers.
+#### group\_join(group\_key\_id)
 
+Activates given messaging group to be able to receive streamed messages or send a new message to the group.
 
-## customers\_list(verbose=False)
+###### HTTP
+    curl -X POST 'localhost:8180/group/join/v1' -d '{"group_key_id": "group_95d0fedc46308e2254477fcb96364af9$alice@server-a.com"}'
 
-List of customers - nodes who stores own data on your machine.
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "group_join", "kwargs": {"group_key_id": "group_95d0fedc46308e2254477fcb96364af9$alice@server-a.com"} }');
 
 
+#### group\_leave(group\_key\_id, erase\_key=False)
 
+Deactivates given messaging group. If `erase_key=True` will also erase the private key related to that group.
 
+###### HTTP
+    curl -X DELETE 'localhost:8180/group/leave/v1' -d '{"group_key_id": "group_95d0fedc46308e2254477fcb96364af9$alice@server-a.com"}'
 
-    {'status': 'OK',
-     'result': [ {  'idurl': 'http://p2p-id.ru/bob.xml',
-                    'position': 0,
-                    'status': 'offline'
-    }]}
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "group_leave", "kwargs": {"group_key_id": "group_95d0fedc46308e2254477fcb96364af9$alice@server-a.com"} }');
 
 
-## customer\_reject(idurl\_or\_global\_id)
+#### group\_share(group\_key\_id, trusted\_user\_id, timeout=30)
 
-Stop supporting given customer, remove all his files from local disc, close
-connections with that node.
+Provide access to given group identified by `group_key_id` to another trusted user.
 
+This method will transfer private key to remote user `trusted_user_id` inviting him to the messaging group.
 
+###### HTTP
+    curl -X PUT 'localhost:8180/group/share/v1' -d '{"group_key_id": "group_95d0fedc46308e2254477fcb96364af9$alice@server-a.com", "trusted_user_id": "bob@machine-b.net"}'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "group_share", "kwargs": {"key_id": "group_95d0fedc46308e2254477fcb96364af9$alice@server-a.com", "trusted_user_id": "bob@machine-b.net"} }');
 
 
-    {'status': 'OK', 'result': 'customer http://p2p-id.ru/bob.xml rejected, 536870912 bytes were freed'}
+#### friends\_list()
 
+Returns list of registered correspondents.
 
-## customers\_ping()
+###### HTTP
+    curl -X GET 'localhost:8180/friend/list/v1'
 
-Sends Identity packet to all customers to check their current statuses.
-Every node will reply with Ack packet on any valid incoming Identiy packet.
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "friends_list", "kwargs": {} }');
 
 
+#### friend\_add(trusted\_user\_id, alias="")
 
+Add user to the list of correspondents.
 
+You can attach an alias to that user as a label to be displayed in the UI.
 
-    {'status': 'OK',  'result': 'requests to all customers was sent'}
+###### HTTP
+    curl -X POST 'localhost:8180/friend/add/v1' -d '{"trusted_user_id": "dave@device-d.gov", "alias": "SuperMario"}'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "friend_add", "kwargs": {"trusted_user_id": "dave@device-d.gov", "alias": "SuperMario"} }');
 
-## space\_donated()
 
-Returns detailed statistics about your donated space usage.
+#### friend\_remove(user\_id)
 
+Removes given user from the list of correspondents.
 
+###### HTTP
+    curl -X DELETE 'localhost:8180/friend/add/v1' -d '{"user_id": "dave@device-d.gov"}'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "friend_add", "kwargs": {"user_id": "dave@device-d.gov"} }');
 
 
-    {'status': 'OK',
-     'result': [{
-        'consumed': 0,
-        'consumed_percent': '0%',
-        'consumed_str': '0 bytes',
-        'customers': [],
-        'customers_num': 0,
-        'donated': 1073741824,
-        'donated_str': '1024 MB',
-        'free': 1073741824,
-        'old_customers': [],
-        'real': 0,
-        'used': 0,
-        'used_percent': '0%',
-        'used_str': '0 bytes'
-    }]}
+#### user\_ping(user\_id, timeout=15, retries=2)
 
+Sends `Identity` packet to remote peer and wait for an `Ack` packet to check connection status.
 
-## space\_consumed()
+Method can be used to check and verify that remote node is on-line at the moment (if you are also on-line).
 
-Returns some info about your current usage of BitDust resources.
+###### HTTP
+    curl -X GET 'localhost:8180/user/ping/v1?user_id=carol@computer-c.net'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "suppliers_ping", "kwargs": {} }');
 
 
+#### user\_status(user\_id)
 
+Returns short info about current on-line status of the given user.
 
-    {'status': 'OK',
-     'result': [{
-        'available': 907163720,
-        'available_per_supplier': 907163720,
-        'available_per_supplier_str': '865.14 MB',
-        'available_str': '865.14 MB',
-        'needed': 1073741824,
-        'needed_per_supplier': 1073741824,
-        'needed_per_supplier_str': '1024 MB',
-        'needed_str': '1024 MB',
-        'suppliers_num': 2,
-        'used': 166578104,
-        'used_per_supplier': 166578104,
-        'used_per_supplier_str': '158.86 MB',
-        'used_percent': '0.155%',
-        'used_str': '158.86 MB'
-    }]}
+###### HTTP
+    curl -X GET 'localhost:8180/user/status/v1?user_id=carol@computer-c.net'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "user_status", "kwargs": {"user_id": "carol@computer-c.net"} }');
 
-## space\_local()
 
-Returns detailed statistics about current usage of your local disk.
+#### user\_status\_check(user\_id, timeout=5)
 
+Returns current online status of a user and only if node is known but disconnected performs "ping" operation.
 
+###### HTTP
+    curl -X GET 'localhost:8180/user/status/check/v1?user_id=carol@computer-c.net'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "user_status_check", "kwargs": {"user_id": "carol@computer-c.net"} }');
 
 
-    {'status': 'OK',
-     'result': [{
-        'backups': 0,
-        'backups_str': '0 bytes',
-        'customers': 0,
-        'customers_str': '0 bytes',
-        'diskfree': 103865696256,
-        'diskfree_percent': '0.00162%',
-        'diskfree_str': '96.73 GB',
-        'disktotal': 63943473102848,
-        'disktotal_str': '59552 GB',
-        'temp': 48981,
-        'temp_str': '47.83 KB',
-        'total': 45238743,
-        'total_percent': '0%',
-        'total_str': '43.14 MB'
-    }]}
+#### user\_search(nickname, attempts=1)
 
+Doing lookup of a single `nickname` registered in the DHT network.
 
-## automats\_list()
+###### HTTP
+    curl -X GET 'localhost:8180/user/search/v1?nickname=carol'
 
-Returns a list of all currently running state machines.
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "user_search", "kwargs": {"nickname": "carol"} }');
 
 
+#### user\_observe(nickname, attempts=3)
 
+Reads all records registered for given `nickname` in the DHT network.
 
+It could be that multiple users chosen same nickname when creating an identity.
 
-    {'status': 'OK',
-     'result': [{
-        'index': 1,
-        'name': 'initializer',
-        'state': 'READY',
-        'timers': ''
-      }, {
-        'index': 2,
-        'name': 'shutdowner',
-        'state': 'READY',
-        'timers': ''
-    }]}
+###### HTTP
+    curl -X GET 'localhost:8180/user/observe/v1?nickname=carol'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "user_observe", "kwargs": {"nickname": "carol"} }');
 
-## services\_list()
+
+#### message\_history(recipient\_id=None, sender\_id=None, message\_type=None, offset=0, limit=100)
+
+Returns chat history stored during communications with given user or messaging group.
+
+###### HTTP
+    curl -X GET 'localhost:8180/message/history/v1?message_type=group_message&recipient_id=group_95d0fedc46308e2254477fcb96364af9$alice@server-a.com'
+
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "message_history", "kwargs": {"recipient_id" : "group_95d0fedc46308e2254477fcb96364af9$alice@server-a.com", "message_type": "group_message"} }');
+
+
+#### message\_send(recipient\_id, data, ping\_timeout=30, message\_ack\_timeout=15)
+
+Sends a text message to remote peer, `recipient_id` is a string with a nickname, global_id or IDURL of the remote user.
+
+###### HTTP
+    curl -X POST 'localhost:8180/message/send/v1' -d '{"recipient_id": "carlos@computer-c.net", "data": {"message": "Hola Amigo!"}}'
+
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "message_send", "kwargs": {"recipient_id": "carlos@computer-c.net", "data": {"message": "Hola Amigos!"}} }');
+
+
+#### message\_send\_group(group\_key\_id, data)
+
+Sends a text message to a group of users.
+
+###### HTTP
+    curl -X POST 'localhost:8180/message/send/group/v1' -d '{"group_key_id": "group_95d0fedc46308e2254477fcb96364af9$alice@server-a.com", "data": {"message": "Hola Amigos!"}}' 
+
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "message_send_group", "kwargs": {"group_key_id": "group_95d0fedc46308e2254477fcb96364af9$alice@server-a.com", "data": {"message": "Hola Amigos!"}} }');
+
+
+#### message\_receive(consumer\_callback\_id, direction="incoming", message\_types="private\_message,group\_message", polling\_timeout=60)
+
+This method can be used by clients to listen and process streaming messages.
+
+If there are no pending messages received yet in the stream, this method will block and will be waiting for any message to come.
+
+If some messages are already waiting in the stream to be consumed method will return them immediately.
+As soon as client received and processed the response messages are marked as "consumed" and released from the stream.
+
+Client should call that method again to listen for next messages in the stream. You can use `polling_timeout` parameter
+to control blocking for receiving duration. This is very similar to a long polling technique.
+
+Once client stopped calling that method and do not "consume" messages anymor given `consumer_callback_id` will be dropped
+after 100 non-collected messages.
+
+You can set parameter `direction=outgoing` to only populate messages you are sending to others - can be useful for UI clients.
+
+Also you can use parameter `message_types` to select only specific types of messages: "private_message" or "group_message".
+
+This method is only make sense for HTTP interface, because using a WebSocket client will receive streamed message directly.
+
+###### HTTP
+    curl -X GET 'localhost:8180/message/receive/my-client-group-messages/v1?message_types=group_message'
+
+
+#### suppliers\_list(customer\_id=None, verbose=False)
+
+This method returns a list of your suppliers.
+Those nodes stores your encrypted file or file uploaded by other users that still belongs to you.
+
+Your BitDust node also sometimes need to connect to suppliers of other users to upload or download shared data.
+Those external suppliers lists are cached and can be selected here with `customer_id` optional parameter.
+
+###### HTTP
+    curl -X GET 'localhost:8180/supplier/list/v1'
+
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "suppliers_list", "kwargs": {} }');
+
+
+#### supplier\_change(position=None, supplier\_id=None, new\_supplier\_id=None)
+
+The method will execute a fire/hire process for given supplier. You can specify which supplier to be replaced by position or ID.
+
+If optional parameter `new_supplier_id` was not specified another random node will be found via DHT network and it will
+replace the current supplier. Otherwise `new_supplier_id` must be an existing node in the network and
+the process will try to connect and use that node as a new supplier.
+
+As soon as new node is found and connected, rebuilding of all uploaded data will be automatically started and new supplier
+will start getting reconstructed fragments of your data piece by piece.
+
+###### HTTP
+    curl -X POST 'localhost:8180/supplier/change/v1' -d '{"position": 1, "new_supplier_id": "carol@computer-c.net"}'
+
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "supplier_change", "kwargs": {"position": 1, "new_supplier_id": "carol@computer-c.net"} }');
+
+
+#### suppliers\_ping()
+
+Sends short requests to all suppliers to verify current connection status.
+
+###### HTTP
+    curl -X POST 'localhost:8180/supplier/ping/v1'
+
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "suppliers_ping", "kwargs": {} }');
+
+
+#### suppliers\_dht\_lookup(customer\_id=None)
+
+Scans DHT network for key-value pairs related to given customer and returns a list its suppliers.
+
+###### HTTP
+    curl -X GET 'localhost:8180/supplier/list/dht/v1?customer_id=alice@server-a.com'
+
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "suppliers_dht_lookup", "kwargs": {"customer_id": "alice@server-a.com"} }');
+
+
+#### customers\_list(verbose=False)
+
+Method returns list of your customers - nodes for whom you are storing data on that host.
+
+###### HTTP
+    curl -X GET 'localhost:8180/customer/list/v1'
+
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "customers_list", "kwargs": {} }');
+
+
+#### customer\_reject(customer\_id)
+
+Stop supporting given customer, remove all related files from local disc, close connections with that node.
+
+###### HTTP
+    curl -X DELETE 'localhost:8180/customer/reject/v1' -d '{"customer_id": "dave@device-d.gov"}'
+
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "customer_reject", "kwargs": {"customer_id": "dave@device-d.gov"} }');
+
+
+#### customers\_ping()
+
+Check current on-line status of all customers.
+
+###### HTTP
+    curl -X POST 'localhost:8180/customer/ping/v1'
+
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "customers_ping", "kwargs": {} }');
+
+
+#### space\_donated()
+
+Returns detailed info about quotas and usage of the storage space you donated to your customers.
+
+###### HTTP
+    curl -X GET 'localhost:8180/space/donated/v1'
+
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "space_donated", "kwargs": {} }');
+
+
+#### space\_consumed()
+
+Returns info about current usage of the storage space provided by your suppliers.
+
+###### HTTP
+    curl -X GET 'localhost:8180/space/consumed/v1'
+
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "space_consumed", "kwargs": {} }');
+
+
+#### space\_local()
+
+Returns info about current usage of your local disk drive.
+
+###### HTTP
+    curl -X GET 'localhost:8180/space/local/v1'
+
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "space_local", "kwargs": {} }');
+
+
+#### services\_list(with\_configs=False)
 
 Returns detailed info about all currently running network services.
 
+Pass `with_configs=True` to also see current program settings values related to each service.
+
+This is a very useful method when you need to investigate a problem in the software.
+
+###### HTTP
+    curl -X GET 'localhost:8180/service/list/v1?with_configs=1'
+
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "services_list", "kwargs": {"with_configs": 1} }');
 
 
+#### service\_info(service\_name)
+
+Returns detailed info about single service.
+
+###### HTTP
+    curl -X GET 'localhost:8180/service/info/service_private_groups/v1'
+
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "service_info", "kwargs": {"service_name": "service_private_groups"} }');
 
 
-    {'status': 'OK',
-     'result': [{
-        'config_path': 'services/backup-db/enabled',
-        'depends': ['service_list_files', 'service_data_motion'],
-        'enabled': True,
-        'index': 3,
-        'installed': True,
-        'name': 'service_backup_db',
-        'state': 'ON'
-      }, {
-        'config_path': 'services/backups/enabled',
-        'depends': ['service_list_files', 'service_employer', 'service_rebuilding'],
-        'enabled': True,
-        'index': 4,
-        'installed': True,
-        'name': 'service_backups',
-        'state': 'ON'
-    }]}
+#### service\_start(service\_name)
 
+Starts given service immediately.
 
-## service\_info(service\_name)
-
-Returns detailed info for single service.
-
-
-
-
-
-    {'status': 'OK',
-     'result': [{
-        'config_path': 'services/tcp-connections/enabled',
-        'depends': ['service_network'],
-        'enabled': True,
-        'index': 24,
-        'installed': True,
-        'name': 'service_tcp_connections',
-        'state': 'ON'
-    }]}
-
-
-## service\_start(service\_name)
-
-Start given service immediately. This method also set `True` for
-correspondent option in the program settings:
+This method also set `True` for correspondent option in the program settings to mark the service as enabled:
 
     .bitdust/config/services/[service name]/enabled
 
-If some other services, which is dependent on that service,
-were already enabled, they will be started also.
+Other dependent services, if they were enabled before but stopped, also will be started.
+
+###### HTTP
+    curl -X POST 'localhost:8180/service/start/service_supplier/v1'
+
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "service_start", "kwargs": {"service_name": "service_supplier"} }');
 
 
+#### service\_stop(service\_name)
 
+Stop given service immediately.
 
-
-    {'status': 'OK', 'result': 'service_tcp_connections was switched on'}
-
-
-## service\_stop(service\_name)
-
-Stop given service immediately. It will also set `False` for correspondent
-option in the settings.
+This method also set `False` for correspondent option in the program settings to mark the service as disabled:
 
     .bitdust/config/services/[service name]/enabled
 
-Dependent services will be stopped as well.
+Dependent services will be stopped as well but will not be disabled.
 
+###### HTTP
+    curl -X POST 'localhost:8180/service/stop/service_supplier/v1'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "service_stop", "kwargs": {"service_name": "service_supplier"} }');
 
 
+#### service\_restart(service\_name, wait\_timeout=10)
 
-    {'status': 'OK', 'result': 'service_tcp_connections was switched off'}
+This method will stop given service and start it again, but only if it is already enabled.
+It will not modify corresponding option for that service in the program settings.
 
+All dependent services will be restarted as well.
 
-## service\_restart(service\_name, wait\_timeout=10)
+Very useful method when you need to reload some parts of the application without full process restart.
 
-Stop given service and start it again, but only if it is already enabled.
-Do not change corresponding `.bitdust/config/services/[service name]/enabled` option.
-Dependent services will be "restarted" as well.
+###### HTTP
+    curl -X POST 'localhost:8180/service/restart/service_customer/v1'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "service_restart", "kwargs": {"service_name": "service_customer"} }');
 
 
+#### packets\_list()
 
-    {'status': 'OK', 'result': 'service_tcp_connections was restarted'}
+Returns list of incoming and outgoing signed packets running at the moment.
 
+###### HTTP
+    curl -X GET 'localhost:8180/packet/list/v1'
 
-## packets\_stats()
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "packets_list", "kwargs": {} }');
 
-Returns detailed info about current network usage.
 
+#### packets\_stats()
 
+Returns detailed info about overall network usage.
 
+###### HTTP
+    curl -X GET 'localhost:8180/packet/stats/v1'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "packets_stats", "kwargs": {} }');
 
-    {'status': 'OK',
-     'result': [{
-        'in': {
-            'failed_packets': 0,
-            'total_bytes': 0,
-            'total_packets': 0,
-            'unknown_bytes': 0,
-            'unknown_packets': 0
-        },
-        'out': {
-            'http://p2p-id.ru/bitdust_j_vps1014.xml': 0,
-            'http://veselin-p2p.ru/bitdust_j_vps1001.xml': 0,
-            'failed_packets': 8,
-            'total_bytes': 0,
-            'total_packets': 0,
-            'unknown_bytes': 0,
-            'unknown_packets': 0
-    }}]}
 
+#### transfers\_list()
 
-## packets\_list()
+Returns list of current data fragments transfers to/from suppliers.
 
-Return list of incoming and outgoing packets.
+###### HTTP
+    curl -X GET 'localhost:8180/transfer/list/v1'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "transfers_list", "kwargs": {} }');
 
-## transfers\_list()
 
+#### connections\_list(protocols=None)
 
+Returns list of opened/active network connections.
 
-## connections\_list(wanted\_protos=None)
+Argument `protocols` can be used to select which protocols to be present in the response:
 
-Returns list of opened/active network connections. Argument `wanted_protos`
-can be used to select which protocols to list:
+###### HTTP
+    curl -X GET 'localhost:8180/connection/list/v1?protocols=tcp,udp,proxy'
 
-    connections_list(wanted_protos=['tcp', 'udp'])
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "connections_list", "kwargs": {"protocols": ["tcp", "udp", "proxy"]} }');
 
 
-## streams\_list(wanted\_protos=None)
+#### streams\_list(protocols=None)
 
-Return list of active sending/receiveing files.
+Returns list of running streams of data fragments with recent upload/download progress percentage.
 
+###### HTTP
+    curl -X GET 'localhost:8180/stream/list/v1'
 
-## queue\_list()
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "streams_list", "kwargs": {} }');
 
 
+#### queues\_list()
 
-## user\_ping(idurl\_or\_global\_id, timeout=10, retries=2)
+Returns list of registered streaming queues.
 
-Sends Identity packet to remote peer and wait for Ack packet to check connection status.
-The "ping" command performs following actions:
-  1. Request remote identity source by idurl,
-  2. Sends my Identity to remote contact addresses, taken from identity,
-  3. Wait first Ack packet from remote peer,
-  4. Failed by timeout or identity fetching error.
-You can use this method to check and be sure that remote node is alive at the moment.
+###### HTTP
+    curl -X GET 'localhost:8180/queue/list/v1'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "queues_list", "kwargs": {} }');
 
 
-    {'status': 'OK', 'result': '(signed.Packet[Ack(Identity) bob|bob for alice], in_70_19828906(DONE))'}
+#### queue\_consumers\_list()
 
+Returns list of registered queue consumers.
 
-## user\_status(idurl\_or\_global\_id)
+###### HTTP
+    curl -X GET 'localhost:8180/queue/consumer/list/v1'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "queue_consumers_list", "kwargs": {} }');
 
 
-## user\_status\_check(idurl\_or\_global\_id, timeout=5)
+#### queue\_producers\_list()
 
+Returns list of registered queue producers.
 
+###### HTTP
+    curl -X GET 'localhost:8180/queue/producer/list/v1'
 
-## user\_search(nickname, attempts=1)
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "queue_producers_list", "kwargs": {} }');
 
-Starts nickname_observer() Automat to lookup existing nickname registered
-in DHT network.
 
+#### event\_send(event\_id, data=None)
 
-## user\_observe(nickname, attempts=3)
+Method will generate and inject a new event inside the main process.
 
-Starts nickname_observer() Automat to lookup existing nickname registered
-in DHT network.
+This method is provided for testing and development purposes.
 
+###### HTTP
+    curl -X POST 'localhost:8180/event/send/client-event-abc/v1' -d '{"data": {"some_key": "some_value"}}'
 
-## nickname\_get()
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "event_send", "kwargs": {"event_id": "client-event-produced", "data": {"some_key": "some_value"}} }');
 
 
+#### event\_listen(consumer\_callback\_id)
 
-## nickname\_set(nickname)
+This method can be used by clients to listen and process all events fired inside the main process.
 
-Starts nickname_holder() machine to register and keep your nickname in DHT
-network.
+If there are no pending events fired yet, this method will block and will be waiting for any new event.
 
+If some messages are already waiting in the stream to be consumed method will return them immediately.
+As soon as client received and processed the response events are marked as "consumed" and released from the buffer.
 
-## message\_history(user)
+Client should call that method again to listen for next events. This is very similar to a long polling technique.
 
+This method is only make sense for HTTP interface, because using a WebSocket client will receive application events directly.
 
-## message\_send(recipient, json\_data, timeout=5)
+###### HTTP
+    curl -X GET 'localhost:8180/event/listen/my-client-event-hook/v1'
 
-Sends a text message to remote peer, `recipient` is a string with nickname or global_id.
 
 
+#### network\_stun(udp\_port=None, dht\_port=None)
 
+Begins network STUN process to detect your network configuration and current external IP address of that host. 
 
+###### HTTP
+    curl -X GET 'localhost:8180/network/stun/v1'
 
-    {'status': 'OK', 'result': ['signed.Packet[Message(146681300413)]']}
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "network_stun", "kwargs": {} }');
 
 
-## message\_receive(consumer\_id)
+#### network\_reconnect()
 
-This method can be used to listen and process incoming chat messages by specific consumer.
-If there are no messages received yet, this method will be waiting for any incomings.
-If some messages was already received, but not "consumed" yet method will return them imediately.
-After you got response and processed the messages you should call this method again to listen
-for more incomings again. This is simillar to message queue polling interface.
-If you do not "consume" messages, after 100 un-collected messages "consumer" will be dropped.
-Both, incoming and outgoing, messages will be populated here.
+Method can be used to refresh network status and restart all internal connections.
 
+###### HTTP
+    curl -X GET 'localhost:8180/network/reconnect/v1'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "network_reconnect", "kwargs": {} }');
 
 
+#### network\_connected(wait\_timeout=5)
 
-    {'status': 'OK',
-     'result': [{
-        'type': 'private_message',
-        'dir': 'incoming',
-        'message_id': '123456788',
-        'sender': 'messages$alice@first-host.com',
-        'recipient': 'messages$bob@second-host.net',
-        'data': {
-            'message': 'Hello BitDust!'
-        },
-        'time': 123456789
-    }]}
+Method can be used by clients to ensure BitDust application is connected to other nodes in the network.
 
+If all is good this method will block for `wait_timeout` seconds. In case of some network issues method will return result immediately.
 
-## messages\_get\_all(index\_name, limit, offset, with\_doc, with\_storage)
+###### HTTP
+    curl -X GET 'localhost:8180/network/connected/v1'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "network_connected", "kwargs": {} }');
 
-## broadcast\_send\_message(payload)
 
-Sends broadcast message to all peers in the network.
+#### network\_configuration()
 
-Message must be provided in `payload` argument is a Json object.
+Returns details about network services.
 
-WARNING! Please, do not send too often and do not send more then
-several kilobytes per message.
+###### HTTP
+    curl -X GET 'localhost:8180/network/configuration/v1'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "network_configuration", "kwargs": {} }');
 
-## event\_send(event\_id, json\_data=None)
 
+#### dht\_node\_find(node\_id\_64=None, layer\_id=0)
 
-## events\_listen(consumer\_id)
+Lookup "closest" (in terms of hashes and cryptography) DHT nodes to a given `node_id_64` value.
 
+Method can be also used to pick a random DHT node from the network if you do not pass any value to `node_id_64`.
 
-## network\_stun(udp\_port=None, dht\_port=None)
+Parameter `layer_id` specifies which layer of the routing table to be used.
 
+###### HTTP
+    curl -X GET 'localhost:8180/dht/node/find/v1?node_id_64=4271c8f079695d77f80186ac9365e3df949ff74d'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "dht_node_find", "kwargs": {"node_id_64": "4271c8f079695d77f80186ac9365e3df949ff74d"} }');
 
-## network\_reconnect()
 
-Sends "reconnect" event to network_connector() Automat in order to refresh
-network connection.
+#### dht\_user\_random(layer\_id=0, count=1)
 
+Pick random live nodes from BitDust network.
 
+Method is used during services discovery, for example when you need to hire a new supplier to store your data.
 
+Parameter `layer_id` specifies which layer of the routing table to be used.
 
+###### HTTP
+    curl -X GET 'localhost:8180/dht/user/random/v1?count=2&layer_id=2'
 
-    {'status': 'OK', 'result': 'reconnected'}
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "dht_node_find", "kwargs": {"count": 2, "layer_id": 2} }');
 
 
-## network\_connected(wait\_timeout=5)
+#### dht\_value\_get(key, record\_type="skip\_validation", layer\_id=0, use\_cache\_ttl=None)
 
-Be sure BitDust software is connected to other nodes in the network.
-If all is good this method will block for `wait_timeout` seconds.
-In case of some network issues method will return result asap.
+Fetch single key/value record from DHT network.
 
+###### HTTP
+    curl -X GET 'localhost:8180/dht/value/get/v1?key=abcd'
 
-## dht\_node\_find(node\_id\_64=None)
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "dht_value_get", "kwargs": {"key": "abcd"} }');
 
 
-## dht\_value\_get(key, record\_type='skip\_validation')
+#### dht\_value\_set(key, value, expire=None, record\_type="skip\_validation", layer\_id=0)
 
+Writes given key/value record into DHT network. Input parameter `value` must be a JSON value.
 
-## dht\_value\_set(key, value, expire=None, record\_type='skip\_validation')
+###### HTTP
+    curl -X POST 'localhost:8180/dht/value/set/v1' -d '{"key": "abcd", "value": {"text": "A-B-C-D"}}'
 
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "dht_value_set", "kwargs": {"key": "abcd", "value": {"text": "A-B-C-D"}} }');
 
-## dht\_local\_db\_dump()
 
+#### dht\_local\_db\_dump()
 
+Method used for testing purposes, returns full list of all key/values stored locally on that DHT node.
 
-<div class=fbcomments markdown="1">
-</div>
+###### HTTP
+    curl -X GET 'localhost:8180/dht/db/dump/v1'
+
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "dht_local_db_dump", "kwargs": {} }');
+
+
+#### automats\_list()
+
+Returns a list of all currently running state machines.
+
+This is a very useful method when you need to investigate a problem in the software.
+
+###### HTTP
+    curl -X GET 'localhost:8180/automat/list/v1'
+
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "automats_list", "kwargs": {} }');
+
+
+
+
