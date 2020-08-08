@@ -15,7 +15,7 @@ Here you can find some examples of how to do that using different clients.
 
 
 
-#### HTTP Rest API
+##### HTTP Rest API
 
 The API server inside the engine is running on `localhost:8180` by default.
 This can be modified via program settings.
@@ -30,7 +30,7 @@ You can use `curl` command to execute HTTP calls directly:
 
 
 
-#### WebSocket
+##### WebSocket
 
 The WebSocket server inside the engine is running on `localhost:8280` by default.
 This can be modified via program settings.
@@ -51,7 +51,7 @@ Here is a very basic example of a JavaScript WebSocket client call:
 
 
 
-#### Command line shell client
+##### Command line shell client
 
 Command line client is actually also using HTTP Rest API interface to interact with the main process.
 
@@ -118,6 +118,17 @@ Returns positive response if engine process is running. This method suppose to b
 
 ###### WebSocket
     websocket.send('{"command": "api_call", "method": "process_health", "kwargs": {} }');
+
+
+#### process\_info()
+
+Returns overall information about current process. This method can be used for live monitoring and statistics.
+
+###### HTTP
+    curl -X GET 'localhost:8180/process/info/v1'
+
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "process_info", "kwargs": {} }');
 
 
 #### process\_debug()
@@ -191,17 +202,21 @@ Returns your identity info.
     websocket.send('{"command": "api_call", "method": "identity_get", "kwargs": {} }');
 
 
-#### identity\_create(username, preferred\_servers=[])
+#### identity\_create(username, preferred\_servers=[], join\_network=False)
 
 Generates new private key and creates new identity for you to be able to communicate with other nodes in the network.
 
-Parameter `username` defines filename of the new identity.
+Parameter `username` defines filename of the new identity, can not be changed anymore.
+
+By default that method only connects to ID servers to be able to register a new identity file for you.
+If you also pass `join_network=True` it will start all network services right after that and will make
+you connected to the BitDust network automatically.
 
 ###### HTTP
-    curl -X POST 'localhost:8180/identity/create/v1' -d '{"username": "alice"}'
+    curl -X POST 'localhost:8180/identity/create/v1' -d '{"username": "alice", "join_network": 1}'
 
 ###### WebSocket
-    websocket.send('{"command": "api_call", "method": "identity_create", "kwargs": {"username": "alice"} }');
+    websocket.send('{"command": "api_call", "method": "identity_create", "kwargs": {"username": "alice", "join_network": 1} }');
 
 
 #### identity\_backup(destination\_filepath)
@@ -220,7 +235,7 @@ to restore your data in case of lost.
     websocket.send('{"command": "api_call", "method": "identity_backup", "kwargs": {"destination_filepath": "/tmp/alice_backup.key"} }');
 
 
-#### identity\_recover(private\_key\_source, known\_idurl=None)
+#### identity\_recover(private\_key\_source, known\_idurl=None, join\_network=False)
 
 Restores your identity from backup copy.
 
@@ -378,6 +393,25 @@ This method is provided for testing and development purposes.
 
 ###### WebSocket
     websocket.send('{"command": "api_call", "method": "files_sync", "kwargs": {} }');
+
+
+#### files\_list(remote\_path=None, key\_id=None, recursive=True, all\_customers=False, include\_uploads=False, include\_downloads=False)
+
+Returns list of known files registered in the catalog under given `remote_path` folder.
+By default returns items from root of the catalog.
+
+If `key_id` is passed will only return items encrypted using that key.
+
+Use `all_customers=True` to get list of all registered files - including received/shared to you by another user.
+
+You can also use `include_uploads` and `include_downloads` parameters to get more info about currently running
+uploads and downloads.
+
+###### HTTP
+    curl -X GET 'localhost:8180/file/list/v1?remote_path=abcd1234$alice@server-a.com:pictures/cats/'
+
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "files_list", "kwargs": {"remote_path": "abcd1234$alice@server-a.com:pictures/cats/"} }');
 
 
 #### file\_exists(remote\_path)
@@ -636,7 +670,7 @@ or by other users that shared a key with you before.
     websocket.send('{"command": "api_call", "method": "groups_list", "kwargs": {} }');
 
 
-#### group\_create(creator\_id=None, key\_size=None, label="")
+#### group\_create(creator\_id=None, key\_size=None, label="", timeout=20)
 
 Creates a new messaging group.
 
@@ -807,7 +841,16 @@ Returns chat history stored during communications with given user or messaging g
 
 #### message\_send(recipient\_id, data, ping\_timeout=30, message\_ack\_timeout=15)
 
-Sends a text message to remote peer, `recipient_id` is a string with a nickname, global_id or IDURL of the remote user.
+Sends a private message to remote peer, `recipient_id` is a string with a nickname, global_id or IDURL of the remote user.
+
+Message will be encrypted first with public key of the recipient.
+Public key must be already registered locally or populated from remote identity file.
+Corresponding key will be recognized based on `recipient_id` parameter.
+
+Recipient will receive incoming message of type "private_message" and de-crypt it.
+If recipient is listening on the new private messages it will be marked as "consumed".
+
+Input `data` must be a JSON dictionary.
 
 ###### HTTP
     curl -X POST 'localhost:8180/message/send/v1' -d '{"recipient_id": "carlos@computer-c.net", "data": {"message": "Hola Amigo!"}}'
@@ -818,10 +861,12 @@ Sends a text message to remote peer, `recipient_id` is a string with a nickname,
 
 #### message\_send\_group(group\_key\_id, data)
 
-Sends a text message to a group of users.
+Sends a "group_message" to a group of users.
+
+Input `data` must be a JSON dictionary.
 
 ###### HTTP
-    curl -X POST 'localhost:8180/message/send/group/v1' -d '{"group_key_id": "group_95d0fedc46308e2254477fcb96364af9$alice@server-a.com", "data": {"message": "Hola Amigos!"}}' 
+    curl -X POST 'localhost:8180/message/send/group/v1' -d '{"group_key_id": "group_95d0fedc46308e2254477fcb96364af9$alice@server-a.com", "data": {"message": "Hola Amigos!"}}'
 
 ###### WebSocket
     websocket.send('{"command": "api_call", "method": "message_send_group", "kwargs": {"group_key_id": "group_95d0fedc46308e2254477fcb96364af9$alice@server-a.com", "data": {"message": "Hola Amigos!"}} }');
@@ -1203,6 +1248,17 @@ If all is good this method will block for `wait_timeout` seconds. In case of som
 
 ###### WebSocket
     websocket.send('{"command": "api_call", "method": "network_connected", "kwargs": {} }');
+
+
+#### network\_status(suppliers=False, customers=False, cache=False, tcp=False, udp=False, proxy=False, dht=False)
+
+Returns detailed info about current network status, protocols and active connections.
+
+###### HTTP
+    curl -X GET 'localhost:8180/network/status/v1?cache=1&suppliers=1&dht=1'
+
+###### WebSocket
+    websocket.send('{"command": "api_call", "method": "network_status", "kwargs": {"cache": 1, "suppliers": 1, "dht": 1} }');
 
 
 #### network\_configuration()
