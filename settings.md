@@ -449,6 +449,12 @@ services/employer/enabled, default value: true
 
 
 
+### services/employer/replace-critically-offline-enabled (boolean)
+
+services/employer/replace-critically-offline-enabled, default value: true
+
+
+
 ### services/entangled-dht/attached-layers (string)
 
 services/entangled-dht/attached-layers, default value: 
@@ -464,6 +470,12 @@ services/entangled-dht/enabled, default value: true
 ### services/entangled-dht/known-nodes (string)
 
 services/entangled-dht/known-nodes, default value: 
+
+
+
+### services/entangled-dht/node-id (undefined)
+
+services/entangled-dht/node-id, default value: None
 
 
 
@@ -738,6 +750,18 @@ services/private-groups/message-ack-timeout, default value: 10
 
 
 
+### services/private-groups/preferred-brokers (text)
+
+services/private-groups/preferred-brokers, default value: 
+
+
+
+### services/private-messages/acknowledge-unread-messages-enabled (boolean)
+
+services/private-messages/acknowledge-unread-messages-enabled, default value: true
+
+
+
 ### services/private-messages/enabled (boolean)
 
 services/private-messages/enabled, default value: true
@@ -758,7 +782,7 @@ services/proxy-server/enabled, default value: false
 
 ### services/proxy-server/routes-limit (positive integer)
 
-services/proxy-server/routes-limit, default value: 10
+services/proxy-server/routes-limit, default value: 20
 
 
 
