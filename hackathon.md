@@ -5,6 +5,7 @@
 * [The goal](#the-goal)
 * [Final results](#final-results)
 * [Prizes](#prizes)
+* [Team efforts evaluation](#team-efforts-evaluation)
 * [Challenges](#challenges)
 * [Mentors and organizers](#mentors-and-organizers)
 
@@ -72,21 +73,24 @@ After the jury has determined the winners of the hackcaton, the entire prize poo
 * 3% will be equally distributed betwen jury members
 
 
-
-## Challenges
+## Team efforts evaluation
 
 We would like to support you during the hackathon and use your creativity/passion/skills/knowledge for the development of the BitDust project.
 
-Also we would like to encourage the fair play during the hackathon. We will look thoroughly all of your commits, pictures, PDF, videos, etc. and analize if you really developed the solution during those 24 hours.
+Also we would like to encourage the fair play during the hackathon. We will look thoroughly all of your commits, pictures, PDF, videos, etc. and analize if you are really developed the submitted solution during those 24 hours.
 
-It is totally fine to be well prepared for the hackathon and we encourage that and will try to provide as much support as possible before the hackathon. But jury must be sure about the evaluation - it must be done regarding team eforts during hackathon, not before.
+It is totally fine to be well prepared for the hackathon and we encourage that and will try to provide as much support as possible before the hackathon. But jury must be sure about the evaluation - it must be done regarding team efforts during hackathon, not before.
 
-We do not want to create additional restrictions and introduce strict criteria when evaluating the results of teams. But it should be remembered that the jury will give preference to those teams whose results can be directly or partially used in the development of the BitDust project.
+We do not want to create additional restrictions and introduce strict criteria when evaluating the results of each teams. But it should be remembered that the jury will give preference to those teams whose results can be directly or partially incorporated/re-used during the further development of the BitDust project.
+
+
+
+## Challenges
 
 Below is a list of several areas/sections that can be taken as a basis when looking for a challenge for the hackcathon if you have not yet found one for yourself:
 
 * messaging solutions (on-line chat, notifications, chat-bots, groups, friends, etc.)
-* file storage/transfer/share (UI features, API/framework improvements)
+* file storage/transfer/share solutions (UI features, API/framework improvements)
 * networking solutions
 * economy/blockchain research
 * documentation/media content
