@@ -16,7 +16,7 @@ The hackathon will be held online from 21 to 23 January 2021.
 
 All participating teams must register before 10 January 2021 via [this form]().
 
-A team can consist of any number of participants without any additional restrictions.
+A team can consist of any number of participants, but preferably we expect teams to be around 5 people on-line.
 
 
 
@@ -58,7 +58,7 @@ All feedback from jury you will find in that [YouTube channel]().
 
 ## Prizes
 
-There are prizes prepared for the winners of the hackathon, which will be paid out in cryptocurrency.
+There are prizes prepared for the winners of the hackathon, which will be paid out in BitCoin.
 
 The exact amount of the prize pool will be announced by 5 January 2021.
 
@@ -76,6 +76,10 @@ After the jury has determined the winners of the hackcaton, the entire prize poo
 ## Challenges
 
 We would like to support you during the hackathon and use your creativity/passion/skills/knowledge for the development of the BitDust project.
+
+Also we would like to encourage the fair play during the hackathon. We will look thoroughly all of your commits, pictures, PDF, videos, etc. and analize if you really developed the solution during those 24 hours.
+
+It is totally fine to be well prepared for the hackathon and we encourage that and will try to provide as much support as possible before the hackathon. But jury must be sure about the evaluation - it must be done regarding team eforts during hackathon, not before.
 
 We do not want to create additional restrictions and introduce strict criteria when evaluating the results of teams. But it should be remembered that the jury will give preference to those teams whose results can be directly or partially used in the development of the BitDust project.
 
