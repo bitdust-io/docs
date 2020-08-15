@@ -21,19 +21,19 @@ Warm welcome to everyone, see you online.
 
 ###### idea behind the BitDust project, basic motivation
 
-21/08/2020 5:00 PM
+21/08/2020 5:00 PM  [https://youtu.be/JIbMT98nqjM](https://youtu.be/JIbMT98nqjM)
 
 
 
 ###### BitDust philosophy, principles, concepts
 
-28/08/2020 5:00 PM
+28/08/2020 5:00 PM  [https://youtu.be/\_EhXkl2uYFs](https://youtu.be/_EhXkl2uYFs)
 
 
 
 ###### overview and key features of the BitDust software
 
-04/09/2020 5:00 PM
+04/09/2020 5:00 PM  [https://youtu.be/2-Iq0Sl_h3Q](https://youtu.be/2-Iq0Sl_h3Q)
 
 
 
