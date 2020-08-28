@@ -12,7 +12,9 @@ Like the Linux system that helps you control your computer (Linux is completely 
 
 ## The goal
 
-BitDust is a project of a global worldwide distributed computer network for secure data storage, information transfers and independent digital communications. The purpose of BitDust is to make all interactions in the network simple, safe and ethical for each user and thus benefit to the whole society in general. In other words, BitDust is another way for collective security.
+BitDust is a project of a global worldwide distributed computer network for secure data storage, information transfers and independent digital communications. The purpose of BitDust is to make all interactions in the network simple, safe and ethical for each user and thus benefit to the whole society in general.
+
+In other words, BitDust is another way for collective security.
 
 
 ## Personal security
@@ -70,9 +72,11 @@ Conventional methods of remote login based on the user's credentials - it is an 
 We fully support the position of the GNU community, and Richard Stallman personally: every user must have full control over the software which is running on his device. BitDust software must always be free and distributed in open sourced codes under free software license so that anyone can run, study, modify and redistribute it independently.
 
 
-## Control over development
+## Control over the development
 
-We believe that single team of developers, or even a big IT company is not able to create some kind of "super multi-purpose" application that meets the needs of all users in the World. Only the community itself, as a number of independent developers, operating autonomously and independently, will create a wide variety of applications with a common core running on a generic "engine". The objective of BitDust project is not to keep software development under our control, but rather to create such a new foundation and provide support to other people who are doing progressive development of the network and finally influence them in a positive sense.
+We believe that single team of developers, or even a big IT company is not able to create some kind of "super multi-purpose" application that meets the needs of all people in the World. Only the community itself, as a number of independent developers, operating autonomously and independently, will create a wide variety of applications with a common core running on a generic "engine".
+
+The objective of BitDust project is not to keep software development under control of a closed group of people, but rather to create such a new foundation and provide support to other people who are doing progressive development of the network and finally influence them in a positive sense.
 
 
 
