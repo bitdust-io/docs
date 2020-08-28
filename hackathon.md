@@ -33,13 +33,14 @@ The jury will evaluate the work and the result of each team according to three c
 * user interface features
 * social/business impact
 
-Thus, each team will receive a three-component grade and the winner will be determined by the best overall score.
+Thus, each team will receive a three-component grade and the winners are determined by the best overall score.
 
 
 
 ## Final results
 
 Each team must prepare a short video 5-10 minutes long to present their solution / live-demo and upload the video to [this YouTube channel]() before the end of the hackathon.
+
 Together with the video, the team must submit the results of the work and the developed materials into [this GitHub repository]() to the corresponding sub-folder.
 
 Solutions can be presented in defferent formats:
@@ -49,11 +50,11 @@ Solutions can be presented in defferent formats:
 * additional video content uploaded to YouTube
 * developed source code is pushed to your GitHub Fork
 
-The jury will have to evaluate the achieved result of each of the teams by reviewing all the materials provided immediately after the end of the hackathon.
+Within 3 days the jury will have to evaluate the achieved result of each of the teams by reviewing all the materials provided after the end of the hackathon.
 
 The result of the jury's work will be a short video report for each of the teams, in which the jury members explain and give the final score to the team.
 
-All feedback from jury you will find in that [YouTube channel]().
+All feedback from the jury you will find in that [YouTube channel]().
 
 
 
@@ -73,11 +74,12 @@ After the jury has determined the winners of the hackcaton, the entire prize poo
 * 3% will be equally distributed betwen jury members
 
 
+
 ## Team efforts evaluation
 
 We would like to support you during the hackathon and use your creativity/passion/skills/knowledge for the development of the BitDust project.
 
-Also we would like to encourage the fair play during the hackathon. We will look thoroughly all of your commits, pictures, PDF, videos, etc. and analize if you are really developed the submitted solution during those 24 hours.
+Also we would like to encourage the fair play during the hackathon. We will look thoroughly all of your commits, pictures, PDF, videos, etc. and analize if you are really developed the submitted solution during those 48 hours.
 
 It is totally fine to be well prepared for the hackathon and we encourage that and will try to provide as much support as possible before the hackathon. But jury must be sure about the evaluation - it must be done regarding team efforts during hackathon, not before.
 
