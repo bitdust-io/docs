@@ -49,7 +49,7 @@ When using BitDust software you do not need to provide your real name, address, 
 
 ## Usability
 
-BitDust project is aiming to create a user-friendly environment whereby a user has full control over a majority of the existing elements within the application. 
+BitDust project is aiming to create a user-friendly environment whereby a user has full control over a majority of the existing elements within the application.
 
 With advanced level of security and anonymity all BitDust users will have an opportunity to gain private access to a fully distributed online storage network. Via an easy to use application you will be able to upload files, share them with trusted contacts and chat completely anonymously. In short we want to make it so easy your grandmother could use is.
 
