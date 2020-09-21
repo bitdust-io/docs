@@ -13,121 +13,59 @@ Each on-line session will consist of two parts:
 Warm welcome to everyone, see you online.
 
 
-###### introduction to BitDust project 
+[introduction to BitDust project](https://youtu.be/JBsA9Ln296A)  14/08/2020 5:00 PM
 
-14/08/2020 5:00 PM  [https://youtu.be/JBsA9Ln296A](https://youtu.be/JBsA9Ln296A)
 
+[idea behind the BitDust project, basic motivation](https://youtu.be/JIbMT98nqjM)  21/08/2020 5:00 PM
 
 
-###### idea behind the BitDust project, basic motivation
+[BitDust philosophy, principles, concepts](https://youtu.be/--CRShTgvSc) 28/08/2020 5:00 PM
 
-21/08/2020 5:00 PM  [https://youtu.be/JIbMT98nqjM](https://youtu.be/JIbMT98nqjM)
 
+[overview and key features of the BitDust software](https://youtu.be/woTONRexX14)  04/09/2020 5:00 PM
 
 
-###### BitDust philosophy, principles, concepts
+[identification and authorization models within BitDust network](https://youtu.be/H3TnKXTFjGU) 11/09/2020 5:00 PM
 
-28/08/2020 5:00 PM  [https://youtu.be/\-\-CRShTgvSc](https://youtu.be/--CRShTgvSc)
 
+[technologies that we use in the BitDust software](https://youtu.be/e0AyXg2HHKs) 18/09/2020 5:00 PM
 
 
-###### overview and key features of the BitDust software
+[how distributed storage is working in BitDust](https://youtu.be/6_flxEXH9F0)  25/09/2020 5:00 PM
 
-04/09/2020 5:00 PM  [https://youtu.be/woTONRexX14](https://youtu.be/woTONRexX14)
 
+[is BitDust network truly anonymous](https://youtu.be/WqVYbWGHyF8)  02/10/2020 5:00 PM
 
 
-###### identification and authorization models within BitDust network
+is BitDust network going to be reliable: automatic data rebuilding  09/10/2020 5:00 PM
 
-11/09/2020 5:00 PM  [https://youtu.be/H3TnKXTFjGU](https://youtu.be/H3TnKXTFjGU)
 
+file sharing in BitDust  23/10/2020 5:00 PM
 
 
+messaging within BitDust: private, personal and group chat  30/10/2020 5:00 PM
 
-###### security model and possible attacks on BitDust network
 
-18/09/2020 5:00 PM
+state machines: how to "draw" behaviour of your program  06/11/2020 5:00 PM
 
 
+distributed hash table: low-level service layer of the BitDust network  13/11/2020 5:00 PM
 
-###### is BitDust network truly anonymous
 
-25/09/2020 5:00 PM
+micro-services inside monolithical application: disassemble the BitDust engine  20/11/2020 5:00 PM
 
 
+Amazon Cloud and BitDust network - is there anything similar between those?  27/11/2020 5:00 PM
 
-###### how distributed storage is working in BitDust
 
-02/10/2020 5:00 PM
+BitDust API: Rest HTTP and websockets  04/12/2020 5:00 PM
 
 
+BitDust development and release flows  11/12/2020 5:00 PM
 
-###### is BitDust network going to be reliable: automatic data rebuilding
 
-09/10/2020 5:00 PM
+BitDust for Android: overview and technical discussions  18/12/2020 5:00 PM
 
 
-
-###### file sharing in BitDust
-
-23/10/2020 5:00 PM
-
-
-
-
-###### messaging within BitDust: private, personal and group chat
-
-30/10/2020 5:00 PM
-
-
-
-
-
-###### state machines: how to "draw" behaviour of your program
-
-06/11/2020 5:00 PM
-
-
-
-
-###### distributed hash table: low-level service layer of the BitDust network
-
-13/11/2020 5:00 PM
-
-
-
-###### micro-services inside monolithical application: disassemble the BitDust engine
-
-20/11/2020 5:00 PM
-
-
-
-###### Amazon Cloud and BitDust network - is there anything similar between those?
-
-27/11/2020 5:00 PM
-
-
-
-###### BitDust API: Rest HTTP and websockets
-
-04/12/2020 5:00 PM
-
-
-
-###### BitDust development and release flows
-
-11/12/2020 5:00 PM
-
-
-
-###### BitDust for Android: overview and technical discussions
-
-18/12/2020 5:00 PM
-
-
-
-###### BitDust for Desktop platforms (Windows/Mac/Linux): overview and technical discussions
-
-25/12/2020 5:00 PM
-
+BitDust for Desktop platforms (Windows/Mac/Linux): overview and technical discussions  25/12/2020 5:00 PM
 

@@ -5,11 +5,12 @@ Below you can find the technologies being used for the development of BitDust pr
 
 ## Back-End
 
-* Python
+* [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
 * REST API
-* Symmetric Cryptography
-* Asymmetric Cryptography
-* RAID + ECC
+* [Symmetric Cryptography](https://en.wikipedia.org/wiki/Symmetric-key_algorithm)
+* [Asymmetric Cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography)
+* [RAID_5](https://en.wikipedia.org/wiki/Standard_RAID_levels#RAID_5)
+* [ECC](https://en.wikipedia.org/wiki/Error_correction_code)
 * Blockchain
 
 
@@ -32,12 +33,11 @@ Below you can find the technologies being used for the development of BitDust pr
 
 ## Development
 
-* Finite State Machines
+* [Finite State Machines](https://github.com/vesellov/visio2python/blob/master/README.md)
 * Micro-Services
 * Docker
 * CI/CD
 * GIT
-
 
 
 <div class=fbcomments markdown="1">
