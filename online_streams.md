@@ -22,7 +22,7 @@ Warm welcome to everyone, see you online.
 [BitDust philosophy, principles, concepts](https://youtu.be/--CRShTgvSc) 28/08/2020 5:00 PM
 
 
-[overview and key features of the BitDust software](https://youtu.be/woTONRexX14)  04/09/2020 5:00 PM
+[overview and key features of the BitDust software](https://youtu.be/cZqdTpovFtw)  04/09/2020 5:00 PM
 
 
 [identification and authorization models within BitDust network](https://youtu.be/H3TnKXTFjGU) 11/09/2020 5:00 PM
