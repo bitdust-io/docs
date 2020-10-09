@@ -37,10 +37,10 @@ Warm welcome to everyone, see you online.
 [is BitDust network truly anonymous](https://youtu.be/WqVYbWGHyF8)  02/10/2020 5:00 PM
 
 
-is BitDust network going to be reliable: automatic data rebuilding  09/10/2020 5:00 PM
+[is BitDust network going to be reliable: automatic data rebuilding](https://youtu.be/3li4WDemHN4)  09/10/2020 5:00 PM
 
 
-file sharing in BitDust  23/10/2020 5:00 PM
+[file sharing in BitDust](https://youtu.be/_zR-yN4yMN4)  16/10/2020 5:00 PM
 
 
 messaging within BitDust: private, personal and group chat  30/10/2020 5:00 PM
