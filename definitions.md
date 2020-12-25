@@ -70,7 +70,7 @@ BitDust aims to protect the privacy of users and provides an alternative way of 
 
 ## +
 
-BitDust is another way for collective security.
+BitDust is yet another approach for collective security.
 
 
 ## +
