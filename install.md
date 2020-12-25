@@ -27,7 +27,7 @@ There is an early alpha version available for Windows, Mac and Linux. Any feedba
 
 Under Ubuntu/Debian, and probably most other distros as well, you can install all dependencies with single command:
 
-        sudo apt-get install git gcc python-dev python-virtualenv
+        sudo apt-get install git gcc python3-dev python3-virtualenv
 
 
 Optionally, you can also install [miniupnpc](http://miniupnp.tuxfamily.org/) tool if you want BitDust automatically set up UPnPc configuration of your network router so it can also accept incomming connections from other nodes.:
@@ -37,7 +37,7 @@ Optionally, you can also install [miniupnpc](http://miniupnp.tuxfamily.org/) too
 
 On MacOSX platform you can install requirements with that command:
 
-        brew install git python2
+        brew install git python3
 
 
 Then you need to use pip manager to get all required packages:
@@ -49,7 +49,7 @@ Then you need to use pip manager to get all required packages:
 
 On Raspberry PI you will need to install those packages:
 
-        sudo apt-get install git gcc python-dev python-virtualenv python-pip libffi-dev libssl-dev
+        sudo apt-get install git gcc python3-dev python3-virtualenv python3-pip libffi-dev libssl-dev
 
 
 
@@ -75,7 +75,7 @@ Afterwards you will need to build virtual environment with all the required Pyth
 Single command should make it for you, all required files will be generated in the `~/.bitdust/venv/` folder:
 
         cd bitdust
-        python bitdust.py install
+        python3 bitdust.py install
 
 
 Last step to make BitDust software ready to be used is to make a short alias in your OS, then you can just type `bitdust <some command>` in command line to get fast access to the program:
