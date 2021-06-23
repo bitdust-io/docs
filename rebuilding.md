@@ -102,11 +102,11 @@ Chosen EEC code influences the amount of possible mistakes in RAID array you can
 
 At each iteration of the algorithm of automatic recovery the estimation of number of connected suppliers at that moment is done, as well as the matching of it to the possible number of losses for the given EEC method. If the number of inactive suppliers becomes critical, then the momentary change of one or several suppliers will be done automatically and the reassembly of all uploaded data and their transfer to the new nodes is underway. This is the main task of the ReBuilder.
 
-At the moment those methods were implemented on a basic level and needs further development for optimal decision making. However this requires a real environment for testing – we need greater number of real users, which dynamically log on and out of the network to optimize our future solution. For now we are thinking about the best starting point and move from there.
+At the moment those methods were implemented on a basic level and needs further development for optimal decision making. However this requires a real environment for testing and we need greater number of real users, which dynamically log on and out of the network to optimize the future solution. For now we are thinking about the best starting point and move from there.
 
 In the future we plan to boost this functional so that it could "predict" beforehand who will go offline and needs to be replaced by previously collected daily/weekly statistics. 
 
-In the future we plan to create conditions for external praising of suppliers who provide reliable data storage. This future feature will have to worked out and off course our roadmap is open for change.
+In the future we plan to create conditions for external praising of suppliers who provide reliable data storage. This future feature will have to worked out and off course the roadmap is open for change.
 
 
 ## Suppliers Search

@@ -74,8 +74,6 @@ To get more information about how BitDust uses Distributed hash-table go to [Bit
 
 ### Genesis seed node
 
-So the first step to start the BitDust Distributed hash-table network is to start a root node of the tree or "genesis" node as we call it. We need to select one of the 4 nodes from our "core" network and reserve it for that.
-
 Therefore, the first step to launch the BitDust Distributed hash-table network is to launch the root node of the tree or the "genesis" node, as we call it. We need to choose one of 4 nodes from our core network and reserve it for such purpose.
 
 Let's use `host-a.com` machine to run the "genesis" DHT node:

@@ -13,7 +13,7 @@ There are two supporting roles we will enable in the future for the BitDust netw
 
 BitDust is written in [Python](http://python.org) using pure [Twisted](http://twistedmatrix.com/) framework and is published under GNU AGPLv3 and is an open source project.
 
-An alpha version is already available for you to try out. If you want to join our project or support us in anyway possible then please contact us.
+An alpha version is already available for you to try out. If you want to join the project or support the team in anyway possible then please contact us.
 
 We aim to build a holistic eco-system that protects your privacy in the network by establishing p2p communications of users and maximize distribution of information flows within the network. We believe that this technology will benefit society by increasing ownership of personal data and protecting data from unauthorized access or censorship. 
 

@@ -124,12 +124,12 @@ The Session key is not available to anyone except for the use – the user and o
 
 A supplier receives data portions inside service packages, in the field `Payload`, and records the data completely to different files on their hard disk drive. As a result the encrypted block portion are allocated on the supplier’s node – the field `EncryptedData` is kept the same as when it was created on the machine of the user.
 
-When a user requests their data back from a supplier’s machine they are back in the source encrypted form, but again wrapped in the service pack structure for changed security. Afterwards the user decrypts the field `EncryptedSessionKey` (with their private key) and extracts from the session key, which then decrypts the source data block from the field `EncryptedData`.
+When a user requests their data back from a supplier machine they are back in the source encrypted form, but again wrapped in the service pack structure for changed security. Afterwards the user decrypts the field `EncryptedSessionKey` (with their private key) and extracts from the session key, which then decrypts the source data block from the field `EncryptedData`.
 
 
 ## Data Integrity
 
-You can upload some data into the BitDust network and immediately remove the source file from your computer - now only you can restore it again using your Private Key. Since that moment, that same file (or its copies) will no longer exist in our Universe!
+You can upload some data into the BitDust network and immediately remove the source file from your computer - now only you can restore it again using your Private Key. Since that moment, that same file (or its copies) will no longer exist in the Universe!
 
 The information uploaded to the BitDust network loses its integrity, as each supplier allocates on their machines only encrypted blocks. Nodes storing your data can be identified, but they are located in different parts of the World and reading your data is only possible by using private key. 
 
