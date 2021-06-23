@@ -10,6 +10,7 @@ In this section you can mainly read about user identification and how it is done
 * [Global unique entity ID](#global-unique-entity-id)
 * [Digital-signature](#digital-signature)
 * [Private key](#private-key)
+* [Your privacy](#your-privacy)
 
 
 ## Identity files
@@ -33,7 +34,7 @@ To log on to the BitDust network each user needs to create a personal identity f
 
 In theory the location of a user's identity file can be anywhere, however it is important that it is easily accessible for all other nodes in the network. For example, a user can put the given file on his personal website. By doing so he/she needs to assure the possibility to easily update the given copy from the original, which is stored on the machine of the user. To guarantee a more secure and fault tolerant interaction between nodes in the network you can store multiple copies of your identity in several places. 
 
-This kind of storage is done with the use of multiple machines also called ID-servers or Identity servers, whereby copies of all identity files are stored. These servers can be started on the machines belonging to BitDust B.V., but also on the machines of network users or any kind of other third party. 
+This kind of storage is done with the use of multiple machines also called ID-servers or Identity servers, whereby copies of all identity files are stored. These servers are maintained by BitDust community (but also ID-server can be started on any other machine) and are all listed in the publicly available [default_network.json](https://github.com/bitdust-io/public/blob/master/default_network.json) file.
 
 An ID-server is a part of BitDust program, but by default it is turned off in the program settings. If required each user can turn on this option and start such a server on their own computer – afterwards the ID-server will be automatically start when starting the BitDust program. An ID-server consume almost no computer resources, but will allow you to support other nodes and increase the overall fault-tolerance of the entire BitDust network.
 
@@ -216,7 +217,31 @@ Within BitDust you cannot find any common schemes or methods of a user's authori
 
 The user responsible for the security of their private key. A private key should NEVER leave your computer on which it was generated – this potentially has a major impact on the security of your data.
 
-We recommend using a modern anti-virus software or any other means to provide an extra defence from network attacks and other methods of increasing security level of your personal computer. In addition to this, we advise you to look through useful information resources on this topic in order to raise your awareness. 
+We recommend using a modern anti-virus software or any other tools to arrange an extra defence from network attacks and other methods of increasing security level of your personal device. In addition to this, we advise you to look through useful information resources on this topic in order to raise your awareness. 
+
+
+
+## Your privacy
+
+Your identity file is distributed publicly on the network and at the same time is a unique source that allows other users to connect to your device.
+The file does not store your personal data (name, surname, address, etc.) but contains technical and service information (nickname, IP address, RSA public key) required for BitDust to operate.
+
+BitDust network protocol may be considered as [pseudonymous peer-to-peer](https://en.wikipedia.org/wiki/Anonymous_P2P) communication system.
+
+While registering a new identity you will chose a "nickname" that will never change thru the life-time of that identity.
+Your nickname may represent your real name or be a random string. It can be name of an animal or a president or anything else you wish other users to see when communicating with you via BitDust.
+
+Also your identity file stores a networking information about your device such as IP address and TCP/UDP port number - that information identifies your "physical" location.
+
+There are few possibilities in BitDust to reduce disclosure of your networking info and so "hide" your physical location from other users:
+
+* Run your own ID-server on external device (which physical location may be disclosed - acts as a "shield") and re-configure your "master" device using [known-servers](https://bitdust.io/wiki/settings.html#known-servers-(string)) and [preferred-servers](https://bitdust.io/wiki/settings.html#preferred-servers-(string)) settings before registering new identity in the network
+* Enable proxy-transport network service that will re-route all your encrypted BitDust traffic via another randomly selected node - this way you can almost completely hide your real IP address from others
+* Run your own proxy-router on external device (which physical location may be disclosed - acts as a "shield") and re-configure your "master" device using [preferred-routers](https://bitdust.io/wiki/settings.html#preferred-routers-(text)) setting
+* You can use VPN services to enable lower level networking protection on your device and BitDust will work on top of that via same TCP/UDP protocols - other users will recognize IP addresses of the VPN providers, but not your own in that situation
+
+In other words, it is impossible to provide 100% guarantee of complete concealment of your physical location in the network and in general true anonymity is not the main goal of the project - but can be boosted to a very high level using additional techniques.
+
 
 
 <div class=fbcomments markdown="1">
