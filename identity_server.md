@@ -16,16 +16,66 @@ When one of your Identity servers is down, BitDust software will automatically f
 Because of that BitDust network authentication is actually pretty reliable and fully independent for any single party.
 
 
-## Install and configure apache2
+## Install and configure a web-server
 
+To protect your BitDust node from outside we can use a web-server and re-route traffic internally to the `bitdust` process.
 
-Lets setup a hostname on your machine if you did not do it before:
+Here are two example configurations for well-known servers: `Apache2` and `Nginx`.
+But first, you need to setup a hostname on your machine if you did not do it before:
 
         sudo hostname -b my-own-identity-server.com
 
 
-And you will need to install Apache server if you do not have it yet on your machine:
+#### Nginx setup
 
+Install Nginx with Apt:
+
+        sudo apt-get update
+        sudo apt-get install nginx
+
+
+Disable the default virtual host, that is pre-configured when Nginx is istalled via Ubuntu packet manager apt:
+
+        sudo unlink /etc/nginx/sites-enabled/default
+
+
+Enter the directory /etc/nginx/sites-available and create a configuration file:
+
+        cd /etc/nginx/sites-available
+        sudo nano my-own-identity-server_com.conf
+
+
+You can use bellow sample config:
+
+        server {
+            server_name my-own-identity-server.com www.my-own-identity-server.com;
+            listen 80;
+            listen [::]:80;
+            access_log /var/log/nginx/idserver-log.log;
+            error_log /var/log/nginx/idserver-error.log;
+            location / {
+                proxy_pass http://127.0.0.1:8084/;
+            }
+        }
+
+
+Copy the configuration from /etc/nginx/sites-available to /etc/nginx/sites-enabled. It is recommended to use a symbolic link.
+
+        ln -s /etc/nginx/sites-available/my-own-identity-server_com.conf /etc/nginx/sites-enabled/my-own-identity-server_com.conf
+
+
+Enable Nginx system service and start the web-server:
+
+        sudo systemctl enable nginx
+        sudo systemctl start nginx
+        sudo service nginx reload
+
+
+#### Apache2 setup
+
+Install Apache2 server if you do not have it yet on your machine:
+
+        sudo apt-get update
         sudo apt-get install apache2
 
 
@@ -75,6 +125,7 @@ Now restart apache2 server:
         sudo service apache2 restart
 
 
+
 ## Configure BitDust software
 
 First you need to [install BitDust](install.md) on your machine. 
@@ -98,7 +149,7 @@ Run this command to start Identity server process in current terminal:
         bitdust identity server start
 
 
-Now open your favority WEB browser and navigate to [http://127.0.0.1:8084](http://127.0.0.1:8084) or [my-own-identity-server.com](my-own-identity-server.com). You should see an empty page with title "Identities on my-own-identity-server.com".
+Now open your favority WEB browser and navigate to [my-own-identity-server.com](my-own-identity-server.com). You should see an empty page with title "Identities on my-own-identity-server.com".
 
 Congratulations! You are running your own identity server now and able to register your own identity there or help other people by hosting their identity files on your machine.
 
@@ -116,7 +167,7 @@ Be sure ID server is up and running:
         36: id_server(LISTEN)
 
 
-Open your browser and go to [http://127.0.0.1:8084](http://127.0.0.1:8084) or [my-own-identity-server.com](my-own-identity-server.com) to check server status.
+Open your browser and go to [my-own-identity-server.com](my-own-identity-server.com) to check server status.
 
 To make life easier you can also configure BitDust to start automatically when your machine reboots. For example on Debian system you can use `crontab` tool for that:
 

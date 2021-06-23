@@ -11,6 +11,6 @@ Uploaded data is divided into blocks and fragments, encrypted and uploaded to yo
 
 BitDust is written in Python using pure Twisted framework and is published under GNU AGPLv3.
 
-An alpha version is already available for you to try out. If you want to join our project or support us in anyway possible then please contact us.
+An alpha version is already available for you to try out. If you want to join the project or support us in anyway possible then please contact us.
 
 We believe that this technology will benefit society by increasing ownership of personal data and protecting data from unauthorized access or censorship. 

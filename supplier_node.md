@@ -16,7 +16,7 @@ First clone BitDust sources locally:
 Create BitDust virtual Python environment:
         
         cd bitdust
-        python bitdust.py install
+        python3 bitdust.py install
 
 
 Last step to make BitDust software ready to be used is to make a short alias in your OS, then you can just type `bitdust <some command>` in command line to get fast access to the program:

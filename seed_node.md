@@ -26,13 +26,13 @@ First clone BitDust sources locally:
 Create BitDust virtual Python environment:
         
         cd bitdust
-        python bitdust.py install
+        python3 bitdust.py install
 
 
 Make sure you already have `bitdust` command existing so you can access BitDust from your command line console shell.
-You only need to do this one time and create an "alias" in your global system commands list. Then you can just type: `bitsut <some command>` to be able to talk to BitDust quickly. To create system-wide shell command you can manually copy already existing script `<your home location>/.bitdust/bitdust` to your PATH and it will work right away. Another very simple way is to just create a symlink:
+You only need to do this one time and create an "alias" in your global system commands list. Then you can just type: `bitdust <some command>` to be able to talk to BitDust quickly. To create system-wide shell command you can manually copy already existing script `/home/bitdust/.bitdust/bitdust` to your PATH and it will work right away. Another very simple way is to just create a symlink:
 
-        sudo ln -s -f /home/<user>/.bitdust/bitdust /usr/local/bin/bitdust  # location depend on your system
+        sudo ln -s -f /home/bitdust/.bitdust/bitdust /usr/local/bin/bitdust
 
 
 Few services needs to be enabled, by default they are turned off because normal users will most probably act as a customer/consumer at the beginning.

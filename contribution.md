@@ -24,6 +24,6 @@ Check out [BitDust repositories](https://github.com/bitdust-io/) and see what is
 This will be a voluntary contribution, but we are working hard to prepare project for further monetization - you will invest in your own future together with other enthusiasts in the field.
 
 Interested?
-Send an email with your motivation to info@bitdust.io or join our [Telegram group](https://t.me/bitdust).
+Send an email with your motivation to info@bitdust.io or join the [Telegram group](https://t.me/bitdust).
 
 We would love to hear from you and welcome as a BitDust contributor!

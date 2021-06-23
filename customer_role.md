@@ -5,7 +5,7 @@ Windows, Mac and Linux. We provide maximum flexibility to customers within the s
 
 ## Step 1: Download the application
 
-You can download the application on our homepage or directly from our github page. Choose the correct application for your
+You can download the application from the homepage or directly from the GitHub. Choose the correct application for your
 Operating System and install it.
 
 ## Step 2: Chosing an identity

@@ -1,11 +1,11 @@
 # Roadmap
 
-In the section below you can find a more detailled description of our future roadmap.
+In the section below you can find a more detailled description of the future roadmap.
 You can find more in-depth information about certain features within other parts of the wiki.
 PLEASE NOTE: THIS ROADMAP CAN CHANGE AT ANY TIME.
 
 The section is split into two sections. First features we have already put on the roadmap.
-Second there are features we are thinking about to put on our roadmap in the future. 
+Second there are features we are thinking about to put on the roadmap in the future. 
 Please be aware that the timelines are an indication.
 
 
@@ -21,7 +21,7 @@ and can be installed for Windows, Linux and Mac. The basic features include the 
 * Find friends and add them
 * Encrypted chat with friends
 
-We have come for already but we need to set-up a more stable version of our alpha release to 
+We have come for already but we need to set-up a more stable version of the alpha release to 
 make it into a Beta version. In addition we will make the UI more user friendly.
 
 

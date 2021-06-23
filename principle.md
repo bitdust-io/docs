@@ -51,7 +51,7 @@ Nodes in the BitDust network are connected to each other directly and data is tr
 ## Users Connections beyond NAT
 
 There are situations when the network connection between nodes which are behind NAT cannot be established in a peer-to-peer way - receiving direct
-incoming connections in regular manner is not always possible in our Internet era. In those cases a other nodes, called proxy-routers, are used to route the traffic.
+incoming connections in regular manner is not always possible in the Internet era. In those cases a other nodes, called proxy-routers, are used to route the traffic.
 
 
 ## Managed by Finite State Machines

@@ -47,7 +47,8 @@ You will find your additional private keys in the `.bitdust/keys` folder,
 currently BitDust software is using the [RSA algorithm](https://en.wikipedia.org/wiki/RSA_(cryptosystem)) which a widely used encryption method.
 Those methods were implemented using [PyCrypto](https://pypi.org/project/pycrypto/) library.
 
-Note that most of the actions performed are automatically. We just want to describe the steps BitDust performs to provide you with more insight into the inner-workings of our software.
+Note that most of the actions performed are automatically. We just want to describe the steps BitDust performs to provide you with more insight into the inner-workings of the software.
+
 
 ## Grant access
 
@@ -100,6 +101,30 @@ So to access the "foreign" files, you need to use the key identifier to determin
 In BitDust, the list of your suppliers is stored and maintained not only on your own device, but also in a distributed hash table - your suppliers automatically support and periodically update these "globally distributed" records. Thanks to this, any user always has the ability to "scan" the list of your suppliers and find out where they need to go to download those files to which you "granted access." The process of "scanning" that list takes some time, depending on the number of suppliers you have. In more detail, you can see how BitDust uses these service records in the article [Distributed Hash-table](dht.md).
 
 After connecting with the "foreign" suppliers, you can request the necessary pieces of data related to a particular "shared" file. If the access key you received from the "donor" is valid, "external" suppliers will accept your request and the BitDust software on your device will receive the needed fragments, decrypt, combine into one chunk and create the exact same copy of the "shared" file of which "donor" granted you access.
+
+
+
+## Customer data flow step-by-step
+
+Let's try to describe everything that happens with your data step by step at the moment of transferring access to another user.
+
+* The BitDust program is already running on your device
+* And you already generatged a private key and a new identity for yourself in the network - 
+* In the application you will click a button "Create a new Share" and the software will create a new virtual location in your files catalog called a "share"
+* A new private key will be generated automatically and you will be able to verify the key in the app
+* Via "Share Key" button in the app it is possible to transfer a key to another device/person - supposed to be done with most secure way as possible
+* Your trusted person also is runnig BitDust and also have an identity in the network
+* As he receives your private key he keeps it in his own files catalog as well and able to see the files listed in this "share"
+* Both of you could upload & downlad files into that "shared" location easily via the app
+* Each uploaded data fragment is stored on your own suppliers - on the suppliers hired by creator of the "share"
+* Also all suppliers will keep in touch with you and another user as well - be able to notify you both about any updates on the "share"
+
+The software suppose to handle all of the communications and transfers automatically as well as storing the data reliable and secure as possible.
+
+This whole process is happeing in the application peer to peer between devices running BitDust software and connected to the Internet.
+
+The engine is sending and receiving signed and encrypted data packets via BitDust network and the app is enabling user interface for specific platform.
+
 
 
 
