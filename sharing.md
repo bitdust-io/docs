@@ -8,6 +8,7 @@ We are not isolated as human beings and we recognize that users have the desire 
 * [Audit access](#audit-access)
 * [Receiving shared keys](#receiving-shared-keys)
 * [Reading shared data](#reading-shared-data)
+* [Customer data flow step-by-step](#customer-data-flow-step-by-step)
 
 
 ## Master Key

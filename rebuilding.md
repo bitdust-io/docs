@@ -60,8 +60,7 @@ Thus percentage of possible losses is 50% for 2 suppliers and up to 15% for 64 s
     allows swiftly fixing encountered errors and enables
     new distribution of data on reliable suppliers’ nodes.
 
-    The BitDust team/BitDust B.V. is never responsible for suppliers 
-	that go offline and also never responsible when data is lost.
+    The BitDust team is never responsible for suppliers that go offline and also never responsible when data is lost.
 
 
 
