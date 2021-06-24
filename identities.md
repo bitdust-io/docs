@@ -236,7 +236,7 @@ Also your identity file stores a networking information about your device such a
 There are few possibilities in BitDust to reduce disclosure of your networking info and so "hide" your physical location from other users:
 
 * Run your own ID-server on external device (which physical location may be disclosed - acts as a "shield") and re-configure your "master" device using [known-servers](https://bitdust.io/wiki/settings.html#known-servers-(string)) and [preferred-servers](https://bitdust.io/wiki/settings.html#preferred-servers-(string)) settings before registering new identity in the network
-* Enable proxy-transport network service that will re-route all your encrypted BitDust traffic via another randomly selected node - this way you can almost completely hide your real IP address from others
+* Enable proxy-transport network service that will re-route all your encrypted peer-to-peer traffic via another randomly selected node - this way you can almost completely hide your physical location from others because your identity file will updated and contain IP address of another node, but not your real IP address
 * Run your own proxy-router on external device (which physical location may be disclosed - acts as a "shield") and re-configure your "master" device using [preferred-routers](https://bitdust.io/wiki/settings.html#preferred-routers-(text)) setting
 * You can use VPN services to enable lower level networking protection on your device and BitDust will work on top of that via same TCP/UDP protocols - other users will recognize IP addresses of the VPN providers, but not your own in that situation
 
