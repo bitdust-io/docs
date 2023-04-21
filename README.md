@@ -1,7 +1,7 @@
 # BitDust
 
 
-BitDust is a distributed network for backup data storage and independent on-line communications. Each participant of the network provides a portion of his hard drive for other users. In exchange, he is able to store his data on other peers and use them to organize self-governed digital environment.
+BitDust is a distributed network for backup data storage and independent online communications. Each network participant provides a portion of their hard drive for other users. In exchange, they can store their data on other peers and use them to organize a self-governed digital environment.
 
 
 ## Beginning
