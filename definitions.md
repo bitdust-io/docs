@@ -83,5 +83,13 @@ BitDust is just an idea.
 BitDust is just another revolution.
 
 
+## +
+
+BitDust is a decentralized open source online storage network that empowers individuals with secure, private file management and communication.
+Its peer-to-peer technology challenges the centralized model, ensuring users regain control over their data.
+With robust encryption, BitDust prioritizes your data security and privacy.
+
+
+
 <div class=fbcomments markdown="1">
 </div>

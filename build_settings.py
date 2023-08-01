@@ -37,8 +37,8 @@ import sys
 
 sys.path.append(sys.argv[1])
 
-from main import config
-from main import settings
+from bitdust.main import config
+from bitdust.main import settings
 settings.init()
 
 fout = open(sys.argv[2], 'w')

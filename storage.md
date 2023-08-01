@@ -78,7 +78,7 @@ There are two parallel layers which are Data and Parity. They have the same size
 
 For generating a Parity layer during the backup processing data byte-wise taken and a XOR operation is applied between the Data fragments of your other suppliers. The final RAID array is organized in a way that each Parity fragment allows restoring the corresponding Data fragment onto the machine of a new supplier, which replaces the lost one.
 
-By building a RAID array so-called EEC codes are used : these are the combinations of Data and Parity allocation on the suppliers machines. For each of the possible supplier combinations the optimal EEC code was calculated before – it basically defines the framework of the mutual bracing of the Data and Parity fragments in the layers and a maximum quantity of simultaneous errors, which may occur without block sustainability loss.
+By building a RAID array so-called ECC codes are used : these are the combinations of Data and Parity allocation on the suppliers machines. For each of the possible supplier combinations the optimal ECC code was calculated before - it basically defines the framework of the mutual bracing of the Data and Parity fragments in the layers and a maximum quantity of simultaneous errors, which may occur without block sustainability loss.
 
 
 
