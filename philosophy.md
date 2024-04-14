@@ -5,7 +5,7 @@
 
 We are a group of developers working on a prototype for distributed peer-to-peer file storage and private communications software. Our goal is to create a free open source application that everyone can use instead of popular commercial applications such as WhatsApp, Telegram, DropBox, GoogleDrive, Facebook, etc.
 
-These applications are very widely used, but owned by private companies. Users of these applications do not have any real control over them, or at least do not understand how personal data is processed. On the contrary, the goal of the BitDust project is to create similar applications that is completely open and transparent to everyone and fully owned by people. Potentially, this will completely solve the problem of processing personal data transmitted over the Internet in the world.
+These applications are very widely used, but owned by private companies. Users of these applications do not have any real control over them, or at least do not understand how personal data is processed. On the contrary, the goal of the BitDust project is to create similar applications that is completely open and transparent to everyone and fully owned by people. Potentially, this will completely solve the problem of processing personal data transmitted over the Internet in the World.
 
 Like the Linux system that helps you control your computer (Linux is completely open and owned by people, not a private company such as Microsoft Windows), the BitDust App helps you to control your personal data and also data that other users share with you. Security, privacy, reliability and respect for user rights are at the core of everything that we create in BitDust.
 
@@ -44,7 +44,7 @@ Each member of the network should operate autonomously as much as possible. A no
 
 ## Personal mystery
 
-We believe that the targeted collection and centralization of personal data is extremely dangerous for human society as a whole. In a world where the digital information acquires more and more importance, it could lead to discrimination, corruption and fraud, restrict freedom of speech and eventually suppression of human individuality. So-called "personal mystery" should always be respected, private information should not be available to any higher court, even with permissions by law.
+We believe that the targeted collection and centralization of personal data is extremely dangerous for human society as a whole. In a World where the digital information acquires more and more importance, it could lead to discrimination, corruption and fraud, restrict freedom of speech and eventually suppression of human individuality. So-called "personal mystery" should always be respected, private information should not be available to any higher court, even with permissions by law.
 
 
 ## "Humanity" behaviour patterns
@@ -78,7 +78,3 @@ We believe that single team of developers, or even a big IT company is not able 
 
 The objective of BitDust project is not to keep software development under control of a closed group of people, but rather to create such a new foundation and provide support to other people who are doing progressive development of the network and finally influence them in a positive sense.
 
-
-
-<div class=fbcomments markdown="1">
-</div>

@@ -115,6 +115,3 @@ In the program settings a user can set the following key data:
 
 These program settings are from a users perspective. We will be working on a easy to use application for all the supporting roles within the BitDust network. You can read more about these supporting roles in the supporting roles section and how you can set them up from command line.
 
-
-<div class=fbcomments markdown="1">
-</div

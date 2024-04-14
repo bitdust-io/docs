@@ -61,6 +61,3 @@ BitDust project is developed based on principles of automata-based programming a
 This is a programming paradigm in which a program or its fragment is represented as a model of 
 some finite state machine.
 
-
-<div class=fbcomments markdown="1">
-</div>

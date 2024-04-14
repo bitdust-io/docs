@@ -23,20 +23,15 @@ start BitDust and show the main window
 
 
 ### integrate           
-creates a `bitdust` alias in OS
-in /usr/local/bin/bitdust or in
-~/bin/bitdust if no access to /usr/local/ 
+creates a `bitdust` alias in OS in `/usr/local/bin/bitdust` or in `~/bin/bitdust` if you do not have access to `/usr/local/`
 
 
 ### identity create [nickname] [private key size]
-generate a new private key and 
-new identity file for you
-key size can be 1024, 2048 or 4096
+generates a new private key and new identity file for you, key size can be `1024`, `2048` or `4096`
 
 
 ### identity restore [private key source file] [IDURL]
-recover existing identity file
-with your private key file
+recover existing identity file using backup copy of your private key
 
 
 ### identity erase
@@ -44,8 +39,7 @@ delete local identity from the machine
 
 
 ### key copy            
-copy private key to clipboard,
-use Ctrl+V to paste it
+copy private key to clipboard
 
 
 ### key backup [a filename for copy of private key]
@@ -246,7 +240,7 @@ print log messages to the file
 -a APPDIR, --appdir=APPDIR
 set alternative location 
 for application data files,
-default is ~/.bitdust/
+default is `~/.bitdust/`
 
 --twisted       
 show twisted log messages too
@@ -333,7 +327,3 @@ show twisted log messages too
 
     bitdust set logs/debug-level 8
 
-
-
-<div class=fbcomments markdown="1">
-</div>

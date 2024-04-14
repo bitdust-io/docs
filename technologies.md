@@ -36,5 +36,3 @@ Below you can find the technologies being used for the development of BitDust pr
 * GIT
 
 
-<div class=fbcomments markdown="1">
-</div>

@@ -136,7 +136,3 @@ If you are installing BitDust on Windows platforms, you may require some binary 
 * pyasn1: [pyasn1.sourceforge.net](http://pyasn1.sourceforge.net)
 * miniupnpc: [miniupnp.tuxfamily.org](http://miniupnp.tuxfamily.org/)
 
-
-
-<div class=fbcomments markdown="1">
-</div>

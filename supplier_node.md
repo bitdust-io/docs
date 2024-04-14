@@ -55,7 +55,3 @@ You can always check current situation regarding your "donated storage" with suc
 
         bitdust storage
 
-
-
-<div class=fbcomments markdown="1">
-</div>

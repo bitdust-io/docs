@@ -153,5 +153,3 @@ Restoring the source user data is possible only with the help of the private key
 
 We believe firmly that your most private data should only be read and used by you and we want to provide you with the full control to make this possible.
 
-<div class=fbcomments markdown="1">
-</div>

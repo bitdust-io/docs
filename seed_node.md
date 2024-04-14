@@ -98,7 +98,3 @@ You can Fork [Public Git Repository](https://github.com/bitdust-io/public), modi
 
 Contact the BitDust contributors to notify about this new Seed node was started by you and one of the developers will approve your Pull Request.
 
-
-
-<div class=fbcomments markdown="1">
-</div>

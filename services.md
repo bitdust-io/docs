@@ -12,7 +12,3 @@ Most network services were implemented using [finite state machines](automats.md
 </div>
 
 
-
-
-<div class=fbcomments markdown="1">
-</div>

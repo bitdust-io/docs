@@ -269,7 +269,3 @@ You can click on every item in the list to look at transition graph of the state
 * [udp_session()](automat_udp_session.md)
 * [udp_stream()](automat_udp_stream.md)
 
-
-
-<div class=fbcomments markdown="1">
-</div>

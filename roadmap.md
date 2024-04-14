@@ -2,14 +2,14 @@
 
 In the section below you can find a more detailled description of the future roadmap.
 You can find more in-depth information about certain features within other parts of the wiki.
-PLEASE NOTE: THIS ROADMAP CAN CHANGE AT ANY TIME.
 
 The section is split into two sections. First features we have already put on the roadmap.
 Second there are features we are thinking about to put on the roadmap in the future. 
 Please be aware that the timelines are an indication.
 
 
-## Q2 2019 Stable Beta version
+
+## 2023 Stable Beta version
 
 The BitDust contributors have already created an alpha version which makes it possible
 to install the user's client on your local machine. This alpha version is already available
@@ -25,7 +25,27 @@ We have come for already but we need to set-up a more stable version of the alph
 make it into a Beta version. In addition we will make the UI more user friendly.
 
 
-## Q3 2019 Implement Blockchain
+
+## 2024 Mobile BitDust application
+
+We spend a tremendous time on our mobile phones. We use mobile phones for everything. All of the major
+systems have a mobile integration. The BitDust contributors see going mobile as a huge untapped potential.
+A device that is always online and only becomes faster and with more storage in the years to come. We want
+to not only provide users with the possibility of accessing their files and chat via their mobile phone, but
+also provide them with the opportunity to become a mini supplier. Providing storage back to users.
+
+
+
+## 2024 Create an Alpha for supporting roles within the BitDust ecosystem
+
+Currently if you want to perform any of the supporting roles within the BitDust ecosystem you would 
+need to do it from command line. Unfortunately we don't yet have an easy to use graphical interface
+for supporting roles. We would like to create this so any one with basic computer knowledge can support
+the BitDust network.
+
+
+
+## 2024 Implement Blockchain
 
 In order to track the different states of the network we will be implementing an open source
 python based blockchain. The miner will play a great role in validating the changes in the 
@@ -40,7 +60,7 @@ In short the BitDust blockchain will:
 * Provide suppliers with the ability to publish their rates and available space.
 
 
-## Q3 2019 The ReBuilder
+## 2025 The ReBuilder
 
 At this point in the BitDust software we implemented a mechanism for automatic data rebuilding,
 to be able to reconstruct missing data segments when updating a lost supplier.
@@ -65,20 +85,6 @@ There are different aspects in making sure the ReBuilding can perform their task
 * The moment when a ReBuilder should start or stop their work.
 * The reward the ReBuilder receives in BitDust tokens for performed work.
 
-## 2020 Create an Alpha for supporting roles within the BitDust ecosystem
-
-Currently if you want to perform any of the supporting roles within the BitDust ecosystem you would 
-need to do it from command line. Unfortunately we don't yet have an easy to use graphical interface
-for supporting roles. We would like to create this so any one with basic computer knowledge can support
-the BitDust network.
-
-## 2020 Mobile BitDust application
-
-We spend a tremendous time on our mobile phones. We use mobile phones for everything. All of the major
-systems have a mobile integration. The BitDust contributors see going mobile as a huge untapped potential.
-A device that is always online and only becomes faster and with more storage in the years to come. We want
-to not only provide users with the possibility of accessing their files and chat via their mobile phone, but
-also provide them with the opportunity to become a mini supplier. Providing storage back to users.
 
 ## Ongoing: Upgrading the graphical interface
 
@@ -92,7 +98,8 @@ features in the future:
 * Ability to share offline.
 
 
-#Distant possible features
+
+# Distant possible features
 
 
 ## Chat/Video/Conferencing
@@ -154,6 +161,7 @@ The implementation of the algorithm of hiding the real IP address of the user wi
 + create a personal sites whose owners are almost impossible to calculate
 
 
+
 ## Global search
 
 We would like to add a search engine within the BitDust software.
@@ -169,6 +177,3 @@ validate it and make the appropriate changes in the global index.
 This functionality will provide a completely safe and independent data distribution over 
 the BitDust network, uncensored and possibility to exert any pressure on users by third parties.
 This is a significant advantage in comparison with classical torrent trackers.
-
-<div class=fbcomments markdown="1">
-</div>

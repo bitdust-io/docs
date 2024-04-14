@@ -126,8 +126,3 @@ This whole process is happeing in the application peer to peer between devices r
 
 The engine is sending and receiving signed and encrypted data packets via BitDust network and the app is enabling user interface for specific platform.
 
-
-
-
-<div class=fbcomments markdown="1">
-</div
