@@ -403,6 +403,3 @@ After some period of time, Bob will have a several items in his contract-chain w
 
 When Bob decides to get refund for his services, same process will be repeated for all other of his customers for given period. The final value will be used to generate a new "supplier-coin" in immutable blockchain databse storing all transactions history, more info about this will be added later.
 
-
-<div class=fbcomments markdown="1">
-</div>

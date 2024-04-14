@@ -121,6 +121,3 @@ Theoretically randomization of suppliers search method allows the increase of th
 
 The BitDust project does not maintain a vast hardware infrastructure, only done for testing purposes - every supplier in the network is a device owned by an independent person. So we do not have even a chance to keep track of your personal data.
 
-
-<div class=fbcomments markdown="1">
-</div>

@@ -382,8 +382,3 @@ Now `alice` is ready to store data for other users. In the last part you will le
 ...
 
 
-
-
-
-<div class=fbcomments markdown="1">
-</div>

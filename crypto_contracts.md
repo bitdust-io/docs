@@ -24,7 +24,3 @@ BitDust do not have (and do not need) own currency - we count hardware resources
 
 Based on these requirements we started desiging and developing a distributed online payment system for BitDust project. The goal is to allow users to gain some "coins" and benefit from providing resources of own PC's to other people.
 
-
-
-<div class=fbcomments markdown="1">
-</div>

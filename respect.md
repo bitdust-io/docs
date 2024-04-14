@@ -47,7 +47,3 @@ The following people have contributed in the past or are still contributing to t
 
 #### Riyazudheen Mohamed
 
-
-
-<div class=fbcomments markdown="1">
-</div>

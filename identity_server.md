@@ -203,6 +203,3 @@ Contact with BitDust team to notify about this new ID server was started on your
 
 You can Fork BitDust [development repository](https://dev.bitdust.io/code/devel) and open a Pull Request to modify the list of known servers in place.
 
-
-<div class=fbcomments markdown="1">
-</div>

@@ -67,8 +67,3 @@ Unlike many corporate products we are aiming for community-driven development wh
 
 We firmly believe that an open source code, proper documentation and visualization of all operating processes are necessary conditions for the creation of a quality product, thereby maximizing the security level of users personal data.
 
-
-
-
-<div class=fbcomments markdown="1">
-</div>

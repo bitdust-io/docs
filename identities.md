@@ -242,7 +242,3 @@ There are few possibilities in BitDust to reduce disclosure of your networking i
 
 In other words, it is impossible to provide 100% guarantee of complete concealment of your physical location in the network and in general true anonymity is not the main goal of the project - but can be boosted to a very high level using additional techniques.
 
-
-
-<div class=fbcomments markdown="1">
-</div>
