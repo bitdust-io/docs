@@ -1,50 +1,54 @@
-# What BitDust is?
+# BitDust in one sentence
+
+Below are several short descriptions of BitDust. Each of them looks at the project from a different angle:
+the network, the software, the application, the goal or the vision.
+They complement each other and do not replace the full description in [Introduction](intro.md) and [Philosophy](philosophy.md).
 
 ## +
 
-BitDust project is aimed to protect your own privacy.
-
-
-## +
-
-BitDust is a distributed on-line storage network where only data owner has full access to private data and power to share it to someone else.
-
-
-## +
-
-BitDust is a project of worldwide distributed computer network for secure and independent data storage, information transfers and private communications which operates over existing Internet connections.
+The BitDust project aims to protect your own privacy.
 
 
 ## +
 
-BitDust is a holistic ecosystem, the basic idea of which is complete decentralization of all information flows in society.
-(in order to build anonymous, freedom and independent applications.)
+BitDust is a distributed online storage network where only the data owner can read the data, and decides in advance which data can be shared with trusted contacts.
 
 
 ## +
 
-BitDust is a computer software which gives you full control over your personal data and private communications.
+BitDust is a project of a worldwide distributed computer network for secure and independent data storage, information transfers and private communications which operates over existing Internet connections.
 
 
 ## +
 
-BitDust is new software framework to build distributed and secure peer-to-peer applications.
+BitDust is a holistic ecosystem, the basic idea of which is to strive for complete decentralization of information flows in society
+(in order to build private, free and independent applications).
 
 
 ## +
 
-BitDust APP provides independent on-line storage and secure private messaging
+BitDust is computer software that gives you full control over your personal data and private communications.
 
 
 ## +
 
-BitDust is attempt to rectify the current situation in the world - this is what was supposed to become "Distributed Internet" in the past.
+BitDust is a new software framework for building distributed and secure peer-to-peer applications.
 
 
 ## +
 
-BitDust network is a voluntary association of people sharing resources of their personal computers.
-( in order to build independent, private, autonomous and safe on-line services available for everyone.)
+The BitDust app provides independent online storage and secure private messaging.
+
+
+## +
+
+BitDust is an attempt to rectify the current situation in the world - this is what the "Distributed Internet" was supposed to become in the past.
+
+
+## +
+
+The BitDust network is a voluntary association of people sharing the resources of their personal computers
+(in order to build independent, private, autonomous and safe online services available to everyone).
 
 ## +
 
@@ -53,13 +57,13 @@ BitDust is an alternative way to operate and communicate in the network.
 
 ## +
 
-BitDust is an attempt to establish more control over our own digital life.
+BitDust is an attempt to establish more control over our own digital lives.
 
 
 ## +
 
-BitDust is a holistic eco-system that protects your privacy in the network
-by establishing p2p communications of users and maximize distribution of
+BitDust is a holistic ecosystem that protects your privacy in the network
+by establishing p2p communications between users and maximizing the distribution of
 information flows in the network.
 
 
@@ -70,12 +74,12 @@ BitDust aims to protect the privacy of users and provides an alternative way of 
 
 ## +
 
-BitDust is yet another approach for collective security.
+BitDust is yet another approach for collective security: by protecting the privacy of each user, it makes the whole network safer for everyone.
 
 
 ## +
 
-BitDust is just an idea.
+BitDust started as an idea and grew into a working network.
 
 
 ## +

@@ -8,7 +8,7 @@ BitDust is a distributed network for backup data storage and independent online 
 
 + [Introduction](intro.md)
 + [Concept](concept.md)
-+ [Definitions](definitions.md)
++ [BitDust is ...](definitions.md)
 + [Philosophy](philosophy.md)
 + [How Does It Work?](principle.md)
 + [Installation](install.md)
@@ -26,7 +26,6 @@ BitDust is a distributed network for backup data storage and independent online 
 + [Automatic Rebuilding](rebuilding.md)
 + [Distributed Hash-Table](dht.md)
 + [Network services](services.md)
-+ [Transport protocols](transports.md)
 + [Crypto-contracts](crypto_contracts.md)
 
 

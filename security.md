@@ -1,6 +1,6 @@
 # Data Security
 
-Security is one of the most important principles for BitDust. In this section you can read more about the different measures we take to make sure your data is safe and secure. Consisting out of the following items:
+Security is one of the most important principles for BitDust. In this section you can read more about the different measures we take to make sure your data is safe and secure. It consists of the following items:
 
 * [Brief Summary](#brief-summary)
 * [Private Key](#private-key)
@@ -16,26 +16,26 @@ Security is one of the most important principles for BitDust. In this section yo
 
 ## Brief Summary 
 
-* Data encryption algorithm: `DES3`
-* Session key size: `24` bytes
-* Key session encryption algorithm: `RSA`
-* Possible RSA key sizes: `1024`, `2048` and `4096` bit
+* Data encryption algorithm: `AES` (CBC mode)
+* Session key size: `16` bytes (128 bits)
+* Session key encryption algorithm: `RSA` (PKCS#1 OAEP)
+* Possible RSA key sizes: `1024`, `2048` and `4096` bits
 * Hash-function for digital signature: `SHA1`
 
 
 ## Private Key
 
-Data security in the BitDust system is based upon a crypto-system with an open key. For data encryption and digital signature creation this asymmetric algorithm uses a key consisting out of two parts: A public key and a private key. It is a secret key and only this key protects authenticity and the user's personal data.
+Data security in the BitDust system is based on public-key cryptography. For data encryption and digital signature creation this asymmetric algorithm uses a key consisting of two parts: a public key and a private key. The private key is secret, and only this key protects the authenticity and the personal data of the user.
 
 The private key is created the first time you start the BitDust program. The original key is stored on the hard disk drive in the folder `.bitdust/metadata/mykeyfile`.
 
-On each start of BitDust program the key will be loaded into the operational memory of the computer and will be used for user data protection. After  the program stops, this temporary copy of the private key will be automatically deleted during the memory cleaning.
+Each time the BitDust program starts, the key is loaded into the computer's memory and used to protect user data. After the program stops, this temporary copy of the private key is automatically deleted when the memory is cleared.
 
 
 #### ATTENTION!
-    It is highly recommended to make several backup copies of your private key on record using different methods.
-    Hide your private key in safe places just after the secret key generation.
-    Only this secret key gives an access to user data!
+    It is highly recommended to make several backup copies of your private key using different methods.
+    Hide your private key in safe places right after the secret key is generated.
+    Only this secret key gives access to user data!
     Losing the secret key means that you lose all of your data and you will never be able to access it!!!
     Never reveal your secret key in open or untrusted channels! 
     The reliability of your personal information security is completely dependent
@@ -44,32 +44,32 @@ On each start of BitDust program the key will be loaded into the operational mem
 
 ## Public Key
 
-The scheme of the two-way user authentication within the BitDust network is described in the section User Identification.
+The scheme of user authentication within the BitDust network is described in the section [How authentication works](identities.md#how-authentication-works).
 
-The Public part of a user key or, in other words, "open" key is stored in [identity](glossary.md#identity) file which is open for everyone and serves as a kind of personal passport. These files can be freely allocated in the Internet and have unique address – IDURL.
+The public part of a user key, or in other words the "open" key, is stored in the [identity](glossary.md#identity) file, which is open to everyone and serves as a kind of personal passport. These files can be freely placed on the Internet and have a unique address – IDURL.
 
-A Public key is used for encryption of incoming data which needs to be transmitted via Internet from a remote machine to machine by the user. Only with the help of a secret key which is stored only within the user’s machine you wil be able to decrypt the data.
+A public key is used to encrypt incoming data that needs to be transmitted via the Internet from a remote machine to the user's machine. Only with the help of the secret key, which is stored only on the user’s machine, will you be able to decrypt the data.
 
-Thus a Public key must be forwarded to all the nodes with which you want to maintain a safe connection. For this purpose the BitDust program has a function for distributing identity files of the user through the network.
+Thus a public key must be forwarded to all the nodes with which you want to maintain a safe connection. For this purpose the BitDust program has a function for distributing identity files of the user through the network.
 
 
 ## Digital signature
 
 All user identity files are secured with a digital signature. 
-By creating or changing a user identity the generation of a digital signature takes place – it is connected to the file content and serves for security when changes may be applied.
+When a user identity is created or changed, a digital signature is generated – it is bound to the file content and protects it against unauthorized changes.
 
-The Digital signature is calculated due to the file content via Hash-function, for this needs to have a private user key which is stored only on the user's machine. Thus only the user has a possibility to make changes to the publicly available "passport" and only when having the secret key. 
+The digital signature is calculated from the file content via a hash function, which requires the user's private key stored only on the user's machine. Thus only the user, and only when having the secret key, is able to make changes to the publicly available "passport".
 
-The general principle of protecting the user identity from changes is based on the fact that all other nodes check the correspondence between the digital signature and the file content each time when they receive a new copy of its identity – this standard method in cryptography is called VerifySignature.
+The general principle of protecting the user identity from changes is based on the fact that all other nodes check the correspondence between the digital signature and the file content each time they receive a new copy of the identity – this standard method in cryptography is called VerifySignature.
 
 
 ## Service Traffic
 
-Digital signature is used not only for protection of a user identity file from modifications but also all service data which are forwarded from one node to another in the BitDust network. 
+A digital signature is used not only to protect a user identity file from modifications, but also to protect all service data that is forwarded from one node to another in the BitDust network. 
 
-All users exchange so-called "service packages", which include a digital signature and are safe from modifications in the process of forwarding via the Internet. This enables data dibbling security as all received packages will be checked for the correspondence of content and the digital signature.
+All users exchange so-called "service packages", which include a digital signature and are safe from modifications in the process of forwarding via the Internet. This protects data from tampering, as all received packages are checked for the correspondence between their content and the digital signature.
 
-Service packages are forwarded in the not encrypted form and still can be marked as signed packages. The structure of a signed package is the following:
+Service packages are forwarded in unencrypted form, but they are signed. The structure of a signed package is the following:
 
 * `Command` – BitDust protocol command name
 * `OwnerID` – package owner IDURL 
@@ -83,15 +83,21 @@ Service packages are forwarded in the not encrypted form and still can be marked
 
 ## Data Transfer
 
-To hide the data another class of packages is used, it is called "encrypted block".
-These data blocks are forwarded inside the service packages and the field `Command` will have a value "Data" – which means that the given package contains the encrypted data block.
+To hide the data, another class of packages is used, called an "encrypted block".
+These data blocks are forwarded inside the service packages and the field `Command` has the value "Data" – which means that the given package contains the encrypted data block.
 
-You can view this mechanism as two layers where a internal encrypted layer is somehow "put" inside the external one – or the service one: 
+You can view this mechanism as two layers, where the internal encrypted layer is "put" inside the external, or service, one:
 
-1. external layer allows forwarding of the data which is secured from modifications with the digital signature
-2. internal layer allows hiding them with the help of encryption
+1. the external layer allows forwarding the data, which is secured from modifications with the digital signature
+2. the internal layer allows hiding the data with the help of encryption
 
-The structure of a encrypted block is the following:
+When the traffic is routed via a proxy-router (the "proxy-transport" network service, enabled by default, see [User Connections behind NAT](principle.md#user-connections-behind-nat)), a third layer is added:
+
+3. the whole service package is encrypted for the proxy-router; the router adds its own encryption and digital signature when forwarding the package further. The router is able to see the service information needed for delivery, but it is not able to read your private data (internal layer) or to change the service information (protected by your digital signature in the external layer)
+
+In short: every package is digitally signed, your private data inside the packages is always encrypted, and the service information needed for delivery - command, sender, recipient - is signed but not encrypted, except while it travels between your device and a proxy-router.
+
+The structure of an encrypted block is the following:
 
 * `CreatorID` – IDURL of data block creator
 * `BackupID` – data identifier
@@ -106,50 +112,53 @@ The structure of a encrypted block is the following:
 
 ## Encryption
 
-At the moment the encryption of data recorded in the field `EncryptedData` is done by the DES3 algorithm.
+At the moment the encryption of data recorded in the field `EncryptedData` is done by the AES algorithm in CBC mode.
 
-This symmetric algorithm uses a so-called session key for data perturbation – anyone who knows the key can decrypt them. The Session key is generated for each new data block and is used for encryption of only this block. Data security is based on hiding the key itself – it is encrypted with the help of a receiver’s public key. As a result the structure of the encrypted package doesn't get the Session key itself but its encrypted copy, which is recorded in the field `EncryptedSessionKey`. Encrypted data is recorded in the field `EncryptedData`.
+This symmetric algorithm uses a so-called session key to encrypt the data – anyone who knows the key can decrypt it. The session key is generated for each new data block and is used to encrypt only this block. Data security is based on hiding the key itself – it is encrypted with the receiver’s public key. As a result, the encrypted package contains not the session key itself but its encrypted copy, which is recorded in the field `EncryptedSessionKey`. Encrypted data is recorded in the field `EncryptedData`.
 
-Thus the RSA algorithm encrypts only the Session key, but the data itself is secured with the DES3 algorithm. Such an approach allows increasing the performance of the BitDust program, as the symmetric method of encryption DES3 works much faster than the algorithm RSA. In other words the simple combination of two algorithms is used:
+Thus the RSA algorithm encrypts only the session key, while the data itself is secured with the AES algorithm. This approach increases the performance of the BitDust program, as symmetric AES encryption works much faster than RSA. In other words, a simple combination of two algorithms is used:
 
-+ symmetric DES3 encryption
-+ asymmetric RSA enctryption
++ symmetric AES encryption
++ asymmetric RSA encryption
 
-We are looking forward to adding a support of AES3 and BlowFish algorithms and provide users a chance to choose their desired method of symmetric encryption in the program settings.
+The field `SessionKeyType` stores the name of the symmetric algorithm used for a given block. Earlier versions of BitDust used the DES3 algorithm - the software is still able to decrypt such blocks, but all new data is encrypted with AES.
 
 
 ## Storage
 
-The Session key is not available to anyone except for the use – the user and only the can decrypt the field `EncryptedSessionKey` with the help of the private key and extract the Session key. Thus a user data which gets to the supplier’s machine are kept in an encrypted form and they are not available to be read by any supplier.
+The session key is not available to anyone except the user – only the user can decrypt the field `EncryptedSessionKey` with the help of the private key and extract the session key. Thus user data that gets to the supplier’s machine is kept in encrypted form and cannot be read by any supplier.
 
-A supplier receives data portions inside service packages, in the field `Payload`, and records the data completely to different files on their hard disk drive. As a result the encrypted block portion are allocated on the supplier’s node – the field `EncryptedData` is kept the same as when it was created on the machine of the user.
+A supplier receives data portions inside service packages, in the field `Payload`, and writes the data to separate files on their hard disk drive. As a result, the encrypted block portions are stored on the supplier’s node – the field `EncryptedData` is kept the same as when it was created on the machine of the user.
 
-When a user requests their data back from a supplier machine they are back in the source encrypted form, but again wrapped in the service pack structure for changed security. Afterwards the user decrypts the field `EncryptedSessionKey` (with their private key) and extracts from the session key, which then decrypts the source data block from the field `EncryptedData`.
+When a user requests their data back from a supplier's machine, it comes back in its original encrypted form, but again wrapped in the service package structure. Afterwards the user decrypts the field `EncryptedSessionKey` (with their private key) and extracts the session key, which then decrypts the source data block from the field `EncryptedData`.
 
 
 ## Data Integrity
 
-You can upload some data into the BitDust network and immediately remove the source file from your computer - now only you can restore it again using your Private Key. Since that moment, that same file (or its copies) will no longer exist in the Universe!
+You can upload some data into the BitDust network and immediately remove the source file from your computer - now only you can restore it again using your [Master Key](glossary.md#master-key) (or, if the data was encrypted with an [Additional Key](glossary.md#additional-key), also the trusted contacts you gave a copy of that key to). From that moment, that same file (or its copies) will no longer exist in the Universe!
 
-The information uploaded to the BitDust network loses its integrity, as each supplier allocates on their machines only encrypted blocks. Nodes storing your data can be identified, but they are located in different parts of the World and reading your data is only possible by using private key. 
+The information uploaded to the BitDust network loses its integrity, as each supplier stores only encrypted blocks on their machine. Nodes storing your data can be identified, but they are located in different parts of the world, and reading your data is only possible with the private key.
 
-One might speak of uploaded in the network data going through the process of "data disintegration" – it becomes absolutely useless for everyone except for the data owner. Only the user has the private key and can reassemble them by providing the baseline minimum quantity of fragments in each block.
+One might say that data uploaded to the network goes through a process of "data disintegration" – it becomes absolutely useless for everyone except the data owner. Only the user has the private key and can reassemble the data, provided that the minimum required number of fragments in each block is available.
 
 
-# Full Control
+## Full Control
 
-In addition to the  possibility of storing your data distributed on remote machines, BitDust also offers another absolutely unique possibility to have total control over your distributed space and secure your data from __theft__ or __elimination__.
+In addition to the possibility of storing your data distributed on remote machines, BitDust also offers another unique possibility to have total control over your distributed space and secure your data from __theft__ or __elimination__.
 
-It is possible to organize the fully secured storage of a user data so that it will be absolutely unavailable for anyone apart from the owner. The user and only the user will have the key to the only existing copy of this data, allocated on multiple machines within the BitDust network. These nodes store only encrypted fragments of the general data array and cannot read them or use them in any way.  
+It is possible to organize fully secured storage of user data so that it is absolutely unavailable to anyone apart from the owner. The user and only the user will have the key to the only existing copy of this data, allocated on multiple machines within the BitDust network. These nodes store only encrypted fragments of the general data array and cannot read them or use them in any way.  
 
-It is okay to just delete the original file from your hard disk drive after the data upload to the BitDust network has been finished. NOTE: In the beginning we will be growing the BitDust network with supporters. We would require a high number of supporters to guarantee availability of your data. The private key user can be stored on a USB-stick and the local copy of the private key can be deleted from your local disk. The BitDust program will be started on the given computer only if this USB-stick is plugged in and the software will read the secret key by the start and store it in the computers operation memory, without creating a copy on the local disk drive. Now, after launching the program the user extracts USB-stick and hides it in a safe place. So USB-stick acts as a normal "physical" key - just like a key for your Lambo:).
+It is totally fine to just delete the original file from your hard disk drive after the data upload to the BitDust network has finished.
 
-In addition to portative USB-stick we recommend you to print the private key on a regular A4 paper and keep it in a safe place. In this case the user provides additional security if the USB-stick breaks down for example. We also advice you to put a password in place and encrypt your private key stored on your USB-stick, so that even if you lose it you are still safe.
+__NOTE__: In the beginning we will be growing the BitDust network with supporters. We need a large number of supporters to guarantee the availability of your data.
 
-This approach enables practically the same common mode of operations with data, which is usually stored on a cloud server for example, but gives a significantly higher level of control over it. When data is stored on cloud servers it is under the control of the respective service suppliers, even if it was encrypted on the client side. Indeed, data can be encrypted by the user before it is put on the cloud server. Still the data is stored in data centers in an integrated form and can be read (in most cases it is still not encrypted), deleted, taken away without notice. Another aspect here is that access/traffic to your customer account can be monitored by a service provider in real time - they will know exactly when, who, and which file was uploaded/downloaded.
+Further, the private key of the user can be stored on a USB-stick and the local copy of the private key can be deleted from your local disk. The BitDust program will then start on the given computer only if this USB-stick is plugged in: the software reads the secret key at startup and stores it in the computer's memory, without creating a copy on the local disk drive. After launching the program, the user removes the USB-stick and hides it in a safe place. So the USB-stick acts as a normal "physical" key - just like a key for your car.
 
-Our given approach is unique, after uploading personal user data within the BitDust network and deleting th original data from your local hard disk drive there is no physical integral copy available any more any where. Data is stored distributed on remote computers are just fragments of source data and they are useless if taken separately – they undergo a process of "data disintegration". 
-Restoring the source user data is possible only with the help of the private key which is kept on user’s USB-stick or possibly on additional media. 
+In addition to a portable USB-stick, we recommend that you print the private key on a regular sheet of A4 paper and keep it in a safe place. This provides additional security, for example if the USB-stick breaks down. We also advise you to set a password and encrypt the private key stored on your USB-stick, so that even if you lose it you are still safe.
 
-We believe firmly that your most private data should only be read and used by you and we want to provide you with the full control to make this possible.
+This approach enables practically the same mode of operations with data as, for example, with data stored on a cloud server, but gives a significantly higher level of control over it. When data is stored on cloud servers it is under the control of the respective service suppliers, even if it was encrypted on the client side. Indeed, data can be encrypted by the user before it is put on the cloud server. Still, the data is stored in data centers in an integral form and can be read (in most cases it is still not encrypted), deleted or taken away without notice. Another aspect is that access/traffic to your customer account can be monitored by the service provider in real time - they will know exactly when, by whom and which file was uploaded/downloaded.
 
+Our approach is unique: after uploading personal user data to the BitDust network and deleting the original data from your local hard disk drive, there is no physical integral copy available anywhere any more. The data stored on remote computers is just fragments of the source data, which are useless if taken separately – they undergo a process of "data disintegration". 
+Restoring the source user data is possible only with the help of the private key, which is kept on the user’s USB-stick or possibly on additional media. 
+
+We firmly believe that your most private data should only be read and used by you and we want to provide you with the full control to make this possible.

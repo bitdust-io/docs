@@ -27,40 +27,40 @@ creates a `bitdust` alias in OS in `/usr/local/bin/bitdust` or in `~/bin/bitdust
 
 
 ### identity create [nickname] [private key size]
-generates a new private key and new identity file for you, key size can be `1024`, `2048` or `4096`
+generates a new private key and a new identity file for you, key size can be `1024`, `2048` or `4096`
 
 
 ### identity restore [private key source file] [IDURL]
-recover existing identity file using backup copy of your private key
+recover an existing identity file using a backup copy of your private key
 
 
 ### identity erase
-delete local identity from the machine 
+delete the local identity from the machine
 
 
 ### key copy            
-copy private key to clipboard
+copy the private key to the clipboard
 
 
 ### key backup [a filename for copy of private key]
-copy private key into file
+copy the private key into a file
 
 
 ### key print
-print private key to console
+print the private key to the console
 WARNING!!! never publish your key
 
 
 ### get [option]
-print current value for given program setting
+print the current value of a given program setting
 
 
 ### set [option] [value]
-use this command to set program setting
+use this command to set a program setting
 
 
 ### set list            
-print all available settings and its values
+print all available settings and their values
 
 
 ### file list
@@ -74,35 +74,35 @@ on remote peers
 
 
 ### file bind [local path]
-add given path as a top level item in the catalog
+add a given path as a top-level item in the catalog
 
 
 ### file add [local path]
-replicate given path into the catalog,
-this will add to the catalog all parent folders too
+replicate a given path into the catalog,
+this will add all parent folders to the catalog too
 
 
 ### file addtree [local folder path]
-replicate given folder with
-all sub folders to the catalog,
-be aware if you add too much items to catalog
-the software may operate inefficient    
+replicate a given folder with
+all sub-folders to the catalog,
+be aware that if you add too many items to the catalog
+the software may operate inefficiently    
 
 
 ### file start [local path or ID]
-start uploading a catalog item on to remote peers,
-bind a new local file/folder if path is not yet
-existing in the catalog 
+start uploading a catalog item to remote peers,
+bind a new local file/folder if the path does not yet
+exist in the catalog
 
 
 ### file delete [local path, ID or full backup ID]
-remove a file or folder (with all sub folders)
-from catalog or only erase a given remote copy
+remove a file or folder (with all sub-folders)
+from the catalog or only erase a given remote copy
 
 
 ### file delete local [full backup ID]
-remove only local copy of given backup,
-keep remote copy on suppliers HDD
+remove only the local copy of a given backup,
+keep the remote copy on the suppliers' HDDs
 
 
 ### file queue        
@@ -122,57 +122,57 @@ show a list of items already uploaded on remote peers
 
 
 ### restore start [local path or ID] [destination path]
-download personal data back to local machine
-from remote peers, you can specify 
+download personal data back to the local machine
+from remote peers, you can specify
 the destination path on your local drive,
-WARNING! source path is default location,
+WARNING! the source path is the default location,
 so it will overwrite existing files by default
 
 
 ### restore abort [backup ID]
-abort current running restore process of given item
+abort the currently running restore process of a given item
 
 
 ### restore progress 
-show current running downloads 
+show currently running downloads
 
 
 ### supplier list       
-show list of your suppliers
-nodes who stores your data on their machines
+show a list of your suppliers -
+nodes that store your data on their machines
 
 
 ### supplier replace [IDURL or position]
 execute a fire/hire process for a given supplier,
-another random node will replace him
+another random node will replace it
 
 
 ### supplier change [IDURL or position] [new IDURL]
-replace a supplier by given node
+replace a supplier with a given node
 
 
 ### supplier ping       
-send Identity packet to all suppliers
-and wait Ack packets to check their statuses
+send an Identity packet to all suppliers
+and wait for Ack packets to check their statuses
 
 
 ### customer list       
-show list of your customers
-nodes who stores their own data on your machine
+show a list of your customers -
+nodes that store their own data on your machine
 
 
 ### customer remove [IDURL]
-reject supporting given customer and
-remove all local files stored for him
+stop supporting a given customer and
+remove all local files stored for them
 
 
 ### customer ping       
-send Identity packet to all customers
-and wait Ack packets to check their statuses
+send an Identity packet to all customers
+and wait for Ack packets to check their statuses
 
 
 ### storage
-show donated/needed storage statistic 
+show donated/needed storage statistics
 
 
 ### automat list
@@ -184,12 +184,12 @@ list all registered services
 
 
 ### service [service name]
-print detailed info for given service
+print detailed info for a given service
 
 
 ### ping [IDURL]        
-send Identity packet to this node
-and wait Ack packet to check his status
+send an Identity packet to this node
+and wait for an Ack packet to check its status
 
 
 ### chat
@@ -198,7 +198,7 @@ messages from other users
 
 
 ### chat send [IDURL] ["text message"]
-send a single text message to remote user
+send a single text message to a remote user
 
 
 ### api [method] [params]
@@ -206,11 +206,11 @@ execute API method and return JSON response
 
 
 ### version             
-display current software version
+display the current software version
 
 
 ### help                
-print a detailed info for command line usage
+print detailed info on command line usage
 
 
 ### usage               
@@ -226,7 +226,7 @@ show this help message and exit
 set debug level
 
 -q, --quite     
-quite mode, do not print any messages to stdout
+quiet mode, do not print any messages to stdout
 
 -v, --verbose   
 verbose mode, print more messages
@@ -235,10 +235,10 @@ verbose mode, print more messages
 do not use logs
 
 -o OUTPUT, --output=OUTPUT
-print log messages to the file
+print log messages to a file
 
 -a APPDIR, --appdir=APPDIR
-set alternative location 
+set an alternative location
 for application data files,
 default is `~/.bitdust/`
 

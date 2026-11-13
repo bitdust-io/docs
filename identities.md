@@ -1,6 +1,6 @@
-# User Indentification
+# User Identification
 
-In this section you can mainly read about user identification and how it is done within the BitDust network. 
+In this section you can read about user identification and how it is done within the BitDust network.
 
 
 * [Identity files](#identity-files)
@@ -8,57 +8,58 @@ In this section you can mainly read about user identification and how it is done
 * [IDURL address](#idurl-address)
 * [Hosts rotation](#hosts-rotation)
 * [Global unique entity ID](#global-unique-entity-id)
-* [Digital-signature](#digital-signature)
+* [Digital signature](#digital-signature)
+* [How authentication works](#how-authentication-works)
 * [Private key](#private-key)
 * [Your privacy](#your-privacy)
 
 
 ## Identity files
 
-For other nodes to connect to a user's machine they have to know the address of the user's computer in the Internet. These contacts are stored in an XML file, which is called __Identity__. By connecting to other nodes the download of the identity files takes place and the received information is used for direct transfer of service packets. 
+For other nodes to connect to a user's machine, they have to know the address of the user's computer on the Internet. These contacts are stored in an XML file called __Identity__. When connecting to other nodes, their identity files are downloaded and the received information is used for the direct transfer of service packets.
 
 In the user identity file the following information is stored:
 
-* contact data of network protocols for connection with his machine 
-* open part of user's personal key 
-* digital-signature for protection from modifications of file content
-* a list of IDURL addresses in the Internet by which the file is available
-* date of file creation
-* version of BitDust software run on users computer
+* contact data of network protocols for connecting to the user's machine
+* the public part of the user's personal key
+* a digital signature protecting the file content from modifications
+* a list of IDURL addresses on the Internet at which the file is available
+* the date of file creation
+* the version of the BitDust software running on the user's computer
 
-To log on to the BitDust network each user needs to create a personal identity file – this happens automatically when you create an account within the BitDust program the first time it starts.
+To join the BitDust network, each user needs to create a personal identity file – this happens automatically when you create an account in the BitDust program the first time it starts.
 
 
 
 ## ID-servers
 
-In theory the location of a user's identity file can be anywhere, however it is important that it is easily accessible for all other nodes in the network. For example, a user can put the given file on his personal website. By doing so he/she needs to assure the possibility to easily update the given copy from the original, which is stored on the machine of the user. To guarantee a more secure and fault tolerant interaction between nodes in the network you can store multiple copies of your identity in several places. 
+In theory a user's identity file can be located anywhere; however, it is important that it is easily accessible to all other nodes in the network. For example, a user can put the file on their personal website. In that case they need to make sure that this copy can easily be updated from the original, which is stored on the user's machine. To guarantee a more secure and fault-tolerant interaction between nodes in the network you can store multiple copies of your identity in several places. 
 
-This kind of storage is done with the use of multiple machines also called ID-servers or Identity servers, whereby copies of all identity files are stored. These servers are maintained by BitDust community (but also ID-server can be started on any other machine) and are all listed in the publicly available [default_network.json](https://github.com/bitdust-io/public/blob/master/default_network.json) file.
+This kind of storage is done using multiple machines, called ID-servers or Identity servers, on which copies of identity files are stored. Despite the word "server" in the name, ID-servers do not form a central storage of identities: there are many ID-servers in the network owned by different people, every user keeps copies of their own identity file on several ID-servers at once and can move it to other ID-servers at any time. These servers are maintained by members of the BitDust community and any user can start an ID-server on their own machine. A list of "well known" ID-servers is published in the [default_network.json](https://github.com/bitdust-io/public/blob/master/default_network.json) file.
 
-An ID-server is a part of BitDust program, but by default it is turned off in the program settings. If required each user can turn on this option and start such a server on their own computer – afterwards the ID-server will be automatically start when starting the BitDust program. An ID-server consume almost no computer resources, but will allow you to support other nodes and increase the overall fault-tolerance of the entire BitDust network.
+An ID-server is a part of the BitDust program, but by default it is turned off in the program settings. If required, each user can turn on this option and start such a server on their own computer – afterwards the ID-server will start automatically together with the BitDust program. An ID-server consumes almost no computer resources, but allows you to support other nodes and increase the overall fault-tolerance of the entire BitDust network.
 
-If you feel enthusiastic now, then you can read more about how to become an identity server within BitDust network. See the [Start new Identity Server](identity_server.md) page or how to run a [Full Seed node](seed_node.md) from scratch.
+If you feel enthusiastic now, you can read more about how to run an identity server in the BitDust network. See the [Start new Identity Server](identity_server.md) page or how to run a [Full Seed node](seed_node.md) from scratch.
 
-If you plan to maintain your BitDust node for a while and support the network it make sense to include your node into a list of "well known" nodes, which are hard-coded in the [default_network.json](https://github.com/bitdust-io/public/blob/master/default_network.json) file.
+If you plan to maintain your BitDust node for a while and support the network, it makes sense to include your node in the list of "well known" nodes, which are hard-coded in the [default_network.json](https://github.com/bitdust-io/public/blob/master/default_network.json) file.
 
-You can also Fork the [Public Git Repository](https://github.com/bitdust-io/public), modify `default_network.json` file in your forked repository and start a [Pull Request](https://github.com/bitdust-io/public/pulls) with your changes - this way we can collaborate all together and maintain a list of the most reliable BitDust Identity servers.
+You can also fork the [Public Git Repository](https://github.com/bitdust-io/public), modify the `default_network.json` file in your forked repository and open a [Pull Request](https://github.com/bitdust-io/public/pulls) with your changes - this way we can collaborate all together and maintain a list of the most reliable BitDust Identity servers.
 
-Contact the BitDust contributors to notify about startin a new Identity Server and one of the developers will approve your Pull Request.
+Contact the BitDust contributors to notify them about starting a new Identity Server and one of the developers will approve your Pull Request.
 
 
 
 ## IDURL address
 
-Each BitDust user is identified by IDURL key – this is an address of the identity file in the global Internet network. This identifier is related to the device running the BitDust software, but not to person who is managing this device. Only by using yhe Private Key stored on that device you can change your identity in the network.
+Each BitDust user is identified by an IDURL key – this is the address of the identity file on the global Internet. This identifier is related to the device running the BitDust software, not to the person who manages this device. Only by using the Private Key stored on that device can you change your identity in the network.
 
 
-Example IDURL might look like this:
+An example IDURL might look like this:
 
         http://first-machine.com/alice.xml
 
  
-And the identity file itself has the following aspects:
+And the identity file itself looks like this:
 
         <identity>
         <contacts>
@@ -85,29 +86,29 @@ And the identity file itself has the following aspects:
         </identity>
 
 
-Each identity file can have several copies, stored on different servers – for ensuring fault-tolerance of a users identification within the BitDust network. Thus each node can have several IDURL addresses, making it possible to identify it.
+Each identity file can have several copies stored on different servers – to ensure the fault tolerance of user identification within the BitDust network. Thus each node can have several IDURL addresses by which it can be identified.
 
-A user has the ability to create an authentic identifier within the BitDust network – for example, starting an ID-server for hosting of their site and allocating their personal identity file. For instance: 
+A user is able to create an authentic identifier within the BitDust network – for example, by starting an ID-server on the host of their website and placing their personal identity file there. For instance:
 
         http://veselin-penev.com/id.xml
 
 
-It is preferably that machines running ID-servers have correctly adjusted the domain names. Then the IDURL identifiers of the users, whose identity files are stored there, will look more attractive.
+It is preferable that machines running ID-servers have properly configured domain names. Then the IDURL identifiers of the users whose identity files are stored there will look more attractive.
     
-But off course it is not mandatory to buy a domain name to run your own ID-server. In that case ID files on your host may look like this:
+But of course it is not mandatory to buy a domain name to run your own ID-server. In that case ID files on your host may look like this:
    
         http://123.45.67.89/id.xml
 
     
-For some reasons this can be more preferable, in case you do not wish to depend on global DNS providers.
+For some reasons this can be preferable, for example if you do not wish to depend on global DNS providers.
 
-The system is designed in such a way that even in the case of failure of one or more servers that store your Identity file, other users can download it from other ID-servers and are able to connect with you. The program continuously monitors your ID-servers and in case of failure triggers automatic distribution of your Identity file on another available ID-servers, and notifies your active nodes immediately.
+The system is designed in such a way that even if one or more servers that store your identity file fail, other users can download it from other ID-servers and are able to connect with you. The program continuously monitors your ID-servers and, in case of failure, triggers automatic distribution of your identity file to other available ID-servers, and notifies your active nodes immediately.
 
 
 
 ## Hosts rotation
 
-Periodically the software will trigger a method to check and propagate your identity file to other nodes. Before it starts it can switch your current "primary" ID-server to another one - another ID server will be found and your identity file will be sent to that host. Your main global IDURL address will be changed because a new server will be placed on the first position under a `<sources>` tag, for example:
+Periodically the software triggers a method to check and propagate your identity file to other nodes. Before it starts, it can switch your current "primary" ID-server to another one - another ID-server will be found and your identity file will be sent to that host. Your main global IDURL address will change, because the new server will be placed in the first position under the `<sources>` tag, for example:
 
         <identity>
         <contacts>
@@ -135,18 +136,18 @@ Periodically the software will trigger a method to check and propagate your iden
         </identity>
 
 
-Final IDURL will be updated like so:
+The final IDURL will be updated like so:
 
       http://host3.org/alice.xml
 
 
-Both IDURLs are pointing to same device now, but we only switch the main location of your identiy file - to be used by all other nodes who are talking to you. To do that the software will "propagate" your new identity file to all of your currently active contacts. Also it will update copies on ID-servers you are using already: "first-machine.com" and "server-two.net".
+Both IDURLs now point to the same device, but we only switch the main location of your identity file - to be used by all other nodes that are talking to you. To do that, the software will "propagate" your new identity file to all of your currently active contacts. Also it will update copies on ID-servers you are using already: "first-machine.com" and "server-two.net".
 
-The software will try to keep you "nickname" unchanged, for example if "host3.org" server already stores another "alice.xml" file signed with another public key it can not be used by you, because this name is already taken. A username is the name you pick in the beginning and can never be changed. At first the nickname is based on your username, however a nickname can be changed at any time.
+The software will try to keep your "nickname" unchanged: for example, if the "host3.org" server already stores another "alice.xml" file signed with another public key, it cannot be used by you, because this name is already taken. A nickname is the name you pick in the beginning and can never be changed.
 
-We expect the regular BitDust user to be able to spawn an own ID-server easily - a lot of "hosters" in the network are required to be able to operate in the network in reliable, private and in a safe way.
+We expect a regular BitDust user to be able to start their own ID-server easily - a lot of "hosters" are required for the network to operate in a reliable, private and safe way.
 
-BitDust software that is running on your machine will automatically "migrate" or "anonymous" your identity in the network and so it will be almost imposible to "block" or "attack" your presence in the network.
+BitDust software that is running on your machine will automatically "migrate" your identity between ID-servers in the network, which makes it much harder to "block" or "attack" your presence in the network.
 
 
 
@@ -158,7 +159,7 @@ This is an example of a full remote path to file "cat.png" within the BitDust ne
         group_abc$alice@first-machine.com:animals/cat.png#F20160313043757PM
 
 
-A full identifier consists out of several parts, for instance:
+A full identifier consists of several parts, for instance:
 
 * identity server host (DNS name or IP:PORT address): first-machine.com
 * user identity filename (without ".xml"): alice
@@ -167,17 +168,17 @@ A full identifier consists out of several parts, for instance:
 * version name: F20160313043757PM
 
 
-If an identity server was set using IP:PORT format the global ID might looks like this:
+If an identity server was set using the IP:PORT format, the global ID might look like this:
 
         key_xyz$bob@123.45.67.89_8000:cars/citroen.png#F20160313052124PM
 
 
-This approach has something similar with "remotes" and "branches" in Git. For example a full remote file path in Git can be written down like so:
+This approach has something in common with "remotes" and "branches" in Git. For example, a full remote file path in Git can be written like so:
 
         https://github.com/vesellov/bitdust.devel/blob/master/automats/automat.py
 
 
-Looking more deeply we can split this URL by several parts:
+Looking more deeply, we can split this URL into several parts:
 
 * server host: github.com
 * user account ID: vesellov
@@ -189,35 +190,51 @@ Looking more deeply we can split this URL by several parts:
 
 ## Digital signature
 
-By creating or adjusting a user's identity the generation of digital-signature takes place – it is connected to the file content and serves for the protection from all not intended modifications from third parties. Digital-signature is calculated from the file content via a Hash-function and for it's creation you need a Private Key, which is stored only on your machine.
+When a user's identity is created or changed, a digital signature is generated – it is bound to the file content and protects it from any unintended modifications by third parties. The digital signature is calculated from the file content via a hash function, and to create it you need the Private Key, which is stored only on your machine.
 
-The general principle of security of a user identity from adjustment is based on the fact that all other nodes necessarily check the digital-signature and file content accordance each time they get a new copy from its identity – this is a standard method in cryptography called `VerifySignature`.
+The general principle of protecting a user identity from changes is based on the fact that all other nodes always check that the digital signature matches the file content each time they get a new copy of the identity – this is a standard method in cryptography called `VerifySignature`.
 
-This framework helps to safely store and distribute a user identity files through any sources, which include also ID-servers. Machine owner, who started an ID-server, do not have any possibility to substitute content of stored there files. But they can easily delete them or turn off the server – for loss prevention of the identity file of each user it is stored on several servers all over the world. 
+This framework helps to safely store and distribute user identity files through any sources, including ID-servers. The owner of a machine running an ID-server has no possibility to substitute the content of the files stored there. But they can easily delete them or turn off the server – to prevent the loss of the identity file, each user's file is stored on several servers all over the world.
+
+
+
+## How authentication works
+
+There is no "login" procedure and no authentication server in the BitDust network. Authentication is fully based on digital signatures and is performed independently by every node:
+
+* the user's private key (the [Master Key](glossary.md#master-key)) is generated and stored only on the user's device - it never leaves it
+* the user signs their own identity file and every packet sent to the network with that private key
+* the identity file contains the user's public key and is published on several ID-servers
+* any node that receives a packet downloads the sender's identity file (or takes it from the local cache), checks the signature of the identity file itself and then verifies the signature of the packet with the public key from that identity file
+* if the signature is valid, the node knows that the packet was created by the owner of that identity and was not modified on the way
+
+ID-servers only store and publish copies of identity files - they do not authenticate anyone and are not able to forge an identity file, because they do not have the user's private key.
+
+Thus two nodes are able to authenticate each other directly, without any third party being involved in the decision.
 
 
 
 ## Private Key
 
-Upon first install of the BitDust program the private key is generated, this key protects the identity file and your personal data. Only this key can grant you access to the personal user's data and/or make adjustments to the identity file.
+When the BitDust program is first installed, the private key is generated; this key protects the identity file and your personal data. Only this key can grant you access to the user's personal data and/or allow changes to the identity file.
 
-Within BitDust you cannot find any common schemes or methods of a user's authorization:
+In BitDust you will not find any of the common methods of user authorization:
  
-* not using a password
-* not via email address
-* no account recovery through answering a secret question
-* not calling a support team
-* no centralized storages of member accounts
+* no password
+* no email address
+* no account recovery by answering a secret question
+* no calling a support team
+* no centralized storage of member accounts
 
 
 #### ATTENTION!!!
-    In case of losing your private key the user completely loses access to all their uploaded files. 
-    It is highly recommended to make two or three copies of your private key on reliable and 
-    compact media just after the program set up and hide them in a secure place.
+    If you lose your private key, you completely lose access to all your uploaded files.
+    It is highly recommended to make two or three copies of your private key on reliable and
+    compact media right after the program setup and hide them in a secure place.
 
-The user responsible for the security of their private key. A private key should NEVER leave your computer on which it was generated – this potentially has a major impact on the security of your data.
+The user is responsible for the security of their private key. Apart from these backup copies, the Master Key should NEVER leave the computer on which it was generated – this could have a major impact on the security of your data.
 
-We recommend using a modern anti-virus software or any other tools to arrange an extra defence from network attacks and other methods of increasing security level of your personal device. In addition to this, we advise you to look through useful information resources on this topic in order to raise your awareness. 
+We recommend using modern anti-virus software or other tools to arrange extra defence against network attacks, as well as other methods of increasing the security level of your personal device. In addition, we advise you to look through useful information resources on this topic in order to raise your awareness.
 
 
 
@@ -226,19 +243,20 @@ We recommend using a modern anti-virus software or any other tools to arrange an
 Your identity file is distributed publicly on the network and at the same time is a unique source that allows other users to connect to your device.
 The file does not store your personal data (name, surname, address, etc.) but contains technical and service information (nickname, IP address, RSA public key) required for BitDust to operate.
 
-BitDust network protocol may be considered as [pseudonymous peer-to-peer](https://en.wikipedia.org/wiki/Anonymous_P2P) communication system.
+The BitDust network protocol is a [pseudonymous peer-to-peer](https://en.wikipedia.org/wiki/Anonymous_P2P) communication system: BitDust does not collect any personal data of its users, every user is known in the network only by a nickname and a public key.
 
-While registering a new identity you will chose a "nickname" that will never change thru the life-time of that identity.
-Your nickname may represent your real name or be a random string. It can be name of an animal or a president or anything else you wish other users to see when communicating with you via BitDust.
+While registering a new identity, you will choose a "nickname" that will never change during the lifetime of that identity.
+Your nickname may represent your real name or be a random string. It can be the name of an animal or a president or anything else you wish other users to see when communicating with you via BitDust.
 
-Also your identity file stores a networking information about your device such as IP address and TCP/UDP port number - that information identifies your "physical" location.
+Your identity file also stores networking information, such as an IP address and TCP/UDP port number. By default routing via proxy-routers is enabled, so the file contains the network address of your proxy-router instead of your own - the router itself still knows your real IP address. If you disable routing, the file contains the IP address of your own device, which may reveal your "physical" location; in that case you must also configure port forwarding and open ports so that your node can receive incoming connections, see [User Connections behind NAT](principle.md#user-connections-behind-nat). Hiding the physical location of the user is not a goal of the BitDust project.
 
-There are few possibilities in BitDust to reduce disclosure of your networking info and so "hide" your physical location from other users:
+If you wish to further reduce the disclosure of your networking info, there are a few optional possibilities in BitDust:
 
-* Run your own BitDust ID-server node on external device (which physical location may be disclosed - acts as a "shield") and re-configure your "master" device using [known-servers](https://bitdust.io/wiki/settings.html#known-servers-(string)) and [preferred-servers](https://bitdust.io/wiki/settings.html#preferred-servers-(string)) settings before registering new identity in the network
-* Enable proxy-transport network service that will re-route all your encrypted peer-to-peer traffic via another randomly selected node - this way you can almost completely hide your physical location from others because your identity file will be updated and will store IP address of another node, but not your real IP address
-* Run your own BitDust proxy-router node on external device (which physical location may be disclosed - acts as a "shield") and re-configure your "master" device using [preferred-routers](https://bitdust.io/wiki/settings.html#preferred-routers-(text)) setting - this way IP address of your "master" device is not visible to any other nodes in the network at all
-* You can use VPN services to enable lower level networking protection on your device and BitDust will work on top of that via same TCP/UDP protocols - other users will recognize IP addresses of the VPN providers, but not your own IP address in that situation
+* Run your own BitDust ID-server node on an external device (whose physical location may be disclosed - it acts as a "shield") and re-configure your "master" device using [known-servers](https://bitdust.io/wiki/settings.html#services/identity-propagate/known-servers-(string)) and [preferred-servers](https://bitdust.io/wiki/settings.html#services/identity-propagate/preferred-servers-(string)) settings before registering a new identity in the network
+* Run your own BitDust proxy-router node on an external device (whose physical location may be disclosed - it acts as a "shield") and re-configure your "master" device using [preferred-routers](https://bitdust.io/wiki/settings.html#services/proxy-transport/preferred-routers-(text)) setting - this way the IP address of your "master" device is not visible to any other nodes in the network at all
+* Use VPN services to enable lower-level networking protection on your device, and BitDust will work on top of that via the same TCP/UDP protocols - other users will see the IP addresses of the VPN providers, but not your own IP address in that situation
 
-In other words, it is impossible to provide 100% guarantee of complete concealment of your physical location in the network and in general true anonymity is not the main goal of the project - but can be boosted to a very high level using additional techniques.
+Note also that, while the blockchain functions are enabled, your nickname and public key are recorded in the public BitDust blockchain when your identity is registered there - see [Blockchain and storage contracts](storage.md#blockchain-and-storage-contracts).
+
+In other words, BitDust provides pseudonymity, not anonymity: the project guarantees that it does not collect your personal data, but it does not guarantee concealment of your physical location in the network.
 

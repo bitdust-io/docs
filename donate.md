@@ -23,4 +23,4 @@
 
 You are welcome to contact us by e-mail
 [bitdust.io@gmail.com](mailto:bitdust.io@gmail.com)
-for agreeing on other methods of supporting BitDust project.
+to agree on other methods of supporting the BitDust project.

@@ -1,32 +1,32 @@
 # Running BitDust supplier node
 
 
-Supplier is a guy who donates part of storage from own PC and share resources to other users in the network.
+A supplier is a person who donates part of the storage of their own PC and shares resources with other users in the network.
 
-At the moment there is no way to reward suppliers for the contribution they are doing to the network, but this is planned to come later.
+At the moment suppliers are not rewarded for the contribution they make to the network. Storage contracts and payments with BitDust coins already exist in the software, but at the moment this does not affect the operation of the network in any way, and the function can be disabled in the program settings, see [Blockchain and storage contracts](storage.md#blockchain-and-storage-contracts).
 
-Read more about [BitDust installation](install.md) or just follow those few steps bellow to install software on your machine.
+Read more about [BitDust installation](install.md) or just follow the few steps below to install the software on your machine.
 
 
-First clone BitDust sources locally:
+First, clone the BitDust sources locally:
 
         git clone https://github.com/bitdust-io/public.git bitdust
 
 
-Create BitDust virtual Python environment:
+Create the BitDust virtual Python environment:
         
         cd bitdust
         python3 bitdust.py install
 
 
-Last step to make BitDust software ready to be used is to make a short alias in your OS, then you can just type `bitdust <some command>` in command line to get fast access to the program:
+The last step to make the BitDust software ready to use is to create a short alias in your OS; then you can just type `bitdust <some command>` in the command line to get fast access to the program:
         
-        sudo ln -s -f /home/<user>/.bitdust/bitdust /usr/local/bin/bitdust  # location depend on your system
+        sudo ln -s -f /home/<user>/.bitdust/bitdust /usr/local/bin/bitdust  # location depends on your system
 
 
-Now you need to configure few software settings to actually donate storage space to the network.
+Now you need to configure a few software settings to actually donate storage space to the network.
 
-Disable services you do not need if you run supplier role. Switch off "customer service" so your machine will not consume any storage, but only donate:
+Disable the services you do not need if you run the supplier role. Switch off the "customer" service so your machine will not consume any storage, but only donate it:
 
         bitdust set services/customer/enabled false
 
@@ -36,22 +36,22 @@ Declare how much space you are willing to donate to the BitDust network:
         bitdust set services/supplier/donated-space 20GB
 
 
-If you did not yet created an identity for your device in the BitDust network you can do it with such command:
+If you have not yet created an identity for your device in the BitDust network, you can do it with this command:
 
         bitdust id create <some nick name>
 
 
-When you did it for the first time I recommend you to create another copy of your Private Key in a safe place to be able to recover your identity in BitDust in the future. You can make a backup copy with such command:
+When you do it for the first time, we recommend creating another copy of your Private Key in a safe place to be able to recover your identity in BitDust in the future. You can make a backup copy with this command:
 
         bitdust key copy <nickname>.bitdust.key
 
 
-Finaly start BitDust software in daemon mode so it will keep running in background and you can keep using your PC:
+Finally, start the BitDust software in daemon mode so it keeps running in the background and you can keep using your PC:
 
         bitdust daemon
 
 
-You can always check current situation regarding your "donated storage" with such command:
+You can always check the current state of your "donated storage" with this command:
 
         bitdust storage
 

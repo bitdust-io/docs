@@ -4,7 +4,7 @@
 
 + [Introduction](intro.md)
 + [Concept](concept.md)
-+ [Definitions](definitions.md)
++ [BitDust is ...](definitions.md)
 + [Philosophy](philosophy.md)
 + [How Does It Work?](principle.md)
 + [Installation](install.md)

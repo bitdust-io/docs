@@ -1,6 +1,6 @@
 # BitDust Technologies
 
-Below you can find the technologies being used for the development of BitDust project.
+Below you can find the technologies used for the development of the BitDust project.
 
 
 ## Back-End
@@ -11,7 +11,7 @@ Below you can find the technologies being used for the development of BitDust pr
 * [Asymmetric Cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography)
 * [RAID_5](https://en.wikipedia.org/wiki/Standard_RAID_levels#RAID_5)
 * [ECC](https://en.wikipedia.org/wiki/Error_correction_code)
-* Blockchain
+* Blockchain (based on [Bismuth](https://github.com/bismuthfoundation/Bismuth))
 
 
 ## Networking
@@ -22,9 +22,10 @@ Below you can find the technologies being used for the development of BitDust pr
 * Data Streaming
 
 
-## Fron-End
+## Front-End
 
 * Kivy framework
+* KivyMD
 
 
 ## Development
@@ -33,6 +34,4 @@ Below you can find the technologies being used for the development of BitDust pr
 * Micro-Services
 * Docker
 * CI/CD
-* GIT
-
-
+* Git
