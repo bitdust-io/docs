@@ -33,6 +33,7 @@ The following table has a list of command boxes, which can be written to the has
     list of relations for given customer with other suppliers 
 
 
+
 ## Support BitDust network
 
 If you agree to support other BitDust users when they are connecting to the network and would like to become a "Seed node" in the BitDust network you can add your node to the [default_network.json](https://github.com/bitdust-io/public/blob/master/default_network.json) file which is located in the root of the BitDust repository.
@@ -45,4 +46,3 @@ This is how the Distributed Hash Table works - it is well-scalable, but requires
 To include yourself into a list of "well-known" seed nodes - first create a fork of [Public Git Repository](https://github.com/bitdust-io/public), modify `default_network.json` file in your forked repository and start a [Pull Request](https://github.com/bitdust-io/public/pulls) with your changes - this way we can collaborate all together and maintain a list of the most reliable BitDust seed nodes.
 
 Contact the BitDust contributors to notify about that a new DHT node was started by you and one of the developers will approve your Pull Request.
-

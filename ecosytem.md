@@ -1,4 +1,4 @@
-#Ecosystem
+# Ecosystem
 
 The BitDust network is a complex ecosystem. To make the BitDust network functioning there is a complex ecosystem.
 This ecosystem consist out of different roles that either use or support the BitDust network. In this section 
@@ -10,7 +10,10 @@ or out of different supporting roles to make it possible for customers to use th
 Currently we have 4 supporting roles that are active and 2 roles that are still being developed. Once all the 6 
 supporting roles are live the full power of the BitDust network is unleashed. 
 
-##Becoming a customer of the BitDust network
+
+
+## Becoming a customer of the BitDust network
+
 A customer/user of the BitDust network will have the possibility to install BitDust on their laptop/PC. Once installed
 the user can create a identity anonymously and start enjoying the BitDust product. For now once a user has installed
 BitDust they can use start using BitDust to be in full control of their data. Every piece of data that runs on the '
@@ -28,7 +31,9 @@ for Mac, Windows, Linux and Rasberry Pi.
 
 Curious on how to become a user within the BitDust network then read more about it here (link to user detail page)
 
-##Becoming a supporter in the BitDust network
+
+
+## Becoming a supporter in the BitDust network
 To make the BitDust network function there are multiple roles needed to support the network. For now all of the roles
 can only be created by using command line. This basically means that you don't have an easy to use interface to set-up
 your supporting role, like you have when you use BitDust as a customer/user. We will be making this available in the
@@ -62,6 +67,8 @@ then read  more about it here (insert link DHTS).
 Router:
 As a router you help other nodes to reach each other within the BitDust network. You help other nodes to send and 
 receive encrypted packets. Interested in becoming a Router then read  more about it here (insert link Router).
+
+
 
 ## Supporting roles that you can become in the future
 

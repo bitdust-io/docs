@@ -25,6 +25,7 @@ Below you can find the technologies being used for the development of BitDust pr
 ## Fron-End
 
 * Kivy framework
+* KivyMD
 
 
 ## Development
@@ -34,5 +35,3 @@ Below you can find the technologies being used for the development of BitDust pr
 * Docker
 * CI/CD
 * GIT
-
-
