@@ -2,15 +2,16 @@
 
 ### Decentralized open source online storage network
 
-Currently, personal information is becoming more valuable and significant in the rapidly developing digital world.  Personal photos, files, data on relatives and children, etc. are currently stored separately in various centralized services and are often used without the permission of the data owner, sometimes even causing harm.
+Personal information is becoming more valuable and significant in the rapidly developing digital world. Personal photos, files, data on relatives and children, etc. are currently stored separately in various centralized services and are often used without the permission of the data owner, sometimes even causing harm.
 
-The lack of secure storage is a problem for Internet users. BitDust Technology solves this problem by providing users the ability to store their data fully encrypted on a decentralized network via an easy-to-use application. Providing them the ability to share data only with trusted contacts.
+The lack of secure storage is a problem for Internet users. BitDust Technology solves this problem by giving users the ability to store their data fully encrypted on a decentralized network via an easy-to-use application, and to share data only with trusted contacts.
 
-In the future the blockchain within BitDust will be used to account for the work carried out (storage, data processing, data rebuilding, etc.) and to compensate supporters within the network. BitDust will benefit the collaborative economy by allowing normal people to rent-out their hard disk space, thereby supporting the network. 
-Uploaded data is divided into blocks and fragments, encrypted and uploaded to your suppliers. The system is designed to perform continuous monitoring of each supplier, who stores your data.
+The BitDust software already includes its own blockchain with a built-in wallet and storage contracts between customers and suppliers - at the moment this does not affect the operation of the network in any way, and the function can be disabled in the program settings (see [Blockchain and storage contracts](storage.md#blockchain-and-storage-contracts)). In the future it will be used to compensate supporters within the network. BitDust will benefit the collaborative economy by allowing ordinary people to provide their hard disk space to the network - for free at the moment, and in the future in exchange for BitDust coins (see [Sharing resources](storage.md#sharing-resources)).
 
-BitDust is written in Python using pure Twisted framework and is published under GNU AGPLv3.
+Uploaded data is divided into blocks and fragments, encrypted and uploaded to your suppliers. Your software continuously monitors each supplier that stores your data.
 
-An alpha version is already available for you to try out. If you want to join the project or support us in anyway possible then please contact us.
+BitDust is written in Python using the pure Twisted framework and is published under GNU AGPLv3.
+
+An alpha version is already available for you to try out. If you want to join the project or support us in any way possible, please contact us.
 
 We believe that this technology will benefit society by increasing ownership of personal data and protecting data from unauthorized access or censorship. 

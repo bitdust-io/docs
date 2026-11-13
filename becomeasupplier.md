@@ -1,15 +1,18 @@
-#How to become a supplier?
+# How to become a supplier?
 
-In this section we will be running you through the steps that are needed to undergo so you can become a supplier and support
-the BitDust ecosystem. As a supplier you provide storage to customers. Customers store part of encrypted files on your local
-machine. In short customers are renting Gigabyte/Hours from suppliers. This will also be the measurement for customers to select.
-Customers chose the amount of storage they need and the amount of suppliers they want to have so they can securely and safely
+In this section we will walk you through the steps needed to become a supplier and support
+the BitDust ecosystem. As a supplier you provide storage to customers. Customers store parts of their encrypted files on your local
+machine. At the moment suppliers provide storage to customers for free. In the future customers will be able to rent
+gigabyte-hours from suppliers in exchange for BitDust coins. Storage contracts and payments already exist in the software, but at the moment do not affect anything,
+see [Sharing resources](storage.md#sharing-resources) and [Blockchain and storage contracts](storage.md#blockchain-and-storage-contracts). Customers will also use this measure to select suppliers.
+Customers choose the amount of storage they need and the number of suppliers they want to have so they can securely and safely
 store their data with suppliers. 
 
-Note: As a reliable supplier it is important to always be connected to the BitDust network. That way customers can
-access their files at all time and you also build up a good reputation as a supplier within the network. 
+Note: as a reliable supplier, it is important to always be connected to the BitDust network. That way customers can
+access their files at all times and you also build up a good reputation as a supplier within the network. 
 
-Being a supplier means that you have a supporting role within the BitDust netIf you would like to perform anothe
+Being a supplier means that you have a supporting role within the BitDust network.
 
-##Step 1: Install BitDust on your local machine
-It is important to note that to currently install BitDust and become a supplier you would require basic knowledge of command line.
+## Step 1: Install BitDust on your local machine
+
+It is important to note that currently, to install BitDust and become a supplier, you need basic knowledge of the command line. See [Installation](install.md).

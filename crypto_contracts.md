@@ -8,13 +8,13 @@
 
 ## Business requirements
 
-BitDust do not have (and do not need) own currency - we count hardware resources, not euros, bucks or BitCoins. However to be able to buy/sell PC resources, of course, necessary to implement some "coins". There are several important points needs to be considered in this topic:
+BitDust already has its own blockchain with BitDust "coins" and storage contracts, but at the moment they do not affect the operation of the network in any way and can be disabled in the settings, see [Blockchain and storage contracts](storage.md#blockchain-and-storage-contracts). The idea is to count hardware resources, not euros, dollars or bitcoins. However, to be able to buy/sell PC resources, it is of course necessary to implement some "coins". There are several important points that need to be considered here:
 
-+ Because of distributed design of whole BitDust eco-system all billings and payments must be fully decentralized/distributed as well. That means there should not exist one single point of interest - nobody should be able to control and manage all billing operations in the network and collect/centralize customer information.
++ Because of the distributed design of the whole BitDust ecosystem, all billing and payments must be fully decentralized/distributed as well. That means there should not be a single point of control - nobody should be able to control and manage all billing operations in the network and collect/centralize customer information.
 
-+ Imagine a situation when one customer is located in country A and using storage provided from supplier living in country B. This customer able to pay in local currency for country A, but supplier would like to receive money in another currency, because he live in country B where currency A is not available. So the method must be independent and generic.
++ Imagine a situation where a customer located in country A uses storage provided by a supplier living in country B. The customer is able to pay in the local currency of country A, but the supplier would like to receive money in another currency, because they live in country B, where currency A is not available. So the method must be independent and generic.
 
-+ Transfer/storage costs for each and every single small transaction must be very low, need to reduce amount of regular transactions as much as possible. For example one customer have 64 suppliers and paying all of them one by one individually is not efficient at all - he will prefer to pay only once for all finished contracts or even with fixed-price.
++ Transfer/storage costs for each and every small transaction must be very low, and the number of regular transactions must be reduced as much as possible. For example, if a customer has 64 suppliers, paying all of them one by one is not efficient at all - they will prefer to pay only once for all finished contracts, or even a fixed price.
 
 + It must be possible to use BitDust network without spending any real cash - if you donate more resources than you consume all services must be free for you.
 
@@ -22,5 +22,5 @@ BitDust do not have (and do not need) own currency - we count hardware resources
 
 
 
-Based on these requirements we started desiging and developing a distributed online payment system for BitDust project. The goal is to allow users to gain some "coins" and benefit from providing resources of own PC's to other people.
+Based on these requirements we started designing and developing a distributed online payment system for the BitDust project. The goal is to allow users to earn some "coins" and benefit from providing the resources of their own PCs to other people. The first version of this payment system is already included in the software, but it does not affect anything yet.
 
